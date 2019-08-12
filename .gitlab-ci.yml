@@ -10,7 +10,7 @@ build_job:
     - 4dcompiler "$CI_PROJECT_DIR/Project/4D Mobile App Server.4DProject" "build"
   artifacts:
     paths:
-    - "build/release/4D Mobile App Server.4dbase"
+    - "build/release/4d-mobile-app-server.4dbase"
 
 cpd_job:
   stage: cpd
