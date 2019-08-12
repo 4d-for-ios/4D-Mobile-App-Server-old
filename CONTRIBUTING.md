@@ -30,8 +30,9 @@ a duplicate.
 ### Naming rules
 
 * Name of public methods must start with `Mobile App` then category if any (ex: `Action`) and finally a name.
+  * This rules could be changed
 * Create a folder by category
-** Create a `Compiler_categoryName` inside each folder for compilation declaration
+  * Create a `Compiler_categoryName` inside each folders for compilation declarations
 
 ### Only touch relevant files
 
