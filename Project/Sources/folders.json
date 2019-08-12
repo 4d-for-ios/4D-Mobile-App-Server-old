@@ -1,3 +1,16 @@
-﻿{
-	"trash": {}
+{
+  "action": {
+    "methods": [
+      "Compiler_action",
+      "Mobile App Action GetEntity",
+      "Mobile App Action GetDataClass"
+    ]
+  },
+  "ds": {
+    "methods": [
+      "Compiler_ds",
+      "QueryByPrimaryKey"
+    ]
+  },
+  "trash": {}
 }
