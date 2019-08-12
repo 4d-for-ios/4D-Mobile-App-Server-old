@@ -11,12 +11,12 @@ Utility methods to improve the 4D Mobile App backend coding.
 
 Utility methods to get dataClass or entity to apply action when inside `On Mobile App Action` database method.
 
-```4dm
+```swift
 $request:=$1  // Informations provided by mobile application
 $response:=New object("success";False)  // Informations returned to mobile application
 
 Case of
-		  //________________________________________
+      //________________________________________
     : ($request.action="rate") // Rate a book, action scope is entity
 
       $book:=Mobile App Action GetEntity ($request)
