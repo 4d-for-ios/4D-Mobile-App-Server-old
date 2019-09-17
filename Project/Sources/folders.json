@@ -1,16 +1,22 @@
-{
-  "action": {
-    "methods": [
-      "Compiler_action",
-      "Mobile App Action GetEntity",
-      "Mobile App Action GetDataClass"
-    ]
-  },
-  "ds": {
-    "methods": [
-      "Compiler_ds",
-      "QueryByPrimaryKey"
-    ]
-  },
-  "trash": {}
+﻿{
+	"ds": {
+		"methods": [
+			"QueryByPrimaryKey",
+			"Compiler_ds"
+		]
+	},
+	"action": {
+		"methods": [
+			"Compiler_action",
+			"Mobile App Action GetDataClass",
+			"Mobile App Action GetEntity"
+		]
+	},
+	"push": {
+		"methods": [
+			"deviceToken",
+			"Mobile App Push Notification"
+		]
+	},
+	"trash": {}
 }
