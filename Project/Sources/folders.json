@@ -1,8 +1,9 @@
 ﻿{
-	"ds": {
+	"push": {
 		"methods": [
-			"QueryByPrimaryKey",
-			"Compiler_ds"
+			"tempo",
+			"Mobile App Push Notification",
+			"deviceToken"
 		]
 	},
 	"action": {
@@ -12,10 +13,10 @@
 			"Mobile App Action GetEntity"
 		]
 	},
-	"push": {
+	"ds": {
 		"methods": [
-			"deviceToken",
-			"Mobile App Push Notification"
+			"QueryByPrimaryKey",
+			"Compiler_ds"
 		]
 	},
 	"trash": {}
