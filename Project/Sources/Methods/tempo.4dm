@@ -50,6 +50,11 @@ If (Length:C16(String:C10($imageURL))>0)
 End if 
 
 
+  // Or we can delegate the notification building process
+
+  // $notification:=buildNotification("This is title";"Here is the body of this notification").notification
+
+
 $bundleId:="com.sample.xxxx"
   //$bundleId:="com.sample.NotifSampleApp2"
 

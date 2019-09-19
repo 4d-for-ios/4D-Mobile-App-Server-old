@@ -1,8 +1,8 @@
 //%attributes = {}
-C_OBJECT:C1216($1)  // notification content
-C_TEXT:C284($2)  // bundle Id
-C_COLLECTION:C1488($3)  // recipients email collection
-C_OBJECT:C1216($0)  // returned object
+C_OBJECT:C1216($1)  // Notification content
+C_TEXT:C284($2)  // Bundle Id
+C_COLLECTION:C1488($3)  // Recipients email collection
+C_OBJECT:C1216($0)  // Returned object
 
 C_TEXT:C284($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
 C_TEXT:C284($cmdPush;$cmdPush_in;$cmdPush_out;$cmdPush_err)
