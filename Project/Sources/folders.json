@@ -1,6 +1,7 @@
 ﻿{
 	"push": {
 		"methods": [
+			"Compiler_push",
 			"tempo",
 			"Mobile App Push Notification",
 			"deviceToken"
