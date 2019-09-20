@@ -71,11 +71,7 @@ $recipients:=New collection:C1472(\
 C_OBJECT:C1216($response)
 
 $response:=Mobile App Push Notification ($notification;$bundleId;$recipients)
-  //$response:=Mobile App Push Notification ($notification;"";$recipients)
 
   // $response.success True or False
   // $response.errors contains a collection of Text errors
 $0:=$response
-
-  // TODO UNIT TEST AVEC PARAM FOIREUX
-
