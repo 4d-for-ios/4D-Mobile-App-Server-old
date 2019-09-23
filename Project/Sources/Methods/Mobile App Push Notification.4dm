@@ -2,6 +2,7 @@
 C_OBJECT:C1216($1)  // Notification content
 C_TEXT:C284($2)  // Bundle Id
 C_COLLECTION:C1488($3)  // Recipients email collection
+C_OBJECT:C1216($4)  // Authentication object
 C_OBJECT:C1216($0)  // Returned object
 
 C_TEXT:C284($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
@@ -12,9 +13,12 @@ LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush)
 
 C_TEXT:C284($bundleId)
 C_COLLECTION:C1488($recipients)
-C_OBJECT:C1216($Obj_result;$Obj_notification)
+C_OBJECT:C1216($Obj_result;$Obj_notification;$Obj_auth)
 
-$Obj_result:=New object:C1471("success";False:C215)
+$Obj_result:=New object:C1471(\
+"success";False:C215)
+
+$Obj_result.errors:=New collection:C1472
 
 
   // PARAMETERS
@@ -26,186 +30,221 @@ $bundleId:=$2
 
 $recipients:=$3
 
+$Obj_auth:=$4
+
+
+C_TEXT:C284($missingParameter;$missingBundleId;$missingNotificationTitle;$missingAuth)
+
+$missingParameter:="Missing parameter"
+
+$missingBundleId:="Bundle Id can't be empty"
+
+$missingNotificationTitle:="Notification title can't be empty"
+
+$missingAuth:="Incomplete authentication object"
+
+C_BOOLEAN:C305($isMissingParameter;$isMissingBundleId;$isMissingNotificationTitle;$isMissingAuth)
 
 C_LONGINT:C283($Lon_parameters)
 
 $Lon_parameters:=Count parameters:C259
 
-If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
-	
-	$Obj_result:=New object:C1471(\
-		"success";False:C215)
-	
-	$Obj_result.errors:=New collection:C1472
+If ($Lon_parameters>=4)
 	
 	If (Length:C16(String:C10($bundleId))=0)  // Missing bundle Id
 		
-		ALERT:C41("Bundle Id can't be empty")
+		logAndAlert ($missingBundleId)
 		
-		ABORT:C156
+		$isMissingBundleId:=True:C214
+		
+		$Obj_result.errors.push($missingBundleId)
 		
 	End if 
 	
 	If (Length:C16(String:C10($Obj_notification.aps.alert.title))=0)  // Missing mandatory notification title
 		
-		ALERT:C41("Notification title can't be empty")
+		logAndAlert ($missingNotificationTitle)
 		
-		ABORT:C156
+		$isMissingNotificationTitle:=True:C214
+		
+		$Obj_result.errors.push($missingNotificationTitle)
+		
+	End if 
+	
+	If ((Length:C16(String:C10($Obj_auth.authKey))=0) | (Length:C16(String:C10($Obj_auth.authKeyId))=0) | (Length:C16(String:C10($Obj_auth.teamId))=0))  // Incomplete authentication object
+		
+		logAndAlert ($missingAuth)
+		
+		$isMissingAuth:=True:C214
+		
+		$Obj_result.errors.push($missingAuth)
 		
 	End if 
 	
 Else   // Missing parameter
 	
-	ABORT:C156
+	logAndAlert ($missingParameter)
+	
+	$isMissingParameter:=True:C214
+	
+	$Obj_result.errors.push($missingParameter)
 	
 End if 
 
-
-  // NOTIFICATION
-  //________________________________________
-
-C_TEXT:C284($payload)
-
-$payload:=JSON Stringify:C1217($Obj_notification)
-
-
-  // ENDPOINT
-  //________________________________________
-
-C_TEXT:C284($endpoint)
-
-$endpoint:="https://api.sandbox.push.apple.com"
-  //$endpoint:="https://api.development.push.apple.com"
-
-
-  // DEVICE TOKENS
-  //________________________________________
-
-C_TEXT:C284($response)
-
-C_LONGINT:C283($httpStatus)
-
-  // Call to deviceToken to fetch the deviceTokens of the recipient list provided
-$httpStatus:=HTTP Request:C1158(HTTP GET method:K71:1;"http://localhost/4DAction/deviceToken";$recipients;$response)
-
-
-C_COLLECTION:C1488($deviceTokens)
-
-$deviceTokens:=JSON Parse:C1218($response)
-
-
-  // Checks if we found a deviceToken for every mail given in entry
-C_TEXT:C284($missingMails)
-
-C_BOOLEAN:C305($mailFound;$isMissingMails)
-
-C_TEXT:C284($mailInput)
-C_OBJECT:C1216($deviceToken)
-
-$isMissingMails:=False:C215
-
-$missingMails:="We couldn't find related deviceTokens to the following mail addresses : \n"
-
-For each ($mailInput;$recipients)
+If (Not:C34($isMissingParameter) & Not:C34($isMissingBundleId) & Not:C34($isMissingNotificationTitle) & Not:C34($isMissingAuth))
 	
-	$mailFound:=False:C215
 	
-	For each ($deviceToken;$deviceTokens)
+	  // NOTIFICATION
+	  //________________________________________
+	
+	C_TEXT:C284($payload)
+	
+	$payload:=JSON Stringify:C1217($Obj_notification)
+	
+	
+	  // ENDPOINT
+	  //________________________________________
+	
+	C_TEXT:C284($endpoint)
+	
+	$endpoint:="https://api.sandbox.push.apple.com"
+	  //$endpoint:="https://api.development.push.apple.com"
+	
+	
+	  // DEVICE TOKENS
+	  //________________________________________
+	
+	C_TEXT:C284($response)
+	
+	C_LONGINT:C283($httpStatus)
+	
+	  // Call to deviceToken to fetch the deviceTokens of the recipient list provided
+	$httpStatus:=HTTP Request:C1158(HTTP GET method:K71:1;"http://localhost/4DAction/deviceToken";$recipients;$response)
+	
+	
+	C_COLLECTION:C1488($deviceTokens)
+	
+	$deviceTokens:=JSON Parse:C1218($response)
+	
+	
+	  // Checks if we found a deviceToken for every mail given in entry
+	C_TEXT:C284($missingMails)
+	
+	C_BOOLEAN:C305($mailFound;$isMissingMails)
+	
+	C_TEXT:C284($mailInput)
+	C_OBJECT:C1216($deviceToken)
+	
+	$missingMails:="We couldn't find related deviceTokens to the following mail addresses : \n"
+	
+	For each ($mailInput;$recipients)
 		
-		If ($deviceToken.email=$mailInput)
+		$mailFound:=False:C215
+		
+		For each ($deviceToken;$deviceTokens)
 			
-			$mailFound:=True:C214
+			If ($deviceToken.email=$mailInput)
+				
+				$mailFound:=True:C214
+				
+			End if 
+			
+		End for each 
+		
+		If ($mailFound=False:C215)
+			
+			  // Adding missing mail to the list, to inform user
+			
+			$missingMails:=$missingMails+$mailInput+"\n"
+			
+			$isMissingMails:=True:C214
 			
 		End if 
 		
 	End for each 
 	
-	If ($mailFound=False:C215)
+	If ($isMissingMails)
 		
-		  // Adding missing mail to the list, to inform user
+		logAndAlert ($missingMails)
 		
-		$missingMails:=$missingMails+$mailInput+"\n"
+		  // Adding missing mail message to the returned object for further treatment
 		
-		$isMissingMails:=True:C214
+		$Obj_result.errors.push($missingMails)
 		
 	End if 
 	
-End for each 
-
-If ($isMissingMails)
 	
-	ALERT:C41($missingMails)
+	  // AUTHENTICATION FROM SCRIPT
+	  //________________________________________
 	
-	  // Adding missing mail message to the returned object for further treatment
-	$Obj_result.errors.push($missingMails)
+	C_TEXT:C284($authScriptPath;$authScriptPathFinalWithArgs)
 	
-End if 
-
-
-  // AUTHENTICATION FROM SCRIPT
-  //________________________________________
-
-C_TEXT:C284($authScriptPath;$authScriptPathFinal)
-
-$authScriptPath:=Get 4D folder:C485(Current resources folder:K5:16)+"scripts"+Folder separator:K24:12+"authScript.sh"
-
-$authScriptPathFinal:=Convert path system to POSIX:C1106($authScriptPath)
-
-$cmdAuth:="/bin/sh "+$authScriptPathFinal
-
-LAUNCH EXTERNAL PROCESS:C811($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
-
-C_TEXT:C284($jwt)
-$jwt:=$cmdAuth_out  // Contains the JSON Web Token required for authorization header
-
-
-If (Length:C16($cmdAuth_err)=0)  // If script execution failed, $cmdAuth_err contains the error
+	$authScriptPath:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("authScriptArgs.sh").platformPath
 	
-	$Obj_result.success:=True:C214  // So far, everything went well
+	$authScriptPathFinalWithArgs:=Convert path system to POSIX:C1106($authScriptPath)+" "+\
+		Convert path system to POSIX:C1106($Obj_auth.authKey)+" "+\
+		$Obj_auth.authKeyId+" "+\
+		$Obj_auth.teamId
 	
-	For each ($deviceToken;$deviceTokens)  // Sending a notification for every single deviceToken
+	$cmdAuth:="/bin/sh "+$authScriptPathFinalWithArgs
+	
+	LAUNCH EXTERNAL PROCESS:C811($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
+	
+	
+	If (Length:C16($cmdAuth_err)=0)  // If script execution failed, $cmdAuth_err contains the error
 		
-		$cmdPush:="curl --verbose "+\
-			"--header \"content-type: application/json\" "+\
-			"--header \"authorization: bearer "+$jwt+"\" "+\
-			"--header \"apns-topic: "+$bundleId+"\" "+\
-			"--data '"+$payload+"' "+\
-			""+$endpoint+"/3/device/"+$deviceToken.deviceToken
+		C_TEXT:C284($jwt)
+		$jwt:=$cmdAuth_out  // Contains the JSON Web Token required for authorization header
 		
-		LAUNCH EXTERNAL PROCESS:C811($cmdPush;$cmdPush_in;$cmdPush_out;$cmdPush_err)
+		$Obj_result.success:=True:C214  // So far, everything went well
 		
-		If (Length:C16($cmdPush_err)>0)
+		For each ($deviceToken;$deviceTokens)  // Sending a notification for every single deviceToken
 			
-			LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_err)
+			$cmdPush:="curl --verbose "+\
+				"--header \"content-type: application/json\" "+\
+				"--header \"authorization: bearer "+$jwt+"\" "+\
+				"--header \"apns-topic: "+$bundleId+"\" "+\
+				"--data '"+$payload+"' "+\
+				""+$endpoint+"/3/device/"+$deviceToken.deviceToken
 			
-		End if 
+			LAUNCH EXTERNAL PROCESS:C811($cmdPush;$cmdPush_in;$cmdPush_out;$cmdPush_err)
+			
+			If (Length:C16($cmdPush_err)>0)
+				
+				LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_err)
+				
+			End if 
+			
+			
+			If (Length:C16($cmdPush_out)>0)  // If notification sending failed, $cmdPush_out contains the error
+				
+				LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_out)
+				
+				  // Adding notfication sending failure message to the returned object for further treatment
+				$Obj_result.errors.push("Failed to send push notification to "+$deviceToken.email)
+				
+				$Obj_result.success:=False:C215
+				
+			End if 
+			
+		End for each 
 		
 		
-		If (Length:C16($cmdPush_out)>0)  // If notification sending failed, $cmdPush_out contains the error
-			
-			LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_out)
-			
-			  // Adding notfication sending failure message to the returned object for further treatment
-			$Obj_result.errors.push("Failed to send push notification to "+$deviceToken.email)
-			
-			$Obj_result.success:=False:C215
-			
-		End if 
+	Else   // Script failed (probably because of AuthKey file not found
 		
-	End for each 
+		LOG EVENT:C667(Into 4D debug message:K38:5;$cmdAuth_err)
+		
+		logAndAlert ($cmdAuth_err)
+		
+	End if 
 	
+	If ($isMissingMails)  // In case every mail given in entry weren't found, return value is not success
+		
+		$Obj_result.success:=False:C215
+		
+	End if 
 	
-Else   // Script failed (probably because of AuthKey file not found
-	
-	LOG EVENT:C667(Into 4D debug message:K38:5;$cmdAuth_err)
-	
-	ALERT:C41($cmdAuth_err)
-	
-End if 
-
-If ($isMissingMails)  // In case every mail given in entry weren't found, return value is not success
-	
-	$Obj_result.success:=False:C215
+	  // Else nothing to do, in error (wrong parameters)
 	
 End if 
 

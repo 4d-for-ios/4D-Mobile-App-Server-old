@@ -55,8 +55,8 @@ End if
   // $notification:=buildNotification("This is title";"Here is the body of this notification").notification
 
 
-$bundleId:="com.sample.xxxx"
-  //$bundleId:="com.sample.NotifSampleApp2"
+  //$bundleId:="com.sample.xxxx"
+$bundleId:="com.sample.NotifSampleApp2"
 
 
 $recipients:=New collection:C1472(\
@@ -70,7 +70,19 @@ $recipients:=New collection:C1472(\
 
 C_OBJECT:C1216($response)
 
-$response:=Mobile App Push Notification ($notification;$bundleId;$recipients)
+C_OBJECT:C1216($auth)
+C_TEXT:C284($authKey;$authKeyId;$teamId)
+
+$authKey:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("AuthKey_4W2QJ2R2WS.p8").platformPath
+$authKeyId:="4W2QJ2R2WS"
+$teamId:="UTT7VDX8W5"  // Should get it in Session
+
+$auth:=New object:C1471(\
+"authKey";$authKey;\
+"authKeyId";$authKeyId;\
+"teamId";$teamId)
+
+$response:=Mobile App Push Notification ($notification;$bundleId;$recipients;$auth)
 
   // $response.success True or False
   // $response.errors contains a collection of Text errors
