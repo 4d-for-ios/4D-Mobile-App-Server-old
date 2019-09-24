@@ -40,7 +40,7 @@ Utility methods to send push notifications.
 
 ```swift
 C_OBJECT($0;$1)
-C_OBJECT($request;$notification)
+C_OBJECT($response;$request;$notification)
 C_COLLECTION($recipients)
 C_TEXT($bundleId)
 
@@ -64,9 +64,21 @@ $recipients:=New collection(\
   // SEND A NOTIFICATION
   //________________________________________
 
-C_OBJECT($response)
 
-$response:=Mobile App Push Notification ($notification;$bundleId;$recipients)
+C_OBJECT($auth)
+C_TEXT($authKey;$authKeyId;$teamId)
+
+$authKey:=Folder(fk resources folder).folder("scripts").file("AuthKey_XXX.p8").platformPath
+$authKeyId:="XXX"
+$teamId:="UTT7VDX8W5"
+
+$auth:=New object(\
+"authKey";$authKey;\
+"authKeyId";$authKeyId;\
+"teamId";$teamId)
+
+
+$response:=Mobile App Push Notification ($notification;$bundleId;$recipients;$auth)
 
 $0:=$response
 ```
