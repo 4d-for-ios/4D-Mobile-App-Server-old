@@ -236,6 +236,9 @@ If (Not:C34($isMissingParameter) & Not:C34($isMissingBundleId) & Not:C34($isMiss
 		
 		logAndAlert ($cmdAuth_err)
 		
+		$Obj_result.errors.push($cmdAuth_err)
+		
+		
 	End if 
 	
 	If ($isMissingMails)  // In case every mail given in entry weren't found, return value is not success

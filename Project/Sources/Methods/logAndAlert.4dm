@@ -2,7 +2,7 @@
 C_TEXT:C284($1)
 C_BOOLEAN:C305($isDebug)
 
-$isDebug:=True:C214
+$isDebug:=False:C215
 
 LOG EVENT:C667(Into 4D debug message:K38:5;$1)
 
