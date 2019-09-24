@@ -54,3 +54,63 @@ End for each
 
   // Returns the list of deviceTokens found
 WEB SEND TEXT:C677(JSON Stringify array:C1228($response))
+
+
+
+
+  //_____________________ sessions.
+
+  // parcourir les sessions, trouver les deviceToken correspondants aux mails 
+
+  //C_OBJECT($Obj_infos)
+  //C_TEXT($bundleId;$teamId;$concatenatedId)
+
+
+
+  //$bundleId:="com.myCompany.Tasks"          // given in entry
+  //// should we get the team id from request
+  //$teamId:="UTT7VDX8W5"                     // given in entry
+  //$concatenatedId:=$teamId+"."+$bundleId
+
+
+  //  // Retrieve the sessions informations
+  //$Obj_infos:=MOBILE APP Get sessions info 
+
+  //If ($Obj_infos.apps#Null)
+
+  //For each ($app;$Obj_infos.apps)
+
+  //If ($app.id=$concatenatedId)
+
+  //For each ($session;$app.sessions)
+
+  //For each ($mail;$recipients)  // For each mail given, fetch its related deviceToken
+
+  //If ($mail=$session.email)
+
+  //$newObject:=New object(\
+"email";$session.email;\
+"deviceToken";$session.deviceToken)
+
+  //APPEND TO ARRAY($response;$newObject)  // We add the fetched deviceToken to the result list
+
+  //End if
+
+  //End for each 
+
+  //End for each
+
+  //End if
+
+  //End for each
+
+  //End if
+
+
+
+
+
+
+
+
+
