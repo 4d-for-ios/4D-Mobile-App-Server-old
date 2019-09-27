@@ -1,7 +1,7 @@
 //%attributes = {}
+C_OBJECT:C1216($0)  // Returned object
 C_TEXT:C284($1)  // Notification title
 C_TEXT:C284($2)  // Notification body
-C_OBJECT:C1216($0)  // Returned object
 
 C_TEXT:C284($title;$body)
 C_OBJECT:C1216($Obj_result;$notification;$alert)
@@ -10,20 +10,17 @@ C_OBJECT:C1216($Obj_result;$notification;$alert)
   // PARAMETERS
   //________________________________________
 
-$title:=$1
-
-$body:=$2
-
-
 C_LONGINT:C283($Lon_parameters)
 
 $Lon_parameters:=Count parameters:C259
 
 If (Asserted:C1132($Lon_parameters>=2;"Missing parameter"))
 	
-	$Obj_result:=New object:C1471("success";False:C215)
+	$title:=$1
 	
-	$Obj_result.notification:=New object:C1471
+	$body:=$2
+	
+	$Obj_result:=New object:C1471("success";False:C215)
 	
 Else   // Missing parameter
 	

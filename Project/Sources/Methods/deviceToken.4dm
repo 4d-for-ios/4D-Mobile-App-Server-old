@@ -1,110 +1,78 @@
 //%attributes = {"publishedWeb":true}
-  // http://localhost/4DAction/deviceToken.  simulate /mobileapp/$deviceToken
-  // > register token into session
-
+  //
+  // http://localhost/4DAction/deviceToken
+  // Simulates /mobileapp/$deviceToken
+  //
+  // Registers token into session
   //________________________________________
 
+  // Request's body is as follow :
+  //
+  // {
+  //  "email": "abc@gmail.com",
+  //  "teamId": "UTT7VDX8W5",
+  //  "application": { "id": "com.sample.NotifSampleApp2", "name": "Application Name" },
+  //  "device": { "id": "fdkjqfg5766sdgf", "name": "Iphone", "deviceToken": "xxxxxxxxx" }
+  // }
 
-  // DB MOCKUP
+C_BLOB:C604($request)
+C_TEXT:C284($request_txt;$appId_req;$deviceToken_req;$email_req)
+C_OBJECT:C1216($httpContents;$response)
+
+$response:=New object:C1471("success";False:C215)
+
+
+  // GET REQUEST BODY
   //________________________________________
 
-ARRAY OBJECT:C1221($dataArray;0)
+WEB GET HTTP BODY:C814($request)
 
-  // First one is ipad's deviceToken, others are fake
-APPEND TO ARRAY:C911($dataArray;New object:C1471("email";"abc@gmail.com";"deviceToken";"f3d7358e36a99d7913d58a91f62660b30b8a2a1f013be86479c5db2657a83786"))
-APPEND TO ARRAY:C911($dataArray;New object:C1471("email";"def@gmail.com";"deviceToken";"f3d7358e36a99d7913d58a91f62660b30b8a2a1f013be86479c5db2657aXXXXX"))
-APPEND TO ARRAY:C911($dataArray;New object:C1471("email";"ghi@gmail.com";"deviceToken";"f3d7358e36a99d7913d58a91f62660b30b8a2a1f013be86479c5db2657aYYYYY"))
+$request_txt:=BLOB to text:C555($request;UTF8 text without length:K22:17)
 
+$httpContents:=JSON Parse:C1218($request_txt)
 
-  // Get request body
-C_BLOB:C604($requete)
-C_TEXT:C284($texteRequete)
-
-WEB GET HTTP BODY:C814($requete)  // Contains a collection of mail address
-
-$texteRequete:=BLOB to text:C555($requete;UTF8 text without length:K22:17)
+$appId_req:=$httpContents.teamId+"."+$httpContents.application.id
+$deviceToken_req:=$httpContents.device.deviceToken
+$email_req:=$httpContents.email
 
 
-C_COLLECTION:C1488($recipients)
-
-$recipients:=JSON Parse:C1218($texteRequete)
-
-ARRAY OBJECT:C1221($response;0)
-
-
-  // FETCH DB
+  // RETRIEVE THE SESSION INFO
   //________________________________________
 
-C_TEXT:C284($mail)
-C_LONGINT:C283($i)
+C_OBJECT:C1216($Obj_infos;$app;$session;$sessionFile;$currentSessionObject)
+C_TEXT:C284($currentSessionContent;$newSessionContent)
 
-For each ($mail;$recipients)  // For each mail given, fetch its related deviceToken
+$Obj_infos:=MOBILE APP Get session info ($appId_req;$email_req)
+
+If ($Obj_infos.success)
 	
-	For ($i;1;Size of array:C274($dataArray))
-		
-		If (OB Get:C1224($dataArray{$i};"email")=$mail)  // If we found the give mail address
-			
-			APPEND TO ARRAY:C911($response;$dataArray{$i})  // We add the fetched deviceToken to the result list
-			
-		End if 
-		
-	End for 
+	$sessionFile:=Folder:C1567(fk mobileApps folder:K87:18).folder($appId_req).file($Obj_infos.session.session.id)
 	
-End for each 
+	If ($sessionFile.exists)
+		
+		$currentSessionContent:=Document to text:C1236($sessionFile.platformPath)
+		
+		$currentSessionObject:=JSON Parse:C1218($currentSessionContent)
+		
+		  // Write deviceToken in session
+		
+		$currentSessionObject.deviceToken:=$deviceToken_req
+		
+		$newSessionContent:=JSON Stringify:C1217($currentSessionObject)
+		
+		TEXT TO DOCUMENT:C1237($sessionFile.platformPath;$newSessionContent)
+		
+		$response.success:=True:C214
+		
+		  // Else : file doesn't exist
+		
+	End if 
+	
+	  // Else : couldn't find session file for the related app id / mail address
+	
+End if 
 
-  // Returns the list of deviceTokens found
 WEB SEND TEXT:C677(JSON Stringify array:C1228($response))
-
-
-
-
-  //_____________________ sessions.
-
-  // parcourir les sessions, trouver les deviceToken correspondants aux mails 
-
-  //C_OBJECT($Obj_infos)
-  //C_TEXT($bundleId;$teamId;$concatenatedId)
-
-
-
-  //$bundleId:="com.myCompany.Tasks"          // given in entry
-  //// should we get the team id from request
-  //$teamId:="UTT7VDX8W5"                     // given in entry
-  //$concatenatedId:=$teamId+"."+$bundleId
-
-
-  //  // Retrieve the sessions informations
-  //$Obj_infos:=MOBILE APP Get sessions info 
-
-  //If ($Obj_infos.apps#Null)
-
-  //For each ($app;$Obj_infos.apps)
-
-  //If ($app.id=$concatenatedId)
-
-  //For each ($session;$app.sessions)
-
-  //For each ($mail;$recipients)  // For each mail given, fetch its related deviceToken
-
-  //If ($mail=$session.email)
-
-  //$newObject:=New object(\
-"email";$session.email;\
-"deviceToken";$session.deviceToken)
-
-  //APPEND TO ARRAY($response;$newObject)  // We add the fetched deviceToken to the result list
-
-  //End if
-
-  //End for each 
-
-  //End for each
-
-  //End if
-
-  //End for each
-
-  //End if
 
 
 
