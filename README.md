@@ -28,6 +28,9 @@ Case of
       $dataClass:=Mobile App Action GetDataClass($request)
       // Insert here the code to purge all entities of this dataClass.
 
+      $parent:=Mobile App Action GetParentEnti ($request)
+      // Insert here the code for any action on parent
+
 End case
 
 $0:=response
