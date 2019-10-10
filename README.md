@@ -51,19 +51,25 @@ $response:=New object("success";False)  // Informations returned to mobile appli
   // BUILD NOTIFICATION
   //________________________________________
 
-$notification:=buildNotification("This is title";"Body of this notification").notification
-
-$bundleId:="com.sample.xxxx"
-
-$recipients:=New collection(\
-	"abc@gmail.com";\
-	"def@gmail.com";\
-	"ghi@gmail.com")
+$notification:=buildNotification("Hello, this is title";"And this is my body").notification
 
 
   // SEND A NOTIFICATION
   //________________________________________
 
+$deviceTokens:=New collection(\
+    "fe4efz52zf7ze5f")
+
+$mails:=New collection(\
+    "abc@gmail.com";\
+    "def@gmail.com";\
+    "ghi@gmail.com")
+
+$recipients:=New object
+$recipients.recipientMails:=$mails
+$recipients.deviceTokens:=$deviceTokens
+
+$bundleId:="com.sample.xxxx"
 
 C_OBJECT($auth)
 C_TEXT($authKey;$authKeyId;$teamId)
