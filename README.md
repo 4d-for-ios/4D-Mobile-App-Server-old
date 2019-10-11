@@ -31,7 +31,7 @@ Case of
       //________________________________________
     : ($request.action="add") // Add a new entitys
 
-      $book:=Mobile App Action GNewEntity ($request)
+      $book:=Mobile App Action NewEntity ($request)
       $status:=$book.save()
 
 End case
