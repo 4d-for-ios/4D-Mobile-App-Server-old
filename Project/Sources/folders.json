@@ -1,16 +1,17 @@
-{
-  "action": {
-    "methods": [
-      "Compiler_action",
-      "Mobile App Action GetEntity",
-      "Mobile App Action GetDataClass"
-    ]
-  },
-  "ds": {
-    "methods": [
-      "Compiler_ds",
-      "QueryByPrimaryKey"
-    ]
-  },
-  "trash": {}
+﻿{
+	"action": {
+		"methods": [
+			"Compiler_action",
+			"Mobile App Action GetDataClass",
+			"Mobile App Action GetEntity",
+			"Mobile App Action NewEntity"
+		]
+	},
+	"ds": {
+		"methods": [
+			"Compiler_ds",
+			"QueryByPrimaryKey"
+		]
+	},
+	"trash": {}
 }

@@ -28,6 +28,12 @@ Case of
       $dataClass:=Mobile App Action GetDataClass($request)
       // Insert here the code to purge all entities of this dataClass.
 
+      //________________________________________
+    : ($request.action="add") // Add a new entitys
+
+      $book:=Mobile App Action GNewEntity ($request)
+      $status:=$book.save()
+
 End case
 
 $0:=response
