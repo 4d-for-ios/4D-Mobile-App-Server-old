@@ -2,6 +2,7 @@
 	"action": {
 		"methods": [
 			"Compiler_action",
+			"Mobile App Action",
 			"Mobile App Action GetDataClass",
 			"Mobile App Action GetEntity",
 			"Mobile App Action NewEntity"
@@ -11,6 +12,15 @@
 		"methods": [
 			"Compiler_ds",
 			"QueryByPrimaryKey"
+		]
+	},
+	"test": {
+		"tables": [
+			"Table_1",
+			"Table_2"
+		],
+		"methods": [
+			"test_mobileAppAction"
 		]
 	},
 	"trash": {}
