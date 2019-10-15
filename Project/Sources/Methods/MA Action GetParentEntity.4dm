@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"invisible":true,"preemptive":"capable"}
   // Utility method to return the parent entity to apply action from `$1` context in `On Mobile App Action` database method.
 C_OBJECT:C1216($1)  // Object containing `context.dataClass`, `context.entity.primaryKey`, `context.parent.primaryKey`, `context.parent.relationName` and `context.parent.dataClass` ie. same input as `On Mobile App Action`
 C_OBJECT:C1216($0)  // Return the parent entity corresponding to the action.
@@ -13,21 +13,11 @@ If (Value type:C1509($1.context)=Is object:K8:27)
 			
 			$Obj_parent_dataClass:=ds:C1482[$1.context.parent.dataClass]
 			
-		End if 
-	End if 
-End if 
-
-
-If ($Obj_parent_dataClass#Null:C1517)
-	
-	If (Value type:C1509($1.context.parent)=Is object:K8:27)  // n.b. $Obj_request.context object already checked by previous method
-		
-		If (Length:C16(String:C10($1.context.parent.primaryKey))>0)
-			
-			$Obj_entity_in:=New object:C1471("primaryKey";$1.context.parent.primaryKey)
-			
-			$Obj_entity_out:=QueryByPrimaryKey ($Obj_parent_dataClass;$Obj_entity_in)
-			
+			If (Length:C16(String:C10($1.context.parent.primaryKey))>0)
+				
+				$Obj_entity_out:=QueryByPrimaryKey ($Obj_parent_dataClass;$1.context.parent)
+				
+			End if 
 		End if 
 	End if 
 End if 

@@ -12,28 +12,41 @@ Utility methods to improve the 4D Mobile App backend coding.
 Utility methods to get dataClass or entity to apply action when inside `On Mobile App Action` database method.
 
 ```swift
-$request:=$1  // Informations provided by mobile application
-$response:=New object("success";False)  // Informations returned to mobile application
+	// Create an object with formula
+$action:=Mobile App Action($1) // $1 Informations provided by mobile application
 
 Case of
       //________________________________________
-    : ($request.action="rate") // Rate a book, action scope is entity
+    : ($action.name="purgeAll") // Purge all, action scope is table/dataclass
 
-      $book:=Mobile App Action GetEntity ($request)
-      // Insert here the code for the action "Rate and Review" the book
-
-      //________________________________________
-    : ($request.action="purgeAll") // Purge all, action scope is table/dataclass
-
-      $dataClass:=Mobile App Action GetDataClass($request)
+      $dataClass:=$action.getDataClass()
       // Insert here the code to purge all entities of this dataClass.
 
-      $parent:=Mobile App Action GetParentEnti ($request)
-      // Insert here the code for any action on parent
+      //________________________________________
+    : ($action.name="add") // Add a new entity
+
+      $book:=$action.newEntity()
+      $status:=$book.save()
+
+      // if any book collection, add to it
+			$parent:=$action.getParent()
+			If ($parent#Null)
+				$book[$1.context.entity.relationName]:=$parent
+			End if
+
+      //________________________________________
+    : ($action.name="rate") // Rate a book, action scope is entity
+
+      $book:=$action.getEntity()
+      // Insert here the code for the action "Rate and Review" the book
+
+			//________________________________________
+		: ($action.name="removeFromCollection") // remove
+
+			$book:=$action.getEntity()
+		  $book[$1.context.entity.relationName]:=Null
 
 End case
-
-$0:=response
 ```
 
 # Contributing #

@@ -7,6 +7,10 @@ C_OBJECT:C1216($Obj_dataClass;$Obj_input;$Obj_entity)
 $Obj_dataClass:=$1
 $Obj_input:=$2
 
+  // 1/ Using get (to test if work with string)
+  // $Obj_entity:=$Obj_dataClass.get($Obj_input.primaryKey)
+
+  // 2/ Using query 
 $Obj_entity:=$Obj_dataClass.query($Obj_dataClass.getInfo().primaryKey+" = :1";$Obj_input.primaryKey)
 
 If ($Obj_entity.length=1)
