@@ -2,6 +2,7 @@
 	"action": {
 		"methods": [
 			"Compiler_action",
+			"MA Action GetParentEntity",
 			"Mobile App Action",
 			"Mobile App Action GetDataClass",
 			"Mobile App Action GetEntity",

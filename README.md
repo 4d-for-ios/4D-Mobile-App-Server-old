@@ -23,15 +23,28 @@ Case of
       // Insert here the code to purge all entities of this dataClass.
 
       //________________________________________
-    : ($action.name="add") // Add a new entitys
+    : ($action.name="add") // Add a new entity
 
       $book:=$action.newEntity()
       $status:=$book.save()
+
+      // if any book collection, add to it
+			$parent:=$action.getParent()
+			If ($parent#Null)
+				$book[$1.context.entity.relationName]:=$parent
+			End if
+
       //________________________________________
     : ($action.name="rate") // Rate a book, action scope is entity
 
       $book:=$action.getEntity()
       // Insert here the code for the action "Rate and Review" the book
+
+			//________________________________________
+		: ($action.name="removeFromCollection") // remove
+
+			$book:=$action.getEntity()
+		  $book[$1.context.entity.relationName]:=Null
 
 End case
 ```
