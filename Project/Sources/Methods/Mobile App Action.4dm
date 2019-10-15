@@ -1,18 +1,13 @@
-[![pipeline status](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/badges/master/pipeline.svg)](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/commits/master)
+//%attributes = {}
+  /// # Mobile App Action (C_OBJECT)
+  //: Utility method to return an utility object to apply action from `$1` context in `On Mobile App Action` database method.
+/*:
+## Overview
 
-# 4D Mobile App Server
+in `On Mobile App Action`
 
-Utility methods to improve the 4D Mobile App backend coding.
-
-##  Contents ##
-- [Action](#Action)
-
-# Action ##
-
-Utility methods to get dataClass or entity to apply action when inside `On Mobile App Action` database method.
-
-```swift
-	// Create an object with formula
+```4d
+// Create an object with formula
 $action:=Mobile App Action($1) // $1 Informations provided by mobile application
 
 Case of
@@ -34,7 +29,14 @@ Case of
       // Insert here the code for the action "Rate and Review" the book
 
 End case
-```
+````
 
-# Contributing #
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+*/
+
+$0:=New object:C1471("request";$1;\
+"name";$1.action;\
+"_is";"mobileAppAction";\
+"getDataClass";Formula:C1597(Mobile App Action GetDataClass (This:C1470.request));\
+"getEntity";Formula:C1597(Mobile App Action GetEntity (This:C1470.request));\
+"newEntity";Formula:C1597(Mobile App Action NewEntity (This:C1470.request))\
+)
