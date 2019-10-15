@@ -35,7 +35,7 @@ If ($dataclass#Null:C1517)
 		
 		  // Test: get parent
 		C_TEXT:C284($parentDataClassName)
-		C_OBJECT:C1216($parent)
+		C_OBJECT:C1216($parent;$parentDataClass)
 		
 		$parentDataClassName:="Table_2"
 		$parentDataClass:=ds:C1482[$parentDataClassName]
