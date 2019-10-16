@@ -1,36 +1,38 @@
-﻿{
-	"action": {
-		"methods": [
-			"Compiler_action",
-			"MA Action GetParentEntity",
-			"Mobile App Action",
-			"Mobile App Action GetDataClass",
-			"Mobile App Action GetEntity",
-			"Mobile App Action NewEntity"
-		]
-	},
-	"auth": {
-		"methods": [
-			"Compiler_auth",
-			"Mobile App Authentication",
-			"Mobile App Session Object"
-		]
-	},
-	"ds": {
-		"methods": [
-			"Compiler_ds",
-			"QueryByPrimaryKey"
-		]
-	},
-	"test": {
-		"tables": [
-			"Table_1",
-			"Table_2"
-		],
-		"methods": [
-			"test_mobileAppAction",
-			"test_mobileAppAuthentication"
-		]
-	},
-	"trash": {}
+{
+  "action": {
+    "methods": [
+      "Compiler_action",
+      "MA Action GetParentEntity",
+      "Mobile App Action",
+      "Mobile App Action GetDataClass",
+      "Mobile App Action GetEntity",
+      "Mobile App Action Link",
+      "Mobile App Action NewEntity",
+      "Mobile App Action Unlink"
+    ]
+  },
+  "auth": {
+    "methods": [
+      "Compiler_auth",
+      "Mobile App Authentication",
+      "Mobile App Session Object"
+    ]
+  },
+  "ds": {
+    "methods": [
+      "Compiler_ds",
+      "QueryByPrimaryKey"
+    ]
+  },
+  "test": {
+    "methods": [
+      "test_mobileAppAction",
+      "test_mobileAppAuthentication"
+    ],
+    "tables": [
+      "Table_1",
+      "Table_2"
+    ]
+  },
+  "trash": {}
 }
