@@ -30,8 +30,14 @@ Case of
       $status:=$book.save()
 
       // if any book collection, add to it
-      $book:=$action.link()
-      $status:=$book.save()
+      $result:=$action.link()
+      If ($result.success)
+        $status:=$result.save()
+      End if
+      $book:=$result.entity
+
+      // get parent to control the number of books in the collection
+      $parent:=$action.getParent()
 
       //________________________________________
     : ($action.name="rate") // Rate a book, action scope is entity
@@ -42,8 +48,11 @@ Case of
       //________________________________________
     : ($action.name="removeFromCollection") // remove
 
-      $book:=$action.unlink()
-      $status:=$book.save()
+      $result:=$action.unlink()
+      If ($result.success)
+        $status:=$result.save()
+      End if
+      $book:=$result.entity
 
 End case
 ```
