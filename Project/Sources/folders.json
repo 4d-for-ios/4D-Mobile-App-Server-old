@@ -9,6 +9,13 @@
 			"Mobile App Action NewEntity"
 		]
 	},
+	"auth": {
+		"methods": [
+			"Compiler_auth",
+			"Mobile App Authentication",
+			"Mobile App Session Object"
+		]
+	},
 	"ds": {
 		"methods": [
 			"Compiler_ds",
@@ -21,7 +28,8 @@
 			"Table_2"
 		],
 		"methods": [
-			"test_mobileAppAction"
+			"test_mobileAppAction",
+			"test_mobileAppAuthentication"
 		]
 	},
 	"trash": {}
