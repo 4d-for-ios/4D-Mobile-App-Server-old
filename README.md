@@ -6,6 +6,7 @@ Utility methods to improve the 4D Mobile App backend coding.
 
 ##  Contents ##
 - [Action](#Action)
+- [Authentication](#Authentication)
 
 # Action ##
 
@@ -47,6 +48,24 @@ Case of
 		  $book[$1.context.entity.relationName]:=Null
 
 End case
+```
+
+# Authentication ##
+
+Utility methods to get manipulate session when inside `On Mobile App Authentication` database method.
+
+```swift
+    // Create an object with formula
+$auth:=Mobile App Authentication($1) // $1 Informations provided by mobile application
+
+$myAppId:=$auth.getAppId()
+
+$mySessionFile:=$auth.getSessionFile()
+
+$mySessionObject:=$auth.getSessionObject()
+$mySessionObject.status:="pending"
+$mySessionObject.save()
+
 ```
 
 # Contributing #
