@@ -30,10 +30,10 @@ Case of
       $status:=$book.save()
 
       // if any book collection, add to it
-			$parent:=$action.getParent()
-			If ($parent#Null)
-				$book[$1.context.entity.relationName]:=$parent
-			End if
+      $parent:=$action.getParent()
+      If ($parent#Null)
+		$book[$1.context.entity.relationName]:=$parent
+      End if
 
       //________________________________________
     : ($action.name="rate") // Rate a book, action scope is entity
@@ -41,11 +41,11 @@ Case of
       $book:=$action.getEntity()
       // Insert here the code for the action "Rate and Review" the book
 
-			//________________________________________
-		: ($action.name="removeFromCollection") // remove
+      //________________________________________
+    : ($action.name="removeFromCollection") // remove
 
-			$book:=$action.getEntity()
-		  $book[$1.context.entity.relationName]:=Null
+      $book:=$action.getEntity()
+      $book[$1.context.entity.relationName]:=Null
 
 End case
 ```
