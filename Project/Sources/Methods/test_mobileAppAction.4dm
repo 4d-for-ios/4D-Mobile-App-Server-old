@@ -8,9 +8,8 @@ $action:=Mobile App Action ($input)
 
   // TEST: get dataclass
 $dataclass:=$action.getDataClass()
-ASSERT:C1129($dataclass#Null:C1517)
 
-If ($dataclass#Null:C1517)
+If (Asserted:C1132($dataclass#Null:C1517;"Not data class"))
 	
 	  // clean
 	For each ($entity;$dataclass.all())
@@ -50,6 +49,43 @@ If ($dataclass#Null:C1517)
 		$input.context.parent:=New object:C1471("dataClass";"Table_2";"primaryKey";$parent.ID)
 		ASSERT:C1129($action.getParent().ID=$parent.ID)  // there is no equal for entity....
 		
+		  // Test: link
+		C_OBJECT:C1216($entityLink)
+		C_TEXT:C284($relationName;$inverseRelationName)
 		
+		$relationName:="table2"
+		$inverseRelationName:="tables1"
+		
+		$input.context.entity.relationName:=$relationName
+		$input.context.parent.relationName:=$inverseRelationName
+		$entityLink:=$action.link()
+		
+		If (Asserted:C1132($entityLink.success;"link() method failed"))
+			
+			$status:=$entityLink.save()
+			ASSERT:C1129($status.success;JSON Stringify:C1217($status))
+			
+			If (Asserted:C1132($entityLink.entity[$relationName]#Null:C1517;"No "+$relationName+" relation in entity"))
+				
+				ASSERT:C1129($entityLink.entity[$relationName].ID=$parent.ID)  // there is no equal for entity....
+				ASSERT:C1129($parent[$inverseRelationName].contains($entityLink.entity))
+				
+				$entityLink:=$action.unlink()
+				
+				If (Asserted:C1132($entityLink.success;"unlink() method failed"))
+					
+					$status:=$entityLink.save()
+					ASSERT:C1129($status.success;JSON Stringify:C1217($status))
+					
+					ASSERT:C1129($entityLink.entity[$relationName]=Null:C1517;"unlink() method didn't nullify the relation")
+					  //$parent:=$action.getParent()  // Workaround , gotten parent before has not been updated
+					$status:=$parent.reload()
+					ASSERT:C1129($status.success;JSON Stringify:C1217($status))
+					
+					ASSERT:C1129(Not:C34($parent[$inverseRelationName].contains($entityLink.entity)))
+					
+				End if 
+			End if 
+		End if 
 	End if 
 End if 
