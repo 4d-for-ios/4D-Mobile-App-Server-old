@@ -39,7 +39,7 @@ $httpContents:=JSON Parse:C1218($request_txt)
 C_OBJECT:C1216($Obj_session;$currentSessionObject)
 C_TEXT:C284($currentSessionContent;$newSessionContent)
 
-$Obj_session:=MOBILE APP session from JSON($httpContents)
+$Obj_session:=MA Get session from JSON ($httpContents)
 
 If ($Obj_session.success)
 	
