@@ -39,14 +39,6 @@ $0:=response
 Utility methods to send push notifications.
 
 ```swift
-C_OBJECT($0;$1)
-C_OBJECT($response;$request;$notification)
-C_COLLECTION($recipients)
-C_TEXT($bundleId)
-
-$request:=$1  // Informations provided by mobile application
-
-$response:=New object("success";False)  // Informations returned to mobile application
 
   // BUILD NOTIFICATION
   //________________________________________
@@ -57,36 +49,26 @@ $notification:=buildNotification("Hello, this is title";"And this is my body").n
   // SEND A NOTIFICATION
   //________________________________________
 
-$deviceTokens:=New collection(\
-    "fe4efz52zf7ze5f")
-
-$mails:=New collection(\
+$recipients:=New object
+$recipients.recipientMails:=New collection(\
     "abc@gmail.com";\
     "def@gmail.com";\
     "ghi@gmail.com")
+$recipients.deviceTokens:=New collection(\
+    "fe4efz52zf7ze5f")
 
-$recipients:=New object
-$recipients.recipientMails:=$mails
-$recipients.deviceTokens:=$deviceTokens
-
-$bundleId:="com.sample.xxxx"
-
-C_OBJECT($auth)
-C_TEXT($authKey;$authKeyId;$teamId)
-
+$bundleId:="com.sample.myappname"
 $authKey:=Folder(fk resources folder).folder("scripts").file("AuthKey_XXX.p8").platformPath
 $authKeyId:="XXX"
 $teamId:="UTT7VDX8W5"
 
 $auth:=New object(\
+"bundleId";$bundleId;\
 "authKey";$authKey;\
 "authKeyId";$authKeyId;\
 "teamId";$teamId)
 
-
-$response:=Mobile App Push Notification ($notification;$bundleId;$recipients;$auth)
-
-$0:=$response
+$0:=Mobile App Push Notification ($notification;$recipients;$auth)
 ```
 
 # Contributing #
