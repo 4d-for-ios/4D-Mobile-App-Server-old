@@ -1,17 +1,4 @@
 ﻿{
-	"push": {
-		"groups": [
-			"server"
-		],
-		"methods": [
-			"logAndAlert",
-			"test_Mobile App Push Notificati",
-			"buildNotification",
-			"Compiler_push",
-			"example",
-			"Mobile App Push Notification"
-		]
-	},
 	"action": {
 		"methods": [
 			"Compiler_action",
@@ -21,25 +8,38 @@
 	},
 	"ds": {
 		"methods": [
-			"QueryByPrimaryKey",
-			"Compiler_ds"
+			"Compiler_ds",
+			"QueryByPrimaryKey"
+		]
+	},
+	"push": {
+		"groups": [
+			"server"
+		],
+		"methods": [
+			"buildNotification",
+			"Compiler_push",
+			"logAndAlert",
+			"Mobile App Push Notification"
 		]
 	},
 	"server": {
 		"methods": [
-			"postSession",
-			"deviceToken"
+			"deviceToken",
+			"postSession"
 		]
 	},
 	"session": {
 		"methods": [
-			"MOBILE APP session from JSON",
-			"mnu Default",
-			"MOBILE APP SESSION MANAGEMENT",
-			"MOBILE APP SESSION UPDATE",
 			"Compiler_session",
+			"MA Get session from JSON",
 			"MOBILE APP Get session info",
 			"MOBILE APP Get sessions info"
+		]
+	},
+	"test": {
+		"methods": [
+			"test_MA Push Notification"
 		]
 	},
 	"trash": {}
