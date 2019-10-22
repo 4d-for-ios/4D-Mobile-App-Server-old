@@ -29,6 +29,7 @@
 			"server"
 		],
 		"methods": [
+			"authScript",
 			"buildNotification",
 			"Compiler_push",
 			"logAndAlert",

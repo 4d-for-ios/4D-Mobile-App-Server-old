@@ -5,12 +5,13 @@ C_OBJECT:C1216($Obj_result)
 C_TEXT:C284($cmdPush;$cmdPush_in;$cmdPush_out;$cmdPush_err)
 C_TEXT:C284($endpoint)
 
-
-  // ENDPOINT
-  //________________________________________
+LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush)
 
 $Obj_result:=New object:C1471("success";False:C215)
 
+
+  // ENDPOINT
+  //________________________________________
 
 If (Not:C34(Bool:C1537($1.isDevelopment)))
 	
