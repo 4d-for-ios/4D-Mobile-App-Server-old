@@ -1,64 +1,61 @@
-{
-  "action": {
-    "methods": [
-      "Compiler_action",
-      "MA Action GetParentEntity",
-      "Mobile App Action",
-      "Mobile App Action GetDataClass",
-      "Mobile App Action GetEntity",
-      "Mobile App Action Link",
-      "Mobile App Action NewEntity",
-      "Mobile App Action Unlink"
-    ]
-  },
-  "auth": {
-    "methods": [
-      "Compiler_auth",
-      "Mobile App Authentication",
-      "Mobile App Session Object"
-    ]
-  },
-  "ds": {
-    "methods": [
-      "Compiler_ds",
-      "QueryByPrimaryKey"
-    ]
-  },
-  "push": {
-    "groups": [
-      "server"
-    ],
-    "methods": [
-      "buildNotification",
-      "Compiler_push",
-      "logAndAlert",
-      "Mobile App Push Notification"
-    ]
-  },
-  "server": {
-    "methods": [
-      "deviceToken",
-      "postSession"
-    ]
-  },
-  "session": {
-    "methods": [
-      "Compiler_session",
-      "MA Get session from JSON",
-      "MOBILE APP Get session info",
-      "MOBILE APP Get sessions info"
-    ]
-  },
-  "test": {
-    "methods": [
-      "test_MA Push Notification",
-      "test_mobileAppAction",
-      "test_mobileAppAuthentication"
-    ],
-    "tables": [
-      "Table_1",
-      "Table_2"
-    ]
-  },
-  "trash": {}
+﻿{
+	"action": {
+		"methods": [
+			"Compiler_action",
+			"MA Action GetParentEntity",
+			"Mobile App Action",
+			"Mobile App Action GetDataClass",
+			"Mobile App Action GetEntity",
+			"Mobile App Action Link",
+			"Mobile App Action NewEntity",
+			"Mobile App Action Unlink"
+		]
+	},
+	"auth": {
+		"methods": [
+			"Compiler_auth",
+			"Mobile App Authentication",
+			"Mobile App Session Object"
+		]
+	},
+	"ds": {
+		"methods": [
+			"Compiler_ds",
+			"QueryByPrimaryKey"
+		]
+	},
+	"push": {
+		"groups": [
+			"server"
+		],
+		"methods": [
+			"buildNotification",
+			"Compiler_push",
+			"logAndAlert",
+			"Mobile App Push Notification",
+			"sendNotification"
+		]
+	},
+	"server": {
+		"methods": [
+			"deviceToken",
+			"postSession"
+		]
+	},
+	"session": {
+		"methods": [
+			"Compiler_session",
+			"MA Get session from JSON",
+			"MOBILE APP Get session info",
+			"MOBILE APP Get sessions info"
+		]
+	},
+	"test": {
+		"methods": [
+			"test_MA Push Notification",
+			"test_mobileAppAction",
+			"test_mobileAppAuthentication"
+		]
+	},
+	"trash": {}
 }
