@@ -40,13 +40,13 @@ If ((Length:C16(String:C10($1.jwt))>0)\
 	
 	If (Length:C16($cmdPush_err)>0)
 		
-		logAndAlert ($cmdPush_err)
+		LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_err)
 		
 	End if 
 	
 	If (Length:C16($cmdPush_out)>0)  // If notification sending failed, $cmdPush_out contains the error
 		
-		logAndAlert ($cmdPush_out)
+		LOG EVENT:C667(Into 4D debug message:K38:5;$cmdPush_out)
 		
 	Else   // Notification sent successfully
 		

@@ -31,8 +31,8 @@
 		"methods": [
 			"authScript",
 			"buildNotification",
+			"buildRecipients",
 			"Compiler_push",
-			"logAndAlert",
 			"Mobile App Push Notification",
 			"sendNotification"
 		]

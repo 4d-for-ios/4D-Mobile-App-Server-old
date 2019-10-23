@@ -33,7 +33,7 @@ If (Length:C16($cmdAuth_err)=0)  // If script execution failed, $cmdAuth_err con
 	
 Else 
 	
-	logAndAlert ($cmdAuth_err)
+	LOG EVENT:C667(Into 4D debug message:K38:5;$cmdAuth_err)
 	
 End if 
 

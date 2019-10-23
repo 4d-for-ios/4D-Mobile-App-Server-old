@@ -5,7 +5,7 @@ C_OBJECT:C1216($2)  // Recipients collections
 C_OBJECT:C1216($3)  // Authentication object
 
 C_COLLECTION:C1488($recipientMails;$deviceTokens)
-C_OBJECT:C1216($Obj_result;$Obj_notification;$Obj_auth;$Obj_authScript_result;$status)
+C_OBJECT:C1216($Obj_result;$Obj_notification;$Obj_auth;$Obj_authScript_result;$status;$Obj_recipients_result)
 
 
   // PARAMETERS
@@ -19,7 +19,6 @@ If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
 	
 	$Obj_result:=New object:C1471("success";False:C215)
 	$Obj_result.errors:=New collection:C1472
-	$Obj_result.warnings:=New collection:C1472
 	
 	
 	$Obj_notification:=$1  // TODO : title, body...
@@ -53,13 +52,9 @@ If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
 		  // Get JSON Web Token from authentication script
 		$Obj_authScript_result:=authScript ($Obj_auth)
 		
-		If (($Obj_authScript_result.success)\
-			 & (Length:C16(String:C10($Obj_authScript_result.jwt))>0))
+		If (Not:C34($Obj_authScript_result.success)\
+			 | Not:C34(Length:C16(String:C10($Obj_authScript_result.jwt))>0))  // Script failed (probably because of AuthKey file not found)
 			
-			$jwt:=$Obj_authScript_result.jwt
-			
-		Else 
-			  // Script failed (probably because of AuthKey file not found)
 			$isAuthScriptFailure:=True:C214
 			
 			$Obj_result.errors.push("Failed to generate JSON Web Token from authentication script")
@@ -84,69 +79,13 @@ If (Not:C34($isMissingRecipients) & Not:C34($isIncompleteAuth) & Not:C34($isAuth
 	  // Build (mails + deviceTokens) collection
 	  //________________________________________
 	
-	C_COLLECTION:C1488($mailAndDeviceTokenCollection)
+	C_TEXT:C284($appId)
 	
-	$mailAndDeviceTokenCollection:=New collection:C1472
+	$appId:=$Obj_auth.teamId+"."+$Obj_auth.bundleId  // In sessions file, apps are identified with <teamId>.<bundleId> 
 	
-	If ($deviceTokens.length>0)
-		
-		C_TEXT:C284($dt)
-		
-		For each ($dt;$deviceTokens)
-			
-			  // For each deviceToken we build an object with mail address information to match session result collection
-			
-			$mailAndDeviceTokenCollection.push(New object:C1471(\
-				"email";"Unknown mail address";\
-				"deviceToken";$dt))
-			
-		End for each 
-		
-		  // Else : no deviceTokens given in entry
-		
-	End if 
+	$Obj_recipients_result:=buildRecipients ($2;$appId)
 	
-	
-	  // GET SESSIONS INFO
-	  //________________________________________
-	
-	If ($recipientMails.length>0)
-		
-		C_TEXT:C284($appId;$mail)
-		C_OBJECT:C1216($Obj_session)
-		
-		  // In sessions file, apps are identified with <teamId>.<bundleId> 
-		$appId:=$Obj_auth.teamId+"."+$Obj_auth.bundleId
-		
-		For each ($mail;$recipientMails)
-			
-			$Obj_session:=MOBILE APP Get session info ($appId;$mail)
-			
-			If ($Obj_session.success)
-				
-				If (Length:C16(String:C10($Obj_session.session.device.token))>0)
-					
-					$mailAndDeviceTokenCollection.push(New object:C1471(\
-						"email";$Obj_session.session.email;\
-						"deviceToken";$Obj_session.session.device.token))
-					
-				Else   // No deviceToken found for current session
-					
-					$Obj_result.warnings.push("We couldn't find related deviceTokens to the following mail addresses : "+$mail)
-					
-				End if 
-				
-			Else   // No session found for current mail address 
-				
-				$Obj_result.warnings.push("No session file was found for the following mail addresses : "+$mail)
-				
-			End if 
-			
-		End for each 
-		
-		  // Else : no recipientMails given in entry
-		
-	End if 
+	$Obj_result.warnings:=$Obj_recipients_result.warnings
 	
 	
 	  // BUILD NOTIFICATION
@@ -160,11 +99,9 @@ If (Not:C34($isMissingRecipients) & Not:C34($isIncompleteAuth) & Not:C34($isAuth
 	  // SEND NOTIFICATION
 	  //________________________________________
 	
-	C_OBJECT:C1216($mailAndDeviceToken)
+	C_OBJECT:C1216($mailAndDeviceToken;$notificationInput)
 	
-	For each ($mailAndDeviceToken;$mailAndDeviceTokenCollection)  // Sending a notification for every single deviceToken
-		
-		C_OBJECT:C1216($notificationInput)
+	For each ($mailAndDeviceToken;$Obj_recipients_result.recipients)  // Sending a notification for every single deviceToken
 		
 		$notificationInput:=New object:C1471
 		$notificationInput.jwt:=$Obj_authScript_result.jwt
