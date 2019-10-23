@@ -1,38 +1,11 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
-  //C_OBJECT($0)  // Returned object
-  //C_TEXT($1)  // Notification title
-  //C_TEXT($2)  // Notification body
-
-  //C_TEXT($title;$body)
-  //C_OBJECT($Obj_result;$notification;$alert)
-
-
-  // PARAMETERS
-  //________________________________________
-
-  //C_LONGINT($Lon_parameters)
-
-  //$Lon_parameters:=Count parameters
-
-  //If (Asserted($Lon_parameters>=2;"Missing parameter"))
-
-  //$title:=$1
-
-  //$body:=$2
-
-  //$Obj_result:=New object("success";False)
-
-  //Else   // Missing parameter
-
-  //ABORT
-
-  //End if 
-
-C_TEXT:C284($0)
-C_OBJECT:C1216($1)
+C_OBJECT:C1216($0)  // Returned notification object
+C_OBJECT:C1216($1)  // Input notification
 C_OBJECT:C1216($notification;$alert)
 
 C_BOOLEAN:C305($isAPN)
+
+$isAPN:=True:C214
 
 
   // BUILD NOTIFICATION
@@ -40,54 +13,95 @@ C_BOOLEAN:C305($isAPN)
 
 $notification:=New object:C1471
 
-  // Fill title
-
-If (Length:C16(String:C10($1.title))>0)  // Mandatory notification title
+If ($isAPN)
 	
-	$alert:=New object:C1471("title";$1.title)
+	  // Fill title
 	
-Else 
+	If (Length:C16(String:C10($1.title))>0)  // Mandatory notification title
+		
+		$alert:=New object:C1471("title";$1.title)
+		
+	Else 
+		
+		$alert:=New object:C1471("title";"Empty title")
+		
+	End if 
 	
-	$alert:=New object:C1471("title";"Empty title")
+	  // Fill subtitle
+	
+	If (Length:C16(String:C10($1.subtitle))>0)
+		
+		$alert.subtitle:=$1.subtitle
+		
+	End if 
+	
+	  // Fill body
+	
+	If (Length:C16(String:C10($1.body))>0)
+		
+		$alert.body:=$1.body
+		
+	End if 
+	
+	
+	$notification.aps:=New object:C1471("alert";$alert)
+	
+	
+	  // Fill badge
+	
+	If (Length:C16(String:C10($1.badge))>0)
+		
+		$notification.aps.badge:=$1.badge
+		
+	End if 
+	
+	  // Fill sound
+	
+	If (Length:C16(String:C10($1.sound))>0)
+		
+		$notification.aps.sound:=$1.sound
+		
+	End if 
+	
+	  // Fill mutable-content
+	
+	If (Length:C16(String:C10($1["mutable-content"]))>0)
+		
+		$notification.aps["mutable-content"]:=$1["mutable-content"]
+		
+	End if 
+	
+	  // Fill category
+	
+	If (Length:C16(String:C10($1.category))>0)
+		
+		$notification.aps.category:=$1.category
+		
+	End if 
+	
+	  // Fill url
+	
+	If (Length:C16(String:C10($1.url))>0)
+		
+		$notification.aps.url:=$1.url
+		
+	End if 
+	
+	  // Fill data
+	
+	If (Length:C16(String:C10($1.image))>0)
+		
+		$notification.data:=New object:C1471("media-url";$1.image)
+		
+	End if 
+	
+	
+	  // Else : Android notification
 	
 End if 
 
-  // Fill subtitle
 
-If (Length:C16(String:C10($1.subtitle))>0)
-	
-	$alert.subtitle:=$1.subtitle
-	
-End if 
-
-  // Fill body
-
-If (Length:C16(String:C10($1.body))>0)
-	
-	$alert.body:=$1.body
-	
-End if 
-
-
-$notification.aps:=New object:C1471("alert";$alert)
-
-  // Fill data
-
-If (Length:C16(String:C10($1.image))>0)
-	
-	$notification.data:=New object:C1471("media-url";$1.image)
-	
-End if 
-
-  // Fill url
-
-If (Length:C16(String:C10($1.url))>0)
-	
-	$notification.aps:=$url
-	
-End if 
+$0:=$notification
 
 
 
-
-$0:=JSON Stringify:C1217($Obj_notification)

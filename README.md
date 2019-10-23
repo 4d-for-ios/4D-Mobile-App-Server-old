@@ -85,7 +85,10 @@ Utility methods to send push notifications.
   // BUILD NOTIFICATION
   //________________________________________
 
-$notification:=buildNotification("Hello, this is title";"And this is my body").notification
+$notification:=New object
+$notification.title:="This is title"
+$notification.body:="Here is the content of this notification"
+$notification.image:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
 
 
   // SEND A NOTIFICATION
@@ -97,11 +100,11 @@ $recipients.recipientMails:=New collection(\
     "def@gmail.com";\
     "ghi@gmail.com")
 $recipients.deviceTokens:=New collection(\
-    "fe4efz52zf7ze5f")
+    "fe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5f")
 
 $bundleId:="com.sample.myappname"
-$authKey:=Folder(fk resources folder).folder("scripts").file("AuthKey_XXX.p8").platformPath
-$authKeyId:="XXX"
+$authKey:=Folder(fk resources folder).folder("scripts").file("AuthKey_XXXYYY.p8").platformPath
+$authKeyId:="AuthKey_XXXYYY"
 $teamId:="UTT7VDX8W5"
 
 $auth:=New object(\

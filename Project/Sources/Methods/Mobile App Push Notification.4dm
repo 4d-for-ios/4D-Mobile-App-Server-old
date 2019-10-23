@@ -19,9 +19,10 @@ If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
 	
 	$Obj_result:=New object:C1471("success";False:C215)
 	$Obj_result.errors:=New collection:C1472
+	$Obj_result.warnings:=New collection:C1472
 	
 	
-	$Obj_notification:=$1  // TODO : title, body...
+	$Obj_notification:=$1
 	
 	$deviceTokens:=$2.deviceTokens
 	$recipientMails:=$2.recipientMails
@@ -93,7 +94,7 @@ If (Not:C34($isMissingRecipients) & Not:C34($isIncompleteAuth) & Not:C34($isAuth
 	
 	C_TEXT:C284($payload)
 	
-	$payload:=buildNotification ($Obj_notification)
+	$payload:=JSON Stringify:C1217(buildNotification ($Obj_notification))
 	
 	
 	  // SEND NOTIFICATION
