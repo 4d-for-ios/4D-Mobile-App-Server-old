@@ -20,7 +20,8 @@ C_COLLECTION:C1488($deviceTokens;$mails)
 C_OBJECT:C1216($recipientsOk;$recipientsWithNoMail;$recipientsWithNoDeviceToken;$recipientsEmpty)
 
 $deviceTokens:=New collection:C1472(\
-"WRONGDEVICETOKEN")
+"XXXXXf3d7358e36a99d7913d58a91f62660b30b8a2a1f013be86479c5db2657a";\
+"YYYYYf3d7358e36a99d7913d58a91f62660b30b8a2a1f013be86479c5db2657a")
 
 $mails:=New collection:C1472(\
 "abc@gmail.com";\
@@ -44,11 +45,10 @@ $recipientsEmpty:=New object:C1471
   // AUTHENTICATION
   //________________________________________
 
-C_TEXT:C284($bundleIdOk;$bundleIdDoesNotExist;$authKeyOk;$authKeyDoesNotExist;$authKeyId;$teamId)
+C_TEXT:C284($bundleId;$authKeyOk;$authKeyDoesNotExist;$authKeyId;$teamId)
 C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncomplete;$authKeyFile)
 
-$bundleIdOk:="com.sample.NotifSampleApp2"
-$bundleIdDoesNotExist:="xxx"
+$bundleId:="com.sample.xxx"
 
 $authKeyFile:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("AuthKey_4W2QJ2R2WS.p8")
 ASSERT:C1129($authKeyFile.exists;"AuthKey file is required to run tests")
@@ -59,25 +59,19 @@ $authKeyId:="4W2QJ2R2WS"
 $teamId:="UTT7VDX8W5"
 
 $authOk:=New object:C1471(\
-"bundleId";$bundleIdOk;\
-"authKey";$authKeyOk;\
-"authKeyId";$authKeyId;\
-"teamId";$teamId)
-
-$authWithWrongBundleId:=New object:C1471(\
-"bundleId";$bundleIdDoesNotExist;\
+"bundleId";$bundleId;\
 "authKey";$authKeyOk;\
 "authKeyId";$authKeyId;\
 "teamId";$teamId)
 
 $authWithWrongAuthKey:=New object:C1471(\
-"bundleId";$bundleIdOk;\
+"bundleId";$bundleId;\
 "authKey";$authKeyDoesNotExist;\
 "authKeyId";$authKeyId;\
 "teamId";$teamId)
 
 $authOkIncomplete:=New object:C1471(\
-"bundleId";$bundleIdOk;\
+"bundleId";$bundleId;\
 "authKey";$authKeyOk;\
 "authKeyId";$authKeyId)
 
@@ -86,28 +80,22 @@ $authOkIncomplete:=New object:C1471(\
   //________________________________________
 
 
-  // SUCCESS TRUE : at least one push notification has been successfully sent
-
-
 $response:=Mobile App Push Notification ($notification;$recipientsOk;$authOk)
 
-ASSERT:C1129($response.success;$response.errors)
+ASSERT:C1129(Not:C34($response.success);$response.errors)
 
 ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 
-ASSERT:C1129($response.warnings.count()=4;"Missing warning")  // 2 wrong deviceTokens + 1 missing session + 1 missing deviceToken
+ASSERT:C1129($response.warnings.count()=6;"Problem with warnings count")  // 4x "No session file found" for mail addresses + 2x wrong deviceTokens
 
 
-  //$response:=Mobile App Push Notification ($notification;$recipientsWithNoDeviceToken;$authOk)
+$response:=Mobile App Push Notification ($notification;$recipientsWithNoDeviceToken;$authOk)
 
-  //ASSERT($response.success;$response.errors)
+ASSERT:C1129(Not:C34($response.success);$response.errors)
 
-  //ASSERT($response.errors.count()=0;"Unexpected error")
+ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 
-  //ASSERT($response.warnings.count()=3;"Missing warning")  // 1 wrong deviceToken + 1 missing session + 1 missing deviceToken
-
-
-  // SUCCESS FALSE : no push notification could be sent
+ASSERT:C1129($response.warnings.count()=4;"Problem with warnings count")  // 4x "No session file found" for mail addresses
 
 
 $response:=Mobile App Push Notification ($notification;$recipientsWithNoMail;$authOk)
@@ -116,7 +104,7 @@ ASSERT:C1129(Not:C34($response.success);$response.errors)
 
 ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 
-ASSERT:C1129($response.warnings.count()=1;"Missing warning")  // 1 wrong deviceToken
+ASSERT:C1129($response.warnings.count()=2;"Problem with warnings count")  // 2x wrong deviceTokens
 
 
 $response:=Mobile App Push Notification ($notification;$recipientsEmpty;$authOk)
@@ -125,7 +113,7 @@ ASSERT:C1129(Not:C34($response.success);$response.errors)
 
 ASSERT:C1129($response.errors.count()=1;"Missing error")  // Empty recipients collections
 
-ASSERT:C1129($response.warnings.count()=0;"Unexpected warning")
+ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
 $response:=Mobile App Push Notification ($notification;$recipientsOk;$authOkIncomplete)
@@ -134,7 +122,7 @@ ASSERT:C1129(Not:C34($response.success);$response.errors)
 
 ASSERT:C1129($response.errors.count()=1;"Missing error")  // Incomplete auth object
 
-ASSERT:C1129($response.warnings.count()=0;"Unexpected warning")
+ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
 $response:=Mobile App Push Notification ($notification;$recipientsEmpty;$authOkIncomplete)
@@ -143,22 +131,14 @@ ASSERT:C1129(Not:C34($response.success);$response.errors)
 
 ASSERT:C1129($response.errors.count()=2;"Missing error")  // Empty recipients collections + Incomplete auth object
 
-ASSERT:C1129($response.warnings.count()=0;"Unexpected warning")
+ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
 $response:=Mobile App Push Notification ($notification;$recipientsOk;$authWithWrongAuthKey)
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
-ASSERT:C1129($response.errors.count()=1;"Missing error")  // Auth script fails because missing file
+ASSERT:C1129($response.errors.count()=1;"Missing error")  // Auth script fails because missing AuthKey file
 
-ASSERT:C1129($response.warnings.count()=0;"Unexpected warning")
+ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
-
-$response:=Mobile App Push Notification ($notification;$recipientsOk;$authWithWrongBundleId)
-
-ASSERT:C1129(Not:C34($response.success);$response.errors)
-
-ASSERT:C1129($response.errors.count()=0;"Unexpected error")
-
-ASSERT:C1129($response.warnings.count()=5;"Missing warning")  // 1 wrong deviceToken / bundle Id : Can't get any deviceToken from session, and notification sending will fail for given deviceToken
