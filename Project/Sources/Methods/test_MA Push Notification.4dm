@@ -10,7 +10,7 @@ C_OBJECT:C1216($notification)
 $notification:=New object:C1471
 $notification.title:="This is title"
 $notification.body:="Here is the content of this notification"
-$notification.image:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
+$notification.imageUrl:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
 
 
   // RECIPIENTS
@@ -89,16 +89,16 @@ $authOkIncomplete:=New object:C1471(\
   // SUCCESS TRUE : at least one push notification has been successfully sent
 
 
-  //$response:=Mobile App Push Notification ($notificationOk;$recipientsOk;$authOk)
+$response:=Mobile App Push Notification ($notification;$recipientsOk;$authOk)
 
-  //ASSERT($response.success;$response.errors)
+ASSERT:C1129($response.success;$response.errors)
 
-  //ASSERT($response.errors.count()=0;"Unexpected error")
+ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 
-  //ASSERT($response.warnings.count()=4;"Missing warning")  // 2 wrong deviceTokens + 1 missing session + 1 missing deviceToken
+ASSERT:C1129($response.warnings.count()=4;"Missing warning")  // 2 wrong deviceTokens + 1 missing session + 1 missing deviceToken
 
 
-  //$response:=Mobile App Push Notification ($notificationOk;$recipientsWithNoDeviceToken;$authOk)
+  //$response:=Mobile App Push Notification ($notification;$recipientsWithNoDeviceToken;$authOk)
 
   //ASSERT($response.success;$response.errors)
 

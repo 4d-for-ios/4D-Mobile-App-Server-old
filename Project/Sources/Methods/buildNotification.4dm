@@ -67,7 +67,7 @@ If ($isAPN)
 	
 	If (Length:C16(String:C10($1["mutable-content"]))>0)
 		
-		$notification.aps["mutable-content"]:=$1["mutable-content"]
+		$notification.aps["mutable-content"]:=1
 		
 	End if 
 	
@@ -89,9 +89,10 @@ If ($isAPN)
 	
 	  // Fill data
 	
-	If (Length:C16(String:C10($1.image))>0)
+	If (Length:C16(String:C10($1.imageUrl))>0)
 		
-		$notification.data:=New object:C1471("media-url";$1.image)
+		$notification.data:=New object:C1471("media-url";$1.imageUrl)
+		$notification.aps["mutable-content"]:=1  // Allow rich notification display
 		
 	End if 
 	
