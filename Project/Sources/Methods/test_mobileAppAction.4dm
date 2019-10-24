@@ -70,6 +70,7 @@ If (Asserted:C1132($dataclass#Null:C1517;"Not data class"))
 				ASSERT:C1129($entityLink.entity[$relationName].ID=$parent.ID)  // there is no equal for entity....
 				ASSERT:C1129($parent[$inverseRelationName].contains($entityLink.entity))
 				
+				  // Test unlink
 				$entityLink:=$action.unlink()
 				
 				If (Asserted:C1132($entityLink.success;"unlink() method failed"))
@@ -84,8 +85,14 @@ If (Asserted:C1132($dataclass#Null:C1517;"Not data class"))
 					
 					ASSERT:C1129(Not:C34($parent[$inverseRelationName].contains($entityLink.entity)))
 					
+					
 				End if 
 			End if 
 		End if 
 	End if 
 End if 
+
+  // Test:- dropEntity
+$status:=$action.dropEntity()
+ASSERT:C1129($status.success;JSON Stringify:C1217($status))
+ASSERT:C1129($action.getEntity()=Null:C1517;"entity not really dropped")
