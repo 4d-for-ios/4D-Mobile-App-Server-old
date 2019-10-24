@@ -52,6 +52,10 @@
 		]
 	},
 	"test": {
+		"tables": [
+			"Table_1",
+			"Table_2"
+		],
 		"methods": [
 			"test_MA Push Notification",
 			"test_mobileAppAction",
