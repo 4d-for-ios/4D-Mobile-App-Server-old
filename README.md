@@ -54,6 +54,11 @@ Case of
       End if
       $book:=$result.entity
 
+      //________________________________________
+    : ($action.name="drop") // Drop an entity
+
+      $status:=$action.dropEntity()
+
 End case
 ```
 
