@@ -4,6 +4,7 @@
       "Compiler_action",
       "MA Action GetParentEntity",
       "Mobile App Action",
+      "Mobile App Action DropEntity",
       "Mobile App Action GetDataClass",
       "Mobile App Action GetEntity",
       "Mobile App Action Link",
