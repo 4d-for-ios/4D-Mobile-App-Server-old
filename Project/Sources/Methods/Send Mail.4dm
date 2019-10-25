@@ -24,7 +24,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$o.mail:=New object:C1471
 	$o.mail.from:=$parameters.from
 	$o.mail.to:=$request.email
-	$o.mail.subject:=$request.application.name+": Sign in confirmation"
+	$o.mail.subject:=$parameters.subject
 	
 	$htmlContent:=$template.getText()
 	$htmlContent:=Replace string:C233($htmlContent;"___IDSESSION___";$request.session.id)
@@ -47,5 +47,6 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	End if 
 	
 	$0:=New object:C1471("status";$status.success;"statusText";$status.statusText)
-	
+Else 
+	$0:=New object:C1471("status";False:C215;"statusText";$template.platformPath+" is not found")
 End if 
