@@ -42,5 +42,7 @@ $0:=New object:C1471("request";$1;\
 "newEntity";Formula:C1597(Mobile App Action NewEntity (This:C1470.request));\
 "dropEntity";Formula:C1597(Mobile App Action DropEntity (This:C1470.request));\
 "link";Formula:C1597(Mobile App Action Link (This:C1470.request));\
-"unlink";Formula:C1597(Mobile App Action Unlink (This:C1470.request))\
+"unlink";Formula:C1597(Mobile App Action Unlink (This:C1470.request));\
+"DectivationSession";Formula:C1597(Mobile App Action DectivSession (This:C1470.request));\
+"ActivationSession";Formula:C1597(Mobile App Action ActivSession (This:C1470.request))\
 )

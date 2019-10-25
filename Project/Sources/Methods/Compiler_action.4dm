@@ -22,3 +22,7 @@ C_OBJECT:C1216(Mobile App Action Link ;$1)
 
 C_OBJECT:C1216(Mobile App Action Unlink ;$0)
 C_OBJECT:C1216(Mobile App Action Unlink ;$1)
+
+C_OBJECT:C1216(Mobile App Action DectivSession ;$2)
+C_OBJECT:C1216(Mobile App Action DectivSession ;$1)
+C_TEXT:C284(Mobile App Action ActivSession ;$1)
