@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"shared":true,"preemptive":"capable"}
 C_OBJECT:C1216($2)
 C_OBJECT:C1216($1)
 C_OBJECT:C1216($0)
