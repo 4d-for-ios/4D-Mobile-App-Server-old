@@ -4,8 +4,6 @@
 			"Compiler_action",
 			"MA Action GetParentEntity",
 			"Mobile App Action",
-			"Mobile App Action ActivSession",
-			"Mobile App Action DectivSession",
 			"Mobile App Action DropEntity",
 			"Mobile App Action GetDataClass",
 			"Mobile App Action GetEntity",
@@ -17,7 +15,9 @@
 	"auth": {
 		"methods": [
 			"Compiler_auth",
+			"Mobile App Active Session",
 			"Mobile App Authentication",
+			"Mobile App Confirm Email",
 			"Mobile App Session Object"
 		]
 	},
@@ -29,7 +29,9 @@
 	},
 	"mail": {
 		"methods": [
+			"Activate Session",
 			"Compiler_mail",
+			"Deactivate Session",
 			"Get Info",
 			"Send Mail"
 		]
