@@ -29,12 +29,12 @@
 			"server"
 		],
 		"methods": [
+			"apple_sendNotification",
 			"authScript",
 			"buildNotification",
 			"buildRecipients",
 			"Compiler_push",
-			"Mobile App Push Notification",
-			"sendNotification"
+			"Mobile App Push Notification"
 		]
 	},
 	"server": {

@@ -111,7 +111,7 @@ If (Not:C34($isMissingRecipients) & Not:C34($isIncompleteAuth) & Not:C34($isAuth
 		$notificationInput.deviceToken:=$mailAndDeviceToken.deviceToken
 		$notificationInput.isDevelopment:=True:C214
 		
-		$status:=sendNotification ($notificationInput)
+		$status:=apple_sendNotification ($notificationInput)
 		
 		If ($status.success)  // Notification sent successfully
 			
