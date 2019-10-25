@@ -12,7 +12,7 @@ If ($index>-1)
 	If ($data.date=Current date:C33)
 		$dif_Time:=Current time:C178-$data.time
 		If ($dif_Time<=?00:05:00?)
-			$response.statusText:="The mail is already sent thank you to wait before sending again"
+			$response.statusText:="The mail is already sent thank you to wait before sending again "+String:C10($dif_Time)+"index : "+String:C10($index)+" time "+String:C10($data.time)
 		Else 
 			$obj_:=Send Mail ($request)
 			If ($obj_.status)
@@ -21,6 +21,8 @@ If ($index>-1)
 				$response.statusText:=$obj_.statusText
 			End if 
 		End if 
+	Else 
+		$response.statusText:="The mail is already sent thank you to wait before sending again; index : "+String:C10($index)+" date "+String:C10($data.date)
 	End if 
 Else 
 	$obj_:=Send Mail ($request)
