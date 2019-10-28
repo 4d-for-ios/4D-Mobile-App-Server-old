@@ -10,10 +10,16 @@ LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $2 : "+JSON Stringify:
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $request : "+JSON Stringify:C1217($request))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $response : "+JSON Stringify:C1217($response))
 
-LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.length : "+String:C10(Storage:C1525.session.length))
-LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session : "+JSON Stringify:C1217(Storage:C1525.session))
-LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.extract(id) : "+JSON Stringify:C1217(Storage:C1525.session.extract("id")))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $index : "+String:C10($index))
+Use (Storage:C1525)
+	If (Storage:C1525.session=Null:C1517)
+		Storage:C1525.session:=New shared collection:C1527
+	Else 
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.length : "+String:C10(Storage:C1525.session.length))
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session : "+JSON Stringify:C1217(Storage:C1525.session))
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.extract(id) : "+JSON Stringify:C1217(Storage:C1525.session.extract("id")))
+	End if 
+End use 
 
 $index:=Storage:C1525.session.extract("id").indexOf($request.session.id)
 
@@ -40,6 +46,7 @@ If (($index>-1) & (Storage:C1525.session.length#0))
 		$response.statusText:="The mail is already sent thank you to wait before sending again"
 	End if 
 Else 
+	LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** else then send Mail : ")
 	$obj_:=Send Mail ($request)
 	If ($obj_.status)
 		$response.statusText:="Verify your email address"
