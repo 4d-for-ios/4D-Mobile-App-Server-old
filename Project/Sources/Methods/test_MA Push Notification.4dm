@@ -50,10 +50,10 @@ C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncom
 
 $bundleId:="com.sample.xxx"
 
-$authKeyFile:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("AuthKey_4W2QJ2R2WS.p8")
+$authKeyFile:=File:C1566("/RESOURCES/scripts/AuthKey_4W2QJ2R2WS.p8")
 ASSERT:C1129($authKeyFile.exists;"AuthKey file is required to run tests")
 $authKeyOk:=$authKeyFile.platformPath
-$authKeyDoesNotExist:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("AuthKey_XXXXX.p8").platformPath
+$authKeyDoesNotExist:=File:C1566("/RESOURCES/scripts/AuthKey_XXXXX.p8").platformPath
 
 $authKeyId:="4W2QJ2R2WS"
 $teamId:="UTT7VDX8W5"

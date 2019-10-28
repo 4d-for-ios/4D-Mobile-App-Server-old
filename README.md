@@ -103,7 +103,7 @@ $recipients.deviceTokens:=New collection(\
     "fe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5f")
 
 $bundleId:="com.sample.myappname"
-$authKey:=Folder(fk resources folder).folder("scripts").file("AuthKey_XXXYYY.p8").platformPath
+$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8").platformPath
 $authKeyId:="AuthKey_XXXYYY"
 $teamId:="UTT7VDX8W5"
 

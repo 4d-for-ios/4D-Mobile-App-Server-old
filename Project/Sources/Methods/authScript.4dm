@@ -15,7 +15,7 @@ $Obj_result:=New object:C1471("success";False:C215)
   // AUTHENTICATION FROM SCRIPT
   //________________________________________
 
-$authScript:=Folder:C1567(fk resources folder:K87:11).folder("scripts").file("authScriptArgs.sh")
+$authScript:=File:C1566("/RESOURCES/scripts/authScriptArgs.sh")
 
 If ($authScript.exists)
 	
