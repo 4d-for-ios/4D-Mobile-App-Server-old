@@ -18,6 +18,7 @@ Use (Storage:C1525)
 	End if 
 End use 
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.length : "+String:C10(Storage:C1525.session.length))
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session : "+JSON Stringify:C1217(Storage:C1525.session))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $index : "+String:C10($index))
 If ($index>-1)
 	$data:=Storage:C1525.session[$index]
