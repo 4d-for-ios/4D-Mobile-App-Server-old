@@ -1,4 +1,5 @@
-[![pipeline status](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/badges/master/pipeline.svg)](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/commits/master)
+[![Build Status][build-shield]][build-url]
+[![4D][code-shield]][code-url]
 
 # 4D Mobile App Server
 
@@ -82,3 +83,12 @@ $mySessionObject.save()
 
 # Contributing #
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[code-shield]: https://img.shields.io/badge/4D-18-orange.svg?style=flat
+[code-url]: https://developer.4d.com/
+[build-shield]: https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/badges/master/pipeline.svg
+[build-url]: https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/commits/master
+
