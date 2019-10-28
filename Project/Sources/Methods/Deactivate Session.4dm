@@ -10,17 +10,14 @@ LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $2 : "+JSON Stringify:
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $request : "+JSON Stringify:C1217($request))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $response : "+JSON Stringify:C1217($response))
 
-Use (Storage:C1525)
-	If (Storage:C1525.session=Null:C1517)
-		Storage:C1525.session:=New shared collection:C1527
-	Else 
-		$index:=Storage:C1525.session.extract("id").indexOf($request.session.id)
-	End if 
-End use 
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.length : "+String:C10(Storage:C1525.session.length))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session : "+JSON Stringify:C1217(Storage:C1525.session))
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.extract(id) : "+JSON Stringify:C1217(Storage:C1525.session.extract("id")))
 LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $index : "+String:C10($index))
-If ($index>-1)
+
+$index:=Storage:C1525.session.extract("id").indexOf($request.session.id)
+
+If (($index>-1) & (Storage:C1525.session.length#0))
 	$data:=Storage:C1525.session[$index]
 	LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $data : "+JSON Stringify:C1217($data))
 	If ($data.date=Current date:C33)
