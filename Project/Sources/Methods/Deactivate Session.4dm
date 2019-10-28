@@ -4,15 +4,24 @@ C_OBJECT:C1216($1;$request;$response;$2;$obj_;$data)
 C_LONGINT:C283($index)
 $request:=$1
 $response:=$2
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $1 : "+JSON Stringify:C1217($1))
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $2 : "+JSON Stringify:C1217($2))
 
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $request : "+JSON Stringify:C1217($request))
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $response : "+JSON Stringify:C1217($response))
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** Storage.session.length : "+String:C10(Storage:C1525.session.length))
 $index:=Storage:C1525.session.extract("id").indexOf($request.session.id)
-
+LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $index : "+String:C10($index))
 If ($index>-1)
 	$data:=Storage:C1525.session[$index]
+	LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $data : "+String:C10($data))
 	If ($data.date=Current date:C33)
 		$dif_Time:=Current time:C178-$data.time
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $dif_Time : "+String:C10($dif_Time))
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $data.date : "+String:C10($data.date))
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $data.time : "+String:C10($data.time))
 		If ($dif_Time<=?00:05:00?)
-			$response.statusText:="The mail is already sent thank you to wait before sending again "+String:C10($dif_Time)+"index : "+String:C10($index)+" time "+String:C10($data.time)
+			$response.statusText:="The mail is already sent thank you to wait before sending again"
 		Else 
 			$obj_:=Send Mail ($request)
 			If ($obj_.status)
@@ -22,7 +31,8 @@ If ($index>-1)
 			End if 
 		End if 
 	Else 
-		$response.statusText:="The mail is already sent thank you to wait before sending again; index : "+String:C10($index)+" date "+String:C10($data.date)
+		LOG EVENT:C667(Into 4D debug message:K38:5;"**Send mail** $data.date : "+String:C10($data.date))
+		$response.statusText:="The mail is already sent thank you to wait before sending again"
 	End if 
 Else 
 	$obj_:=Send Mail ($request)
