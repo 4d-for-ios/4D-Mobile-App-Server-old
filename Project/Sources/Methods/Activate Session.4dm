@@ -6,7 +6,7 @@ C_LONGINT:C283($index)
 C_BOOLEAN:C305($active)
 $parameters:=Get Info 
 $active:=False:C215
-$template:=Folder:C1567(fk resources folder:K87:11).file($parameters.activateTemplate)
+$template:=Folder:C1567(fk resources folder:K87:11;*).file($parameters.activateTemplate)
 $htmlContent:=""
 If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$URL:=$1
@@ -20,7 +20,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 				
 				$dif_Time:=Current time:C178-$data.time
 				If ($dif_Time<?00:05:00?)
-					$Path_Folder_Session:=Folder:C1567(fk mobileApps folder:K87:18).folder($data.team+"."+$data.application)
+					$Path_Folder_Session:=Folder:C1567(fk mobileApps folder:K87:18;*).folder($data.team+"."+$data.application)
 					If ($Path_Folder_Session.exists)
 						$Path_File_Session:=$Path_Folder_Session.file($data.id)
 						If ($Path_File_Session.exists)
@@ -28,8 +28,10 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 							If ($Json_Filde.status="pending")
 								$Json_Filde.status:="accepted"
 								$Path_File_Session.setText(JSON Stringify:C1217($Json_Filde))
-								Use (Storage:C1525.session)
-									Storage:C1525.session.remove($index)
+								Use (Storage:C1525)
+									Use (Storage:C1525.session)
+										Storage:C1525.session.remove($index)
+									End use 
 								End use 
 								MOBILE APP REFRESH SESSIONS:C1596
 								$MSG:="You are successfully authenticated"
@@ -44,14 +46,18 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 					
 				Else 
 					$MSG:="This email confirmation link has expired!"
-					Use (Storage:C1525.session)
-						Storage:C1525.session.remove($result.index)
+					Use (Storage:C1525)
+						Use (Storage:C1525.session)
+							Storage:C1525.session.remove($result.index)
+						End use 
 					End use 
 				End if 
 			Else 
 				$MSG:="This email confirmation link has expired!"
-				Use (Storage:C1525.session)
-					Storage:C1525.session.remove($result.index)
+				Use (Storage:C1525)
+					Use (Storage:C1525.session)
+						Storage:C1525.session.remove($result.index)
+					End use 
 				End use 
 			End if 
 		Else 
@@ -63,5 +69,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$htmlContent:=Document to text:C1236($template.platformPath)
 	$htmlContent:=Replace string:C233($htmlContent;"___MESSAGE___";$MSG)
 	WEB SEND TEXT:C677($htmlContent)
+Else 
+	$MSG:="mobileappserversetting.json file Is not valid"
 End if 
-$0:=New object:C1471("success";$active)
+$0:=New object:C1471("success";$active;"message";$MSG)
