@@ -33,6 +33,7 @@
 			"Compiler_mail",
 			"Deactivate Session",
 			"Get Info",
+			"getErrorInfo",
 			"Send Mail"
 		]
 	},
