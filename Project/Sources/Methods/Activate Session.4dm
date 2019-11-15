@@ -8,7 +8,7 @@ C_BOOLEAN:C305($active)
 stringError:=""
 $parameters:=Get Info 
 $active:=False:C215
-$template:=Folder:C1567(fk resources folder:K87:11;*).file($parameters.template.emailConfirmActivation)
+$template:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file($parameters.template.emailConfirmActivation)
 $htmlContent:=""
 If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$URL:=$1
