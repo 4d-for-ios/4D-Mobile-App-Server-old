@@ -11,6 +11,10 @@ Utility methods to improve the 4D Mobile App backend coding.
 - [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) to use with `On Mobile App Action`.
 - [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) to use with `On Mobile App Authentication`.
 
+# Installation
+
+Add this component in your "Components" database folder
+
 # Contributing #
 
 See [CONTRIBUTING](CONTRIBUTING.md) guide.
