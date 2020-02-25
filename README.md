@@ -6,10 +6,10 @@
 
 # 4D Mobile App Server
 
-Utility methods to improve the 4D Mobile App backend coding.
+Utility methods to speed up the 4D Mobile App backend coding.
 
-- [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) to use with `On Mobile App Action`.
-- [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) to use with `On Mobile App Authentication`.
+- [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
+- [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
 # Installation
 
