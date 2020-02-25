@@ -1,5 +1,6 @@
 <!-- $auth:=Mobile App Authentication($1) // $1 Informations provided by  `On Mobile App Authentication` -->
-
+# Mobile App Authentication
+ 
 ## Description
 
 Utility methods to get manipulate session when inside `On Mobile App Authentication` database method.

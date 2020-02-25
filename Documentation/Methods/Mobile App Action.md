@@ -1,4 +1,5 @@
 <!-- $action:=Mobile App Action($1) with $1 Informations provided by mobile application in `On Mobile App Action` -->
+# Mobile App Action
 
 Utility methods to get `dataClass` or `entity` to apply action when inside `On Mobile App Action` database method.
 
