@@ -1,12 +1,15 @@
-[![Build Status][build-shield]][build-url]
-[![4D][code-shield]][code-url]
+[![language](https://img.shields.io/static/v1?label=language&message=4d&color=blue)](https://developer.4d.com/)
+[![language-top](https://img.shields.io/github/languages/top/4d-for-ios/4D-Mobile-App-Server.svg)](https://developer.4d.com/)
+![code-size](https://img.shields.io/github/languages/code-size/4d-for-ios/4D-Mobile-App-Server.svg)
+[![release](https://img.shields.io/github/v/release/4d-for-ios/4D-Mobile-App-Server)](https://github.com/4d-for-ios/4D-Mobile-App-Servere/releases/latest)
+[![license](https://img.shields.io/github/license/4d-for-ios/4D-Mobile-App-Server)](LICENSE)
 
 # 4D Mobile App Server
 
 Utility methods to improve the 4D Mobile App backend coding.
 
-- [Mobile App Action](Documentation/Methods/Mobile App Action.md) to use with `On Mobile App Action`.
-- [Mobile App Authentication](Documentation/Methods/Mobile App Authentication.md) to use with `On Mobile App Authentication`.
+- [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) to use with `On Mobile App Action`.
+- [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) to use with `On Mobile App Authentication`.
 
 # Authentication ##
 
@@ -29,10 +32,3 @@ $mySessionObject.save()
 # Contributing #
 
 See [CONTRIBUTING](CONTRIBUTING.md) guide.
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[code-shield]: https://img.shields.io/badge/4D-18-orange.svg?style=flat
-[code-url]: https://developer.4d.com/
-[build-shield]: https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/badges/master/pipeline.svg
-[build-url]: https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/commits/master
