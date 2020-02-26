@@ -15,6 +15,14 @@ Utility methods to speed up the 4D Mobile App backend coding.
 
 Add this component in your "Components" database folder
 
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags](https://github.com/4d-for-ios/4D-Mobile-App-Server/tags) on this repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) guide.
