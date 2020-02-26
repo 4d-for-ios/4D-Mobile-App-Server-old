@@ -11,7 +11,7 @@ Utility methods to speed up the 4D Mobile App backend coding.
 - [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
 - [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
-## Installation
+## Installing
 
 Add this component in your "Components" database folder
 
@@ -21,11 +21,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE][license-url] file for details
 
 ## Contributing
 
-See [CONTRIBUTING](CONTRIBUTING.md) guide.
+See [CONTRIBUTING][contributing-url] guide.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -36,4 +36,5 @@ See [CONTRIBUTING](CONTRIBUTING.md) guide.
 [release-shield]: https://img.shields.io/github/v/release/4d-for-ios/4D-Mobile-App-Server
 [release-url]: https://github.com/4d-for-ios/4D-Mobile-App-Servere/releases/latest
 [license-shield]: https://img.shields.io/github/license/4d-for-ios/4D-Mobile-App-Server
-[license-url]: LICENSE
+[license-url]: LICENSE.md
+[contributing-url]: CONTRIBUTING.md
