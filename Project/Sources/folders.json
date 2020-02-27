@@ -12,7 +12,7 @@
 			"Mobile App Action Unlink"
 		],
 		"classes": [
-			"MobileAppAction"
+			"Action"
 		]
 	},
 	"auth": {
@@ -22,7 +22,7 @@
 			"Mobile App Session Object"
 		],
 		"classes": [
-			"MobileAppAuthentication"
+			"Authentication"
 		]
 	},
 	"ds": {
@@ -37,8 +37,8 @@
 			"Table_2"
 		],
 		"methods": [
-			"test_mobileAppAction",
-			"test_mobileAppAuthentication"
+			"test_action",
+			"test_authentication"
 		]
 	},
 	"trash": {}
