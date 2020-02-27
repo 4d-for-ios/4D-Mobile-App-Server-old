@@ -8,12 +8,52 @@
 
 Utility methods to speed up the 4D Mobile App backend coding.
 
-- [Mobile App Action](Documentation/Methods/Mobile%20App%20Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
-- [Mobile App Authentication](Documentation/Methods/Mobile%20App%20Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
+## Usage
+
+### Classes
+
+Wrap input from database  `On Mobile App...` database methods into this classes to get utility functions.
+
+- [MobileAppServer.Action](Documentation/Classes/Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
+- [MobileAppServer.Authentication](Documentation/Classes/Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
 ## Installing
 
-Add this component in your "Components" database folder
+Add this component to your "Components" database folder
+
+On Unix system open a terminal.
+
+### Using latest release
+
+Download the latest release and put  it into the `Components/Mobile App Server.4dbase/` folder
+
+On unix system you could do it using this command
+
+```bash
+mkdir -p "Components/Mobile App Server.4dbase/" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/Mobile%20App%20Server.4DZ --output "Components/CollectionUtils.4dbase/Mobile App Server.4dz"
+```
+
+### Using git submodule
+
+#### to use source code
+
+```bash
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer.4dbase"
+```
+
+#### to use binary
+
+```bash
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer"
+```
+
+Open the project, for instance in unix system
+
+```bash
+open "Components/4D Mobile App Server/Project/4D Mobile App Server.4DProject"
+```
+
+Compile it to `Components/` folder. A `4D Mobile App Server.4dbase` will be created with inside a `4D Mobile App Server.4dz`
 
 ## Versioning
 

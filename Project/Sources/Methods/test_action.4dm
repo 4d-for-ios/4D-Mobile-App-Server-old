@@ -5,7 +5,7 @@ C_OBJECT:C1216($dataclass)
 
 $input:=New object:C1471("context";New object:C1471("dataClass";"Table_1"))
 $action:=Mobile App Action ($input)
-  //$action:=MobileAppServer ().cs.Action.new($input)
+$action:=MobileAppServer .Action.new($input)
 
   // TEST: get dataclass
 $dataclass:=$action.getDataClass()

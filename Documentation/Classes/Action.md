@@ -1,14 +1,14 @@
-<!-- $action:=Mobile App Action($1) with $1 Informations provided by mobile application in `On Mobile App Action` -->
-# Mobile App Action
+<!-- $action:=MobileAppServer.Action($1) with $1 Informations provided by mobile application in `On Mobile App Action` -->
+# Action
 
-Utility methods to get `dataClass` or `entity` to apply action when inside `On Mobile App Action` database method.
+Utility class to get `dataClass` or `entity` to apply action when inside `On Mobile App Action` database method.
 
 ## Usage
 
 in `On Mobile App Action` wrap the first input parameters
 
 ```4d
-$action:=Mobile App Action($1) // $1 Informations provided by mobile application
+$action:=MobileAppServer.Action($1) // $1 Informations provided by mobile application
 ```
 
 Then you can switch as usual on action name and use of the function
@@ -63,7 +63,7 @@ Get the entity associated to the action.
 $entityToApplyAction:=$action.getEntity()
 ```
 
-> This return Null if the action scope is not "current record" 
+> This return Null if the action scope is not "current record"
 
 #### dropEntity()
 
@@ -92,6 +92,6 @@ $parentEntity:=$action.getParent()
 You can unlink on entity from its parent.
 
  ```4d
-$operationResult:=$action.unlink()                    
+$operationResult:=$action.unlink()
 $status:=$operationResult.save() // to save record
 ```

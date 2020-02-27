@@ -7,9 +7,11 @@ Class constructor
 		ASSERT:C1129(False:C215;"Failed to "+Current method name:C684)
 		  //$0:=Null
 	End if 
-	Use (This:C1470.class)
-		If (This:C1470.class.folder=Null:C1517)
-			This:C1470.class.folder:=Folder:C1567(fk mobileApps folder:K87:18)
+	C_OBJECT:C1216($class)
+	$class:=OB Class:C1730(This:C1470)
+	Use ($class)
+		If ($class.folder=Null:C1517)
+			$class.folder:=Folder:C1567(fk mobileApps folder:K87:18)
 		End if 
 	End use 
 	
@@ -19,7 +21,7 @@ Function getAppID
 	
 Function getSessionFile
 	C_OBJECT:C1216($0)
-	$0:=This:C1470.class.folder.folder(This:C1470.getAppID()).file(This:C1470.request.session.id)
+	$0:=OB Class:C1730(This:C1470).folder.folder(This:C1470.getAppID()).file(This:C1470.request.session.id)
 	
 Function getSessionObject
 	C_OBJECT:C1216($0)
