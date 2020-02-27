@@ -34,7 +34,7 @@ See [CONTRIBUTING][contributing-url] guide.
 [code-size]: https://img.shields.io/github/languages/code-size/4d-for-ios/4D-Mobile-App-Server.svg
 [code-url]: https://developer.4d.com/
 [release-shield]: https://img.shields.io/github/v/release/4d-for-ios/4D-Mobile-App-Server
-[release-url]: https://github.com/4d-for-ios/4D-Mobile-App-Servere/releases/latest
+[release-url]: https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest
 [license-shield]: https://img.shields.io/github/license/4d-for-ios/4D-Mobile-App-Server
 [license-url]: LICENSE.md
 [contributing-url]: CONTRIBUTING.md
