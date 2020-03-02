@@ -30,7 +30,7 @@ Download the latest release and put  it into the `Components/` folder
 On mac or linux system you could do it using this command line
 
 ```bash
-mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/Mobile.App.Server.4DZ --output "Components/Mobile App Server.4dz"
+mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/4D.Mobile.App.Server.4DZ --output "Components/4D Mobile App Server.4dz"
 ```
 
 ### Using git submodule
