@@ -32,6 +32,15 @@ On mac or linux system you could do it using this command line
 ```bash
 mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/4D.Mobile.App.Server.4DZ --output "Components/4D Mobile App Server.4dz"
 ```
+#### Check downloaded file
+
+```bash
+file "Components/4D Mobile App Server.4dz"
+```
+Must output zip format
+```
+Components/4D Mobile App Server.4dz: Zip archive data, at least v2.0 to extract
+```
 
 ### Using git submodule
 
