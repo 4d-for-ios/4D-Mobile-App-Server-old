@@ -19,15 +19,15 @@ Wrap input from `On Mobile App...` database methods into this classes to get uti
 
 ## Installing
 
-Add this component to your "Components" database folder
+Add this component to your "Components" database folder and you are ready.
 
-On Unix system open a terminal.
+First on mac or linux system open a terminal.
 
 ### Using latest release
 
-Download the latest release and put  it into the `Components/` folder
+Download the latest release and put it into the `Components/` folder.
 
-On mac or linux system you could do it using this command line
+On mac or linux system you could do it using this command line:
 
 ```bash
 mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/4D.Mobile.App.Server.4DZ --output "Components/4D Mobile App Server.4dz"
@@ -37,7 +37,7 @@ mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Ser
 ```bash
 file "Components/4D Mobile App Server.4dz"
 ```
-Must output zip format
+Must output "zip format"
 ```
 Components/4D Mobile App Server.4dz: Zip archive data, at least v2.0 to extract
 ```
@@ -50,13 +50,13 @@ Components/4D Mobile App Server.4dz: Zip archive data, at least v2.0 to extract
 git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer.4dbase"
 ```
 
-#### to use binary
+#### to use binary (compile yourself)
 
 ```bash
 git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer"
 ```
 
-Open the project, for instance in unix system
+Open the project, for instance on macOS
 
 ```bash
 open "Components/4D Mobile App Server/Project/4D Mobile App Server.4DProject"
