@@ -25,12 +25,12 @@ On Unix system open a terminal.
 
 ### Using latest release
 
-Download the latest release and put  it into the `Components/Mobile App Server.4dbase/` folder
+Download the latest release and put  it into the `Components/` folder
 
-On unix system you could do it using this command
+On mac or linux system you could do it using this command line
 
 ```bash
-mkdir -p "Components/Mobile App Server.4dbase/" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/Mobile%20App%20Server.4DZ --output "Components/CollectionUtils.4dbase/Mobile App Server.4dz"
+mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/Mobile%20App%20Server.4DZ --output "Components/Mobile App Server.4dz"
 ```
 
 ### Using git submodule
@@ -61,7 +61,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE][license-url] file for details
+See the [LICENSE][license-url] file for details
 
 ## Contributing
 
