@@ -36,17 +36,19 @@ $authKeyId:="AuthKey_XXXYYY"
 $teamId:="UTT7VDX8W5"
 
 $auth:=New object(\
-"bundleId";$bundleId;\
-"authKey";$authKey;\
-"authKeyId";$authKeyId;\
-"teamId";$teamId)
+    "bundleId";$bundleId;\
+    "authKey";$authKey;\
+    "authKeyId";$authKeyId;\
+    "teamId";$teamId)
 
-$pushNotification:=New object(\
+$pushNotificationArgs:=New object(\
     "notification";$notification;\
     "recipients";$recipients;\
     "auth";$auth)
 
-$response:=MobileAppServer.PushNotification.new($pushNotification)
+$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
+
+$response:=$pnClass.pushNotification()
 // $response.success True or False
 // $response.errors contains a collection of Text errors, Success is False
 // $response.warnings contains a collection of Text warnings, Success is True or False
