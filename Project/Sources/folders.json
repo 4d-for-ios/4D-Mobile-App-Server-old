@@ -61,5 +61,16 @@
 			"MOBILE APP Get sessions info"
 		]
 	},
+	"test": {
+		"tables": [
+			"Table_1",
+			"Table_2"
+		],
+		"methods": [
+			"test_action",
+			"test_authentication",
+			"test_MA Push Notification"
+		]
+	},
 	"trash": {}
 }
