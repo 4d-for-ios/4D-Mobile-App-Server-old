@@ -35,6 +35,9 @@
 			"buildRecipients",
 			"Compiler_push",
 			"Mobile App Push Notification"
+		],
+		"classes": [
+			"PushNotification"
 		]
 	},
 	"server": {
