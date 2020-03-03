@@ -1,4 +1,4 @@
-//%attributes = {"invisible":true,"preemptive":"capable"}
+//%attributes = {"preemptive":"capable"}
 C_OBJECT:C1216($input;$auth;$file;$session)
 C_TEXT:C284($appID)
 
@@ -6,6 +6,7 @@ $input:=New object:C1471(\
 "application";New object:C1471("id";"com.myCompany.My-App";"name";"My App");\
 "team";New object:C1471("id";"58P9JF46LX"))
 $auth:=Mobile App Authentication ($input)
+$auth:=MobileAppServer .Authentication.new($input)
 
 $appID:=$auth.getAppID()
 ASSERT:C1129($appID#Null:C1517;"no app id")

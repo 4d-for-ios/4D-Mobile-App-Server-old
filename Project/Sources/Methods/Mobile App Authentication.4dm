@@ -1,7 +1,4 @@
 //%attributes = {"shared":true,"preemptive":"capable"}
-  /// # Mobile App Authentication (C_OBJECT)
-  //: Utility method to return an utility object for authentication from `$1` context in `On Mobile App Authentication` database method.
-
 $0:=New object:C1471("request";$1;\
 "_is";"mobileAppAuthentication";\
 "getAppID";Formula:C1597(This:C1470.request.team.id+"."+This:C1470.request.application.id);\

@@ -4,11 +4,15 @@
 			"Compiler_action",
 			"MA Action GetParentEntity",
 			"Mobile App Action",
+			"Mobile App Action DropEntity",
 			"Mobile App Action GetDataClass",
 			"Mobile App Action GetEntity",
 			"Mobile App Action Link",
 			"Mobile App Action NewEntity",
 			"Mobile App Action Unlink"
+		],
+		"classes": [
+			"Action"
 		]
 	},
 	"auth": {
@@ -16,6 +20,9 @@
 			"Compiler_auth",
 			"Mobile App Authentication",
 			"Mobile App Session Object"
+		],
+		"classes": [
+			"Authentication"
 		]
 	},
 	"ds": {
@@ -52,17 +59,6 @@
 			"MA Get session from JSON",
 			"MOBILE APP Get session info",
 			"MOBILE APP Get sessions info"
-		]
-	},
-	"test": {
-		"tables": [
-			"Table_1",
-			"Table_2"
-		],
-		"methods": [
-			"test_MA Push Notification",
-			"test_mobileAppAction",
-			"test_mobileAppAuthentication"
 		]
 	},
 	"trash": {}
