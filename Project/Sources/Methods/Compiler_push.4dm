@@ -16,3 +16,12 @@ C_OBJECT:C1216(buildNotification ;$1)
 C_OBJECT:C1216(buildRecipients ;$0)
 C_OBJECT:C1216(buildRecipients ;$1)
 C_TEXT:C284(buildRecipients ;$2)
+
+C_BOOLEAN:C305(isEmail ;$0)
+C_TEXT:C284(isEmail ;$1)
+
+C_OBJECT:C1216(manageEntryRecipient ;$0)
+C_VARIANT:C1683(manageEntryRecipient ;$1)
+
+C_COLLECTION:C1488(reviewIssueCollection ;$1)
+C_TEXT:C284(reviewIssueCollection ;$2)

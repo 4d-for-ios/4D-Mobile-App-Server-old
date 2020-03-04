@@ -41,7 +41,10 @@
 			"buildNotification",
 			"buildRecipients",
 			"Compiler_push",
-			"Mobile App Push Notification"
+			"isEmail",
+			"manageEntryRecipient",
+			"Mobile App Push Notification",
+			"reviewIssueCollection"
 		],
 		"classes": [
 			"PushNotification"
@@ -69,7 +72,8 @@
 		"methods": [
 			"test_action",
 			"test_authentication",
-			"test_MA Push Notification"
+			"test_isEmail",
+			"test_push_notification"
 		]
 	},
 	"trash": {}

@@ -59,13 +59,13 @@ If ($recipientMails.length>0)
 				
 			Else   // No deviceToken found for current session
 				
-				$Obj_result.warnings.push("We couldn't find related deviceTokens to the following mail addresses : "+$mail)
+				$Obj_result.warnings.push("We couldn't find related deviceTokens to the following mail address : "+$mail)
 				
 			End if 
 			
 		Else   // No session found for current mail address 
 			
-			$Obj_result.warnings.push("No session file was found for the following mail addresses : "+$mail)
+			$Obj_result.warnings.push("No session file was found for the following mail address : "+$mail)
 			
 		End if 
 		
