@@ -79,16 +79,12 @@ $authOkIncomplete:=New object:C1471(\
   // ASSERTS
   //________________________________________
 
-C_OBJECT:C1216($pnClass;$pushNotificationArgs)
+C_OBJECT:C1216($pushNotification)
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsOk;\
-"auth";$authOk)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsOk;$authOk)
+
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsOk;$authOk)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -97,14 +93,9 @@ ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 ASSERT:C1129($response.warnings.count()=6;"Problem with warnings count")  // 4x "No session file found" for mail addresses + 2x wrong deviceTokens
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsWithNoDeviceToken;\
-"auth";$authOk)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsWithNoDeviceToken;$authOk)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsWithNoDeviceToken;$authOk)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -113,14 +104,9 @@ ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 ASSERT:C1129($response.warnings.count()=4;"Problem with warnings count")  // 4x "No session file found" for mail addresses
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsWithNoMail;\
-"auth";$authOk)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsWithNoMail;$authOk)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsWithNoMail;$authOk)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -129,14 +115,9 @@ ASSERT:C1129($response.errors.count()=0;"Unexpected error")
 ASSERT:C1129($response.warnings.count()=2;"Problem with warnings count")  // 2x wrong deviceTokens
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsEmpty;\
-"auth";$authOk)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsEmpty;$authOk)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsEmpty;$authOk)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -145,14 +126,9 @@ ASSERT:C1129($response.errors.count()=1;"Missing error")  // Empty recipients co
 ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsOk;\
-"auth";$authOkIncomplete)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsOk;$authOkIncomplete)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsOk;$authOkIncomplete)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -161,14 +137,9 @@ ASSERT:C1129($response.errors.count()=1;"Missing error")  // Incomplete auth obj
 ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsEmpty;\
-"auth";$authOkIncomplete)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsEmpty;$authOkIncomplete)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsEmpty;$authOkIncomplete)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
@@ -177,14 +148,9 @@ ASSERT:C1129($response.errors.count()=2;"Missing error")  // Empty recipients co
 ASSERT:C1129($response.warnings.count()=0;"Problem with warnings count")
 
 
-$pushNotificationArgs:=New object:C1471(\
-"notification";$notification;\
-"recipients";$recipientsOk;\
-"auth";$authWithWrongAuthKey)
 
-$pnClass:=MobileAppServer .PushNotification.new($pushNotificationArgs)
-$response:=$pnClass.pushNotification()
-  //$response:=Mobile App Push Notification ($notification;$recipientsOk;$authWithWrongAuthKey)
+$pushNotification:=MobileAppServer .PushNotification.new($notification;$recipientsOk;$authWithWrongAuthKey)
+$response:=$pushNotification.pushNotification()
 
 ASSERT:C1129(Not:C34($response.success);$response.errors)
 
