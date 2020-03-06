@@ -13,7 +13,8 @@
   //  "teamId": "UTT7VDX8W5",
   //  "session": { "id": "60711cd925b8a0facde10e1de30b13c43e342254"},
   //  "application": { "id": "com.sample.NotifSampleApp2", "name": "Application Name" },
-  //  "device": { "id": "fdkjqfg5766sdgf", "name": "Iphone", "token": "xxxxxxxxx" }
+  //  "device": { "id": "fdkjqfg5766sdgf", "name": "Iphone", "token": "xxxxxxxxx" },
+  //  "userInfo" : {}
   // }
 
 C_BLOB:C604($request)

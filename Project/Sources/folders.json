@@ -44,7 +44,7 @@
 			"isEmail",
 			"manageEntryRecipient",
 			"Mobile App Push Notification",
-			"reviewIssueCollection"
+			"reviewIssues"
 		],
 		"classes": [
 			"PushNotification"

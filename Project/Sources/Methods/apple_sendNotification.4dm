@@ -29,7 +29,13 @@ If ((Length:C16(String:C10($1.jwt))>0)\
  & (Length:C16(String:C10($1.payload))>0)\
  & (Length:C16(String:C10($1.deviceToken))>0))
 	
-	$cmdPush:="curl --verbose "+\
+	$cmdPush:="curl"
+	
+	If (Is Windows:C1573)
+		$cmdPush:=$cmdPush+".exe"
+	End if 
+	
+	$cmdPush:=$cmdPush+" --verbose "+\
 		"--header \"content-type: application/json\" "+\
 		"--header \"authorization: bearer "+$1.jwt+"\" "+\
 		"--header \"apns-topic: "+$1.bundleId+"\" "+\

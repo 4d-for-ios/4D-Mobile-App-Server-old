@@ -23,5 +23,5 @@ C_TEXT:C284(isEmail ;$1)
 C_OBJECT:C1216(manageEntryRecipient ;$0)
 C_VARIANT:C1683(manageEntryRecipient ;$1)
 
-C_COLLECTION:C1488(reviewIssueCollection ;$1)
-C_TEXT:C284(reviewIssueCollection ;$2)
+C_COLLECTION:C1488(reviewIssues ;$1)
+C_TEXT:C284(reviewIssues ;$2)

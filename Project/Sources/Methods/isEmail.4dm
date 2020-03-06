@@ -7,4 +7,8 @@ If ($1=Null:C1517)
 	ASSERT:C1129(False:C215;"Missing parameter")
 End if 
 
-$0:=Match regex:C1019(".+\\@.+\\..+";$1;1)
+C_TEXT:C284($motif)
+
+$motif:="^([-a-zA-Z0-9_]+(?:\\.[-a-zA-Z0-9_]+)*)(?:@)([-a-zA-Z0-9\\_]+(?:\\.[a-zA-Z0-9]{2,})+)$"
+
+$0:=Match regex:C1019($motif;$1;1)
