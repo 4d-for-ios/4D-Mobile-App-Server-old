@@ -10,25 +10,25 @@
 			"Mobile App Action Link",
 			"Mobile App Action NewEntity",
 			"Mobile App Action Unlink"
+		],
+		"classes": [
+			"Action"
 		]
 	},
 	"auth": {
 		"methods": [
 			"Compiler_auth",
-			"Mobile App Active Session",
 			"Mobile App Authentication",
-			"Mobile App Confirm Email",
-			"Mobile App Session Object"
+			"Mobile App Session Object",
+            "Mobile App Confirm Email",
+            "Mobile App Active Session"
+		],
+		"classes": [
+			"Authentication"
 		]
 	},
-	"ds": {
-		"methods": [
-			"Compiler_ds",
-			"QueryByPrimaryKey"
-		]
-	},
-	"mail": {
-		"methods": [
+    "mail": {
+    	"methods": [
 			"Activate Sessions",
 			"Compiler_mail",
 			"Deactivate Session",
@@ -37,15 +37,20 @@
 			"Send Mail"
 		]
 	},
+	"ds": {
+		"methods": [
+			"Compiler_ds",
+			"QueryByPrimaryKey"
+		]
+	},
 	"test": {
 		"tables": [
 			"Table_1",
 			"Table_2"
 		],
 		"methods": [
-			"test_Confirm_Mail",
-			"test_mobileAppAction",
-			"test_mobileAppAuthentication"
+			"test_action",
+			"test_authentication"
 		]
 	},
 	"trash": {}
