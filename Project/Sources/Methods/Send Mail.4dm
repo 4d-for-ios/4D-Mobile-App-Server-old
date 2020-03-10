@@ -4,7 +4,7 @@ C_OBJECT:C1216($0;$1;$request;$status;$template;$parameters;$o;$transporter)
 
 stringError:=""
 $request:=$1
-$parameters:=Get Info 
+$parameters:=Get Setting 
 $template:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file($parameters.template.emailToSend)
 If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$o:=New object:C1471

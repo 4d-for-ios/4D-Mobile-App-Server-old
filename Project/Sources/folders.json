@@ -29,10 +29,10 @@
 	},
 	"mail": {
 		"methods": [
-			"Activate Session",
+			"Activate Sessions",
 			"Compiler_mail",
 			"Deactivate Session",
-			"Get Info",
+			"Get Setting",
 			"getErrorInfo",
 			"Send Mail"
 		]

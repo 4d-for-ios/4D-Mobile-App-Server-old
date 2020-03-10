@@ -6,7 +6,7 @@ C_LONGINT:C283($index)
 C_BOOLEAN:C305($active)
 
 stringError:=""
-$parameters:=Get Info 
+$parameters:=Get Setting 
 $active:=False:C215
 $template:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file($parameters.template.emailConfirmActivation)
 $htmlContent:=""
@@ -69,7 +69,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$htmlContent:=Replace string:C233($htmlContent;"___MESSAGE___";$MSG)
 	WEB SEND TEXT:C677($htmlContent)
 Else 
-	$MSG:="mobileappserversetting.json file Is not valid"
+	$MSG:="settings.json file is not valid"
 	$htmlContent:=Document to text:C1236($template.platformPath)
 	$htmlContent:=Replace string:C233($htmlContent;"___MESSAGE___";"Please contact administrator")
 	WEB SEND TEXT:C677($htmlContent)

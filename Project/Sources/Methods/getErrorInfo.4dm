@@ -1,4 +1,4 @@
-//%attributes = {}
+//%attributes = {"invisible":true}
 
 C_COLLECTION:C1488($mycol)
 ARRAY LONGINT:C221($errcodes;0)
