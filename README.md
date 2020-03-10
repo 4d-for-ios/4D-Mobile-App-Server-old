@@ -1,84 +1,89 @@
-[![pipeline status](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/badges/master/pipeline.svg)](https://gitlab-4d.private.4d.fr/qmobile/4d-mobile-app-server/commits/master)
-
 # 4D Mobile App Server
 
-Utility methods to improve the 4D Mobile App backend coding.
+[![language][code-shield]][code-url]
+[![language-top][code-top]][code-url]
+![code-size][code-size]
+[![release][release-shield]][release-url]
+[![license][license-shield]][license-url]
 
-##  Contents ##
-- [Action](#Action)
-- [Authentication](#Authentication)
+Utility methods to speed up the 4D Mobile App backend coding.
 
-# Action ##
+## Usage
 
-Utility methods to get dataClass or entity to apply action when inside `On Mobile App Action` database method.
+### Classes
 
-```swift
-	// Create an object with formula
-$action:=Mobile App Action($1) // $1 Informations provided by mobile application
+Wrap input from `On Mobile App...` database methods into this classes to get utility functions.
 
-Case of
-      //________________________________________
-    : ($action.name="purgeAll") // Purge all, action scope is table/dataclass
+- [MobileAppServer.Action](Documentation/Classes/Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
+- [MobileAppServer.Authentication](Documentation/Classes/Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
-      $dataClass:=$action.getDataClass()
-      // Insert here the code to purge all entities of this dataClass.
+## Installing
 
-      //________________________________________
-    : ($action.name="add") // Add a new entity
+Add this component to your "Components" database folder and you are ready.
 
-      $book:=$action.newEntity()
-      $status:=$book.save()
+First on mac or linux system open a terminal.
 
-      // if any book collection, add to it
-      $result:=$action.link()
-      If ($result.success)
-        $status:=$result.save()
-      End if
-      $book:=$result.entity
+### Using latest release
 
-      // get parent to control the number of books in the collection
-      $parent:=$action.getParent()
+Download the latest release and put it into the `Components/` folder.
 
-      //________________________________________
-    : ($action.name="rate") // Rate a book, action scope is entity
+On mac or linux system you could do it using this command line:
 
-      $book:=$action.getEntity()
-      // Insert here the code for the action "Rate and Review" the book
+```bash
+mkdir -p "Components" && curl -L https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest/download/4D.Mobile.App.Server.4DZ --output "Components/4D Mobile App Server.4dz"
+```
+#### Check downloaded file
 
-      //________________________________________
-    : ($action.name="removeFromCollection") // remove
-
-      $result:=$action.unlink()
-      If ($result.success)
-        $status:=$result.save()
-      End if
-      $book:=$result.entity
-
-      //________________________________________
-    : ($action.name="drop") // Drop an entity
-
-      $status:=$action.dropEntity()
-
-End case
+```bash
+file "Components/4D Mobile App Server.4dz"
+```
+Must output "zip format"
+```
+Components/4D Mobile App Server.4dz: Zip archive data, at least v2.0 to extract
 ```
 
-# Authentication ##
+### Using git submodule
 
-Utility methods to get manipulate session when inside `On Mobile App Authentication` database method.
+#### to use source code
 
-```swift
-    // Create an object with formula
-$auth:=Mobile App Authentication($1) // $1 Informations provided by mobile application
-
-$myAppId:=$auth.getAppId()
-
-$mySessionFile:=$auth.getSessionFile()
-
-$mySessionObject:=$auth.getSessionObject()
-$mySessionObject.status:="pending"
-$mySessionObject.save()
-
+```bash
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer.4dbase"
 ```
 
-# Contributing #
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+#### to use binary (compile yourself)
+
+```bash
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer"
+```
+
+Open the project, for instance on macOS
+
+```bash
+open "Components/4D Mobile App Server/Project/4D Mobile App Server.4DProject"
+```
+
+Compile it to `Components/` folder. A `4D Mobile App Server.4dbase` will be created with inside a `4D Mobile App Server.4dz`
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags](https://github.com/4d-for-ios/4D-Mobile-App-Server/tags) on this repository.
+
+## License
+
+See the [LICENSE][license-url] file for details
+
+## Contributing
+
+See [CONTRIBUTING][contributing-url] guide.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[code-shield]: https://img.shields.io/static/v1?label=language&message=4d&color=blue
+[code-top]: https://img.shields.io/github/languages/top/4d-for-ios/4D-Mobile-App-Server.svg
+[code-size]: https://img.shields.io/github/languages/code-size/4d-for-ios/4D-Mobile-App-Server.svg
+[code-url]: https://developer.4d.com/
+[release-shield]: https://img.shields.io/github/v/release/4d-for-ios/4D-Mobile-App-Server
+[release-url]: https://github.com/4d-for-ios/4D-Mobile-App-Server/releases/latest
+[license-shield]: https://img.shields.io/github/license/4d-for-ios/4D-Mobile-App-Server
+[license-url]: LICENSE.md
+[contributing-url]: CONTRIBUTING.md
