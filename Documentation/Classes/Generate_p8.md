@@ -1,29 +1,27 @@
-// copied text
+In order to use the component to send push notification, it is required to have an authentication file AuthKey_XXXX.p8 from Apple.
 
-Work In Progress
+# Generating .p8 key file 🔑
 
-// # Generating .p8 key file :key:
+First go to [Apple developer account page](https://developer.apple.com/account/), sign in, then select "Certificates, IDs & Profiles"
 
-// To generate a .p8 key file, go to [Apple developer account page](https://developer.apple.com/account/), sign in, then select "Certificates, IDs & Profiles". 
+![alt text][step_1]
 
-// Image
+Then, select "Keys", and add a new key ("+" button)
 
-// Next, select "Keys".
+![alt text][step_2]
 
-// Image
+![alt text][step_3]
 
-// Click the "+" button to add a new key.
+Give you key a name, and check Apple Push Notification service (APNs). Click "Continue" and then "Register"
 
-// Image
+![alt text][step_4]
 
-// In the new key page, type in your key name and check the Apple Push Notification service (APNs) box, then click "Continue" and click "Register".
+Download the file
 
-// Image
+![alt text][step_5]
 
-// Then proceed to download the key file by clicking "Download".
-
-// Image
-
-// The Auth Key filename will look like this : AuthKeyABCD1234.p8, the ABCD1234 is the Key ID for this key, we will need this Key ID later.
-
-// That’s it for generating the .p8 key file! Remember to keep the key file safely as you can only download it once, if you lost the key file, you will need to revoke it and register a new one.
+[step_1]: https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Documentation/Assets/generate_p8_step_1.jpg "Step 1"
+[step_2]: https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Documentation/Assets/generate_p8_step_2.jpg "Step 2"
+[step_3]: https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Documentation/Assets/generate_p8_step_3.jpg "Step 3"
+[step_4]: https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Documentation/Assets/generate_p8_step_4.jpg "Step 4"
+[step_5]: https://github.com/4d-for-ios/4D-Mobile-App-Server/blob/master/Documentation/Assets/generate_p8_step_5.jpg "Step 5"
