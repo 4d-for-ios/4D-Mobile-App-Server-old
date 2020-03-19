@@ -45,15 +45,14 @@ $recipientsEmpty:=New object:C1471
   // AUTHENTICATION
   //________________________________________
 
-C_TEXT:C284($bundleId;$authKeyOk;$authKeyDoesNotExist;$authKeyId;$teamId)
-C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncomplete;$authKeyFile)
+C_TEXT:C284($bundleId;$authKeyId;$teamId)
+C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncomplete;$authKeyOk;$authKeyDoesNotExist)
 
 $bundleId:="com.sample.xxx"
 
-$authKeyFile:=File:C1566("/RESOURCES/scripts/AuthKey_4W2QJ2R2WS.p8")
-ASSERT:C1129($authKeyFile.exists;"AuthKey file is required to run tests")
-$authKeyOk:=$authKeyFile.platformPath
-$authKeyDoesNotExist:=File:C1566("/RESOURCES/scripts/AuthKey_XXXXX.p8").platformPath
+$authKeyOk:=File:C1566("/RESOURCES/scripts/AuthKey_4W2QJ2R2WS.p8")
+ASSERT:C1129($authKeyOk.exists;"AuthKey file is required to run tests")
+$authKeyDoesNotExist:=File:C1566("/RESOURCES/scripts/AuthKey_XXXXX.p8")
 
 $authKeyId:="4W2QJ2R2WS"
 $teamId:="UTT7VDX8W5"

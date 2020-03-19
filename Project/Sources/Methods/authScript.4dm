@@ -1,7 +1,7 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
 C_OBJECT:C1216($0)  // output success object
 C_OBJECT:C1216($1)  // input auth object
-C_OBJECT:C1216($Obj_result;$authScript)
+C_OBJECT:C1216($Obj_result;$authScript;$authKey)
 C_TEXT:C284($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
 C_TEXT:C284($authScriptPathFinalWithArgs)
 
@@ -15,12 +15,14 @@ $Obj_result:=New object:C1471("success";False:C215)
   // AUTHENTICATION FROM SCRIPT
   //________________________________________
 
-$authScript:=File:C1566("/RESOURCES/scripts/authScriptArgs.sh")
+$authScript:=File:C1566(File:C1566("/RESOURCES/scripts/authScriptArgs.sh").platformPath;fk platform path:K87:2)  // unsandboxing authentication script file
+
+$authKey:=File:C1566($1.authKey.platformPath;fk platform path:K87:2)  // unsandboxing authentication key file
 
 If ($authScript.exists)
 	
-	$authScriptPathFinalWithArgs:=Convert path system to POSIX:C1106($authScript.platformPath)+" "+\
-		Convert path system to POSIX:C1106($1.authKey)+" "+\
+	$authScriptPathFinalWithArgs:=$authScript.path+" "+\
+		$authKey.path+" "+\
 		$1.authKeyId+" "+\
 		$1.teamId
 	
