@@ -21,7 +21,7 @@ $teamId=TEAM123456   // is the team related to the AuthKey file
 
 ```4d
 $bundleId:="com.sample.myappname"
-$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8").platformPath
+$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8")
 $authKeyId:="AuthKey_XXXYYY"
 $teamId:="TEAM123456"
 
