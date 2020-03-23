@@ -21,8 +21,8 @@ $authKey:=File:C1566($1.authKey.platformPath;fk platform path:K87:2)  // unsandb
 
 If ($authScript.exists)
 	
-	$authScriptPathFinalWithArgs:=$authScript.path+" "+\
-		$authKey.path+" "+\
+	$authScriptPathFinalWithArgs:=Char:C90(Quote:K15:44)+$authScript.path+Char:C90(Quote:K15:44)+" "+\
+		Char:C90(Quote:K15:44)+$authKey.path+Char:C90(Quote:K15:44)+" "+\
 		$1.authKeyId+" "+\
 		$1.teamId
 	
