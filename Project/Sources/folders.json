@@ -25,10 +25,27 @@
 			"Authentication"
 		]
 	},
+	"dev": {
+		"methods": [
+			"COMPILER_dev",
+			"dev Update structure"
+		],
+		"classes": [
+			"Dev"
+		]
+	},
 	"ds": {
 		"methods": [
 			"Compiler_ds",
 			"QueryByPrimaryKey"
+		]
+	},
+	"errors": {
+		"methods": [
+			"COMPILER_err",
+			"err",
+			"errors_CAPTURE",
+			"noError"
 		]
 	},
 	"test": {
@@ -38,7 +55,8 @@
 		],
 		"methods": [
 			"test_action",
-			"test_authentication"
+			"test_authentication",
+			"test_dev"
 		]
 	},
 	"trash": {}
