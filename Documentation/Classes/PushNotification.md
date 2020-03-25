@@ -11,7 +11,7 @@ In order to use the component to send push notification, it is required to have 
 This file has to be placed in component's Resources/script folder next to authScriptArgs.sh file.
 It is important to note what are $authKey, $authKeyId and teamId refering to.
 
-[Check how to generate .p8 key file](Documentation/Methods/Generate_p8.md) // go to .io github pages
+<a href="../Generate_p8.md">Check how to generate .p8 key file</a>
 
 ```4d
 $authKey="AuthKey_XXXYYY.p8"  // name of the file
