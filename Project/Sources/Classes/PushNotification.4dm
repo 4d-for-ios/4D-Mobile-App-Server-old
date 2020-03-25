@@ -38,7 +38,8 @@ Class constructor
 	
 	
 	
-Function send()
+Function send
+	
 	C_OBJECT:C1216($0)
 	C_OBJECT:C1216($1)  // Notification content
 	C_VARIANT:C1683($2)  // Recipients

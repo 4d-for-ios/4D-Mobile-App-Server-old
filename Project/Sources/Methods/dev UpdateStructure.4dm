@@ -8,9 +8,9 @@ C_OBJECT:C1216($error;$o;$o_result;$o_this)
 C_COLLECTION:C1488($c_tables)
 
 If (False:C215)
-	C_OBJECT:C1216(dev Update structure ;$0)
-	C_OBJECT:C1216(dev Update structure ;$1)
-	C_VARIANT:C1683(dev Update structure ;$2)
+	C_OBJECT:C1216(dev UpdateStructure ;$0)
+	C_OBJECT:C1216(dev UpdateStructure ;$1)
+	C_VARIANT:C1683(dev UpdateStructure ;$2)
 End if 
 
 $o_this:=$1
@@ -184,7 +184,7 @@ If ($o_result.success)
 					
 					If (Bool:C1537($o_this.stampField.indexed))
 						
-						DOCUMENT:="CREATE INDEX "+String:C10($o_this.stampField.name)+"_"+$o_this.indexName($t)+" ON ["+$t+"] ("+String:C10($o_this.stampField.name)+");"
+						DOCUMENT:="CREATE INDEX "+String:C10($o_this.stampField.name)+"_"+dev IndexName ($t)+" ON ["+$t+"] ("+String:C10($o_this.stampField.name)+");"
 						
 						$error.reset()
 						
