@@ -1,4 +1,4 @@
-﻿Data
+Data
 Preferences
 Logs
 userPreferences.*
@@ -6,6 +6,6 @@ Mobile Projects
 data.*
 MobileApps
 Project/DerivedData
-
+Settings/4DPop
+AuthKey_*.p8
 .DS_Store
-Resources/scripts/AuthKey_*.p8

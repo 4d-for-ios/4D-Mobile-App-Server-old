@@ -25,27 +25,43 @@
 			"Authentication"
 		]
 	},
-	"dev": {
-		"methods": [
-			"COMPILER_dev",
-			"dev Update structure"
-		],
-		"classes": [
-			"Dev"
-		]
-	},
 	"ds": {
 		"methods": [
 			"Compiler_ds",
 			"QueryByPrimaryKey"
 		]
 	},
-	"errors": {
+	"push": {
+		"groups": [
+			"server"
+		],
 		"methods": [
-			"COMPILER_err",
-			"err",
-			"errors_CAPTURE",
-			"noError"
+			"apple_sendNotification",
+			"authScript",
+			"buildNotification",
+			"buildRecipients",
+			"Compiler_push",
+			"isEmail",
+			"manageEntryRecipient",
+			"Mobile App Push Notification",
+			"reviewIssues"
+		],
+		"classes": [
+			"PushNotification"
+		]
+	},
+	"server": {
+		"methods": [
+			"deviceToken",
+			"postSession"
+		]
+	},
+	"session": {
+		"methods": [
+			"Compiler_session",
+			"MA Get session from JSON",
+			"MOBILE APP Get session info",
+			"MOBILE APP Get sessions info"
 		]
 	},
 	"test": {
@@ -56,7 +72,8 @@
 		"methods": [
 			"test_action",
 			"test_authentication",
-			"test_dev"
+			"test_isEmail",
+			"test_push_notification"
 		]
 	},
 	"trash": {}
