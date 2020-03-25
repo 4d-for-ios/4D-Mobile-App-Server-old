@@ -21,6 +21,16 @@ Pass as parameter a table name or a collection of table names according to your 
 $o:=MobileAppServer .Dev.new()
 $result:=$o.updateStructure("Table_1")
 ```
+
+or
+
+```4d
+$o:=MobileAppServer .Dev.new()
+$result:=$o.updateStructure(New collection("Table_1";"Table_2";...;"table_N"))
+```
+
 The returned object `$result` contains a boolean property `success` to check if the process has been successfully executed. If so, the `log` property gives, as a collection, the list of actions performed and the results. Otherwise, the `errors` property lists the errors encountered.
+
+Be careful, the table names are case sensitive
 
 
