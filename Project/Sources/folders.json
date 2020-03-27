@@ -49,9 +49,6 @@
 		]
 	},
 	"push": {
-		"groups": [
-			"server"
-		],
 		"methods": [
 			"apple_sendNotification",
 			"authScript",
@@ -67,16 +64,10 @@
 			"PushNotification"
 		]
 	},
-	"server": {
-		"methods": [
-			"deviceToken",
-			"postSession"
-		]
-	},
 	"session": {
 		"methods": [
 			"Compiler_session",
-			"MA Get session from JSON",
+			"MOBILE APP Get all deviceTokens",
 			"MOBILE APP Get session info",
 			"MOBILE APP Get sessions info"
 		]

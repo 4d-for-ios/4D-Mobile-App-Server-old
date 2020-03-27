@@ -1,22 +1,27 @@
-# Push 🔔
+# PushNotification 🔔
 
-Utility methods to send push notifications to different recipients.
+Utility class to send a push notification to one or multiple recipients.
 
 ## Usage
 
-To use the send() function from PushNotification class, you will need to build a notification object, a recipients object, and an authentication object.
+First of all, you will need to instanciate the `PushNotification` class with an authentication object.
 
-### Build authentication object
-In order to use the component to send push notification, it is required to have an authentication file AuthKey_XXXX.p8 from Apple.
-This file has to be placed in component's Resources/script folder next to authScriptArgs.sh file.
-It is important to note what are $authKey, $authKeyId and teamId refering to.
+To use the `send()`  and `sendAll()` functions from `PushNotification` class, you need a notification object that defines the content to send, and recipients.
+
+### Build authentication object 
+
+---
+
+In order to use the component to send push notification, it is required to have an authentication file `AuthKey_XXXX.p8` from Apple.
+This file has to be placed in component's `Resources/script` folder.
+It is important to note what are `$authKey`, `$authKeyId` and `$teamId` refering to.
 
 <a href="../Generate_p8.md">Check how to generate .p8 key file</a>
 
 ```4d
-$authKey="AuthKey_XXXYYY.p8"  // name of the file
-$authKeyId=AuthKey_XXXYYY   // is the second part of $authKey filename
-$teamId=TEAM123456   // is the team related to the AuthKey file
+$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8")  // AuthKey file
+$authKeyId=AuthKey_XXXYYY  // is the second part of the AuthKey filename
+$teamId=TEAM123456  // is the team related to the AuthKey file
 ```
 
 ```4d
@@ -25,21 +30,45 @@ $authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8")
 $authKeyId:="AuthKey_XXXYYY"
 $teamId:="TEAM123456"
 
-$auth:=New object(\
-    "bundleId";$bundleId;\
-    "authKey";$authKey;\
-    "authKeyId";$authKeyId;\
-    "teamId";$teamId)
+$auth:=New object
+$auth.bundleId:=$bundleId
+$auth.authKey:=$authKey
+$auth.authKeyId:=$authKeyId
+$auth.teamId:=$teamId
 ```
 
 
-### Use PushNotification class to authenticate
+### Instanciate PushNotification class to authenticate
+
+---
+
 ```4d
 $pushNotification:=MobileAppServer .PushNotification.new($auth)
 ```
 
+### Use PushNotification class to send push notifications
+
+---
+
+- #### `send()`
+
+This function will send `$notification` to all `$recipients`.
+
+```4d
+$response:=$pushNotification.send($notification;$recipients)
+```
+
+- #### `sendAll()`
+
+This function will send `$notification` to any recipient that has a session file on the server for the app.
+
+```4d
+$response:=$pushNotification.sendAll($notification)
+```
 
 ### Build notification object
+
+---
 
 ```4d
 $notification:=New object
@@ -48,30 +77,63 @@ $notification.body:="Here is the content of this notification"
 $notification.image:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
 ```
 
+### Recipients
 
-### Build recipients object. 
-This object can contain 2 collections : one of mail addresses whose deviceToken will be retrieved in Session files, and one of deviceTokens
+---
+
+Recipients can be of various types : an email address, a device token, an email address collection, a device token collection, or an object containing both collection.
+
+- #### A single mail address
+
+```4d
+$mail:="abc@4dmail.com"
+$response:=$pushNotification.send($notification;$mail)
+```
+
+- ##### A single device token
+
+A device token can be found in a session file, it identifies a device for push notifications.
+
+```4d
+$deviceToken:="xxxxxxxxxxxx"
+$response:=$pushNotification.send($notification;$deviceToken)
+```
+
+- ##### A mail address collection
+
+```4d
+$mails:=New collection("abc@4dmail.com";"def@4dmail.com";"ghi@4dmail.com")
+$response:=$pushNotification.send($notification;$mails)
+```
+
+- ##### A device token collection
+
+```4d
+$deviceTokens:=New collection("xxxxxxxxxxxx";"yyyyyyyyyyyy";"zzzzzzzzzzzz")
+$response:=$pushNotification.send($notification;$deviceTokens)
+```
+
+- ##### An object
+
+This object should contain 2 collections : a mail address collection and a device token collection.
 
 ```4d
 $recipients:=New object
-$recipients.recipientMails:=New collection(\
-    "abc@gmail.com";\
-    "def@gmail.com";\
-    "ghi@gmail.com")
-$recipients.deviceTokens:=New collection(\
-    "fe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5ffe4efz52zf7ze5f")
+$recipients.mails:=New collection("abc@4dmail.com";"def@4dmail.com";"ghi@4dmail.com")
+$recipients.deviceTokens:=New collection("xxxxxxxxxxxx";"yyyyyyyyyyyy";"zzzzzzzzzzzz")
+$response:=$pushNotification.send($notification;$recipients)
 ```
 
+### Exploring results
 
-### Send push notifications
+---
+
+You may encounter different kind of issues while sending a push notification. Exploring results lets you know if anything went wrong.
+
 ```4d
-// Sends a push notification to every recipient
-$response:=$pushNotification.send($notification;$recipients)
+$response:=$pushNotification.sendAll($notification)
 
-  // $response.success True or False
-  // $response.errors contains a collection of Text errors, Success is False
-  // $response.warnings contains a collection of Text warnings, Success is True or False
-
-reviewIssues ($response.errors;"Errors") // Will display an alert if any error occurred
-reviewIssues ($response.warnings;"Warnings") // Will display an alert if any warning occurred
+$response.success  // True or False
+$response.warnings  // Contains a collection of Text warnings
+$response.errors  // Contains a collection of Text errors (implies $response.success is False)
 ```
