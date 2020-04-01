@@ -10,13 +10,20 @@ Utility methods to speed up the 4D Mobile App backend coding.
 
 ## Usage
 
-### Classes
+### Classes (>18R3)
 
 Wrap input from `On Mobile App...` database methods into this classes to get utility functions.
 
 - [MobileAppServer.Action](Documentation/Classes/Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
 - [MobileAppServer.Authentication](Documentation/Classes/Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 - [MobileAppServer.PushNotification](Documentation/Classes/PushNotification.md) provide utility methods to send push notifications to iOS devices.
+
+#### Previous 4D Version
+
+Without classes some functionnalities are still available.
+
+- [Mobile App Action](Documentation/Methods/Mobile App Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
+- [Mobile App Authentication](Documentation/Methods/Mobile App Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
 ## Installing
 
