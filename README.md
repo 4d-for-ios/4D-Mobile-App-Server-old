@@ -55,13 +55,13 @@ Components/4D Mobile App Server.4dz: Zip archive data, at least v2.0 to extract
 #### to use source code
 
 ```bash
-git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer.4dbase"
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile App Server.4dbase"
 ```
 
 #### to use binary (compile yourself)
 
 ```bash
-git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile AppServer"
+git submodule add https://github.com/4d-for-ios/4D-Mobile-App-Server.git "Components/4D Mobile App Server"
 ```
 
 Open the project, for instance on macOS
