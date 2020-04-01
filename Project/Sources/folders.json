@@ -28,7 +28,8 @@
 	"devTool": {
 		"methods": [
 			"COMPILER_dev",
-			"dev IndexName"
+			"dev IndexName",
+			"dev UpdateStructure"
 		],
 		"classes": [
 			"Dev"
