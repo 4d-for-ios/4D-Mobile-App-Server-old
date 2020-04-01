@@ -1,4 +1,4 @@
-<!-- $action:=MobileAppServer.Action($1) with $1 Informations provided by mobile application in `On Mobile App Action` -->
+<!-- $action:=MobileAppServer.Action.new($1) // $1 Informations provided by `On Mobile App Action` -->
 # Action
 
 Utility class to get `dataClass` or `entity` to apply action when inside `On Mobile App Action` database method.
@@ -8,7 +8,7 @@ Utility class to get `dataClass` or `entity` to apply action when inside `On Mob
 in `On Mobile App Action` wrap the first input parameters
 
 ```4d
-$action:=MobileAppServer.Action($1) // $1 Informations provided by mobile application
+$action:=MobileAppServer.Action.new($1) // $1 Informations provided by mobile application
 ```
 
 Then you can switch as usual on action name and use of the function
