@@ -1,5 +1,5 @@
 //%attributes = {"preemptive":"capable"}
-C_TEXT:C284($htmlContent;$Txt_methodOnErrorCall)
+C_TEXT:C284($htmlContent;$Txt_methodOnErrorCall;$value)
 C_OBJECT:C1216($0;$1;$request;$status;$template;$parameters;$o;$transporter)
 
 stringError:=""
@@ -23,8 +23,8 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$o.mail.to:=$request.email
 	$o.mail.subject:=$parameters.emailSubject
 	$htmlContent:=$template.getText()
-	$htmlContent:=Replace string:C233($htmlContent;"___IDSESSION___";$request.session.id)
-	
+	$value:=$parameters.activation.url+"?"+$request.session.id
+	$htmlContent:=Replace string:C233($htmlContent;"___IDSESSION___";$value)
 	$o.mail.htmlBody:=$htmlContent
 	$transporter:=SMTP New transporter:C1608($o.smtp)
 	$Txt_methodOnErrorCall:=Method called on error:C704

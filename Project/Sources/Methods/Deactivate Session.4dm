@@ -1,6 +1,6 @@
 //%attributes = {}
-C_TIME:C306($dif_Time)
-C_OBJECT:C1216($1;$request;$response;$2;$obj_;$data)
+C_TIME:C306($dif_Time;$timeOut)
+C_OBJECT:C1216($1;$request;$response;$2;$obj_;$data;$parameters)
 C_LONGINT:C283($index)
 $request:=$1
 $response:=$2
@@ -15,7 +15,13 @@ If (($index>-1) & (Storage:C1525.session.length#0))
 	$data:=Storage:C1525.session[$index]
 	If ($data.date=Current date:C33)
 		$dif_Time:=Current time:C178-$data.time
-		If ($dif_Time<=?00:05:00?)
+		$parameters:=Get Setting 
+		If ($parameters.timeout#Null:C1517)
+			$timeout:=Time:C179($parameters.timeout)
+		Else 
+			$timeout:=Time:C179("00:05:00")
+		End if 
+		If ($dif_Time<$timeOut)
 			$response.statusText:="The mail is already sent thank you to wait before sending again"
 		Else 
 			$obj_:=Send Mail ($request)
