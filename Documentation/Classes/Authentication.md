@@ -5,9 +5,6 @@ Utility class to get and manipulate session. To use with `On Mobile App Authenti
 
 ## Usage
 
-
-## Usage
-
 in `On Mobile App Authentication` wrap the first input parameters
 
 ```4d
