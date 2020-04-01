@@ -13,7 +13,7 @@ $o:=MobileAppServer .Dev.new()
 ### Use Dev class to update the server structure
 ### `updateStructure()`
 
-This method perform, on the server side, the structure adjustments for an optimised mobile data update. It will be especially useful if you create your mobile application from a local database copy and the you want to connect it to your production server.
+This method perform, on the server side, the structure adjustments for an optimised mobile data update. It will be especially useful if you create your mobile application from a local database copy and then you want to connect it to your production server.
 
 Pass as parameter a table name or a collection of table names according to your project definition and the method perform the structure adjustments.
 
