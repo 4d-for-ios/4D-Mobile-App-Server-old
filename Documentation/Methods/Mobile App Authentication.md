@@ -1,19 +1,43 @@
 <!-- $auth:=Mobile App Authentication($1) // $1 Informations provided by  `On Mobile App Authentication` -->
 # Mobile App Authentication
- 
-## Description
 
-Utility methods to get manipulate session when inside `On Mobile App Authentication` database method.
+Utility class to get manipulate session when inside `On Mobile App Authentication` database method.
+
+## Usage
+
+in `On Mobile App Authentication` wrap the first input parameters
 
 ```4d
-    // Create an object with formula
 $auth:=Mobile App Authentication($1) // $1 Informations provided by mobile application
+```
 
+Then you can have some information about mobile applications and session.
+
+### Get application id
+
+```4d
 $myAppId:=$auth.getAppId()
+```
 
-$mySessionFile:=$auth.getSessionFile()
+### Get session information
 
-$mySessionObject:=$auth.getSessionObject()
-$mySessionObject.status:="pending"
-$mySessionObject.save()
+#### Get the `File` associated to the session
+
+```4d
+$currentSessionFile:=$auth.getSessionFile()
+```
+
+#### Get the session information as object
+
+```4d
+$currentSessionObject:=$auth.getSessionObject()
+```
+
+### Modify current session
+
+Setting the status to "pending" ie. not validated yet.
+
+```4d
+$currentSessionObject.status:="pending"
+$currentSessionObject.save() // save to File on disk
 ```
