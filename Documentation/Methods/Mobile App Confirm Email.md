@@ -52,14 +52,14 @@ The settings.json file must contain the following parameters:
 *activation.protocol*: **http or https** \
 *activation.url*: **127.0.0.1** // server address \
 *activation.prefix*: **4D4IOS** // used to catch the value of the token connection \
-*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings \
+*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings
 
 *message.successConfirmationMailMessage*: message displayed in the mobile application if the email is sent successfully \
 *message.waitSendMailConfirmationMessage*: message displayed in the mobile application if the user tries to login without activating his account from his email address and without respecting the expiration value of a connection \
 *message.successActiveSessionsMessage*: message displayed in the activation web page if the session is activated \
-*message.expireActiveSessionsMessage*: message displayed in the activation web page if the session has expired \
+*message.expireActiveSessionsMessage*: message displayed in the activation web page if the session has expired
 
-The HTML template that will be sent to the user as a body in the confirmation email \
+The HTML template that will be sent to the user as a body in the confirmation email
 
 ```html
 <html>
@@ -78,4 +78,4 @@ The HTML template that will be sent to the user as a body in the confirmation em
 ```
 
 ___PATH___ : will be modified by the set of activation values \
-___MINUTES___ : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file \
+___MINUTES___ : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file
