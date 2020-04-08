@@ -27,3 +27,6 @@ Function getSessionObject
 	C_OBJECT:C1216($0)
 	$0:=Mobile App Session Object (This:C1470.getSessionFile())  // XXX maybe create a class also
 	
+Function confirmEmail
+	C_OBJECT:C1216($0)
+	$0:=Mobile App Confirm Email (This:C1470.request)
