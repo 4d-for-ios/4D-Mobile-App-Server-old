@@ -55,11 +55,14 @@
 			"authScript",
 			"buildNotification",
 			"buildRecipients",
+			"checkXCodeVersionForPushNotif",
 			"Compiler_push",
+			"getXCodeVersion",
 			"isEmail",
 			"manageEntryRecipient",
 			"Mobile App Push Notification",
-			"reviewIssues"
+			"reviewIssues",
+			"sim_sendNotification"
 		],
 		"classes": [
 			"PushNotification"

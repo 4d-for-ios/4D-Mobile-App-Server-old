@@ -57,8 +57,6 @@ If ($Dir_mobileApps.exists)
 				
 				$session:=JSON Parse:C1218($sessionFile.getText())
 				
-				  // checker si on a un deviceToken, le stocker
-				
 				If (Length:C16(String:C10($session.device.token))>0)
 					
 					$Obj_result.deviceTokens.push($session.device.token)

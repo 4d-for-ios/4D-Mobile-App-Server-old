@@ -25,3 +25,10 @@ C_VARIANT:C1683(manageEntryRecipient ;$1)
 
 C_COLLECTION:C1488(reviewIssues ;$1)
 C_TEXT:C284(reviewIssues ;$2)
+
+C_OBJECT:C1216(getXCodeVersion ;$0)
+
+C_BOOLEAN:C305(checkXCodeVersionForPushNotif ;$0)
+
+C_OBJECT:C1216(sim_sendNotification ;$0)
+C_OBJECT:C1216(sim_sendNotification ;$1)

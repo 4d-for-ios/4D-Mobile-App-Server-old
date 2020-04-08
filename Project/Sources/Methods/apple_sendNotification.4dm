@@ -60,7 +60,7 @@ If ((Length:C16(String:C10($1.jwt))>0)\
 		
 	End if 
 	
-	  // Else : missing parameter in input object
+	  // Else : Missing parameter in input object
 	
 End if 
 

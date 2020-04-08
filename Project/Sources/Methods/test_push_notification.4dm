@@ -16,7 +16,7 @@ $notification.imageUrl:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
   // RECIPIENTS
   //________________________________________
 
-C_COLLECTION:C1488($deviceTokens;$mails)
+C_COLLECTION:C1488($deviceTokens;$mails;$simulatorIds)
 C_OBJECT:C1216($recipientsOk;$recipientsWithNoMail;$recipientsWithNoDeviceToken;$recipientsEmpty)
 
 $deviceTokens:=New collection:C1472(\
@@ -28,6 +28,11 @@ $mails:=New collection:C1472(\
 "def@gmail.com";\
 "ghi@gmail.com";\
 "123@gmail.com")
+
+  // Not unit tested because it depends on XCode version installed on the running machine
+$simulatorIds:=New collection:C1472(\
+"8354843-F30C-4F63-A295-BE352517A287";\
+"9B5A7F83-F30C-4F63-A295-BE352517A287")
 
 $recipientsOk:=New object:C1471
 $recipientsOk.recipientMails:=$mails

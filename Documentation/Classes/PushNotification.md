@@ -81,7 +81,7 @@ $notification.image:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
 
 ---
 
-Recipients can be of various types : an email address, a device token, an email address collection, a device token collection, or an object containing both collection.
+Recipients can be of various types : email addresses, device tokens, simulator ids. It can be given as a single `String` parameter, but also as `Collection`, or as an `Object` containing 3 `Collection` of different types.
 
 - #### A single mail address
 
@@ -92,11 +92,20 @@ $response:=$pushNotification.send($notification;$mail)
 
 - ##### A single device token
 
-A device token can be found in a session file, it identifies a device for push notifications.
+A device token can be found in a session file, it identifies a device for push notifications. Its length is 64 characters.
 
 ```4d
-$deviceToken:="xxxxxxxxxxxx"
+$deviceToken:="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 $response:=$pushNotification.send($notification;$deviceToken)
+```
+
+- ##### A single simulator Id
+
+Testing your push notifications on a simulator can be very helpful. However, in order to use this feature, you will need to have a XCode version of 11.4 or newer.
+
+```4d
+$simulatorId:="ABCD-DEFG-HIJK-LMNO"
+$response:=$pushNotification.send($notification;$simulatorId)
 ```
 
 - ##### A mail address collection
@@ -115,12 +124,13 @@ $response:=$pushNotification.send($notification;$deviceTokens)
 
 - ##### An object
 
-This object should contain 2 collections : a mail address collection and a device token collection.
+This object should contain 3 collections : a mail address collection, a device token collection, and a simulatorId collection.
 
 ```4d
 $recipients:=New object
 $recipients.mails:=New collection("abc@4dmail.com";"def@4dmail.com";"ghi@4dmail.com")
 $recipients.deviceTokens:=New collection("xxxxxxxxxxxx";"yyyyyyyyyyyy";"zzzzzzzzzzzz")
+$recipients.simulatorIds:=New collection("ABCDEFGHI";"9GER74FS8S";"PY1J4IT984")
 $response:=$pushNotification.send($notification;$recipients)
 ```
 

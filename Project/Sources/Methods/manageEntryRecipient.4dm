@@ -8,6 +8,19 @@ C_VARIANT:C1683($1)  // Input recipient(s)
 
 Case of 
 	: (Value type:C1509($1)=Is object:K8:27)
+		
+		If (Value type:C1509($1.simulatorIds)=Is collection:K8:32)
+			
+			If (Not:C34(Value type:C1509($1.deviceTokens)=Is collection:K8:32))
+				
+				$1.deviceTokens:=New collection:C1472
+				
+			End if 
+			
+			$1.deviceTokens:=$1.deviceTokens.concat($1.simulatorIds)
+			
+		End if 
+		
 		$0:=$1
 		
 	: (Value type:C1509($1)=Is collection:K8:32)
@@ -15,6 +28,7 @@ Case of
 		$0:=New object:C1471
 		$0.recipientMails:=New collection:C1472
 		$0.deviceTokens:=New collection:C1472
+		$0.simulatorIds:=New collection:C1472
 		
 		C_VARIANT:C1683($item)
 		
@@ -32,10 +46,9 @@ Case of
 					
 				End if 
 				
-				  // Else : $1 is not a collection of mails nor a collection of deviceTokens
+				  // Else : $1 is not a collection of mails, nor a collection of deviceTokens, nor a collection of simulatorIds
 				
 			End if 
-			
 			
 		End for each 
 		

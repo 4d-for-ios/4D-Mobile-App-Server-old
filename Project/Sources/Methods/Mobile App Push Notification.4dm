@@ -87,7 +87,24 @@ If (Not:C34($isMissingRecipients))
 		$notificationInput.deviceToken:=$mailAndDeviceToken.deviceToken
 		$notificationInput.isDevelopment:=True:C214
 		
-		$status:=apple_sendNotification ($notificationInput)
+		If (Length:C16($mailAndDeviceToken.deviceToken)=64)
+			
+			$status:=apple_sendNotification ($notificationInput)
+			
+		Else 
+			
+			If (checkXCodeVersionForPushNotif )
+				
+				$status:=sim_sendNotification ($notificationInput)
+				
+			Else 
+				
+				$Obj_result.warnings.push("XCode version must be at least 11.4 to send push notifications to simulators")
+				
+			End if 
+			
+		End if 
+		
 		
 		If ($status.success)  // Notification sent successfully
 			
