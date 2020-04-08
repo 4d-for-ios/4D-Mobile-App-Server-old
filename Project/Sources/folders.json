@@ -18,29 +18,31 @@
 	"auth": {
 		"methods": [
 			"Compiler_auth",
+			"Mobile App Active Session",
 			"Mobile App Authentication",
-			"Mobile App Session Object",
-            "Mobile App Confirm Email",
-            "Mobile App Active Session"
+			"Mobile App Confirm Email",
+			"Mobile App Session Object"
 		],
 		"classes": [
 			"Authentication"
-		]
-	},
-    "mail": {
-    	"methods": [
-			"Activate Sessions",
-			"Compiler_mail",
-			"Deactivate Session",
-			"Get Setting",
-			"getErrorInfo",
-			"Send Mail"
 		]
 	},
 	"ds": {
 		"methods": [
 			"Compiler_ds",
 			"QueryByPrimaryKey"
+		]
+	},
+	"mail": {
+		"methods": [
+			"Activate sessions",
+			"Compiler_mail",
+			"Confirm mail",
+			"GET ERROR INFO",
+			"Get settings",
+			"On web connection",
+			"SEND EMAIL",
+			"SESSION INIT"
 		]
 	},
 	"test": {
