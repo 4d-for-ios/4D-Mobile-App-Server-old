@@ -1,7 +1,7 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
 C_TEXT:C284($htmlContent;$Txt_methodOnErrorCall;$value)
 C_OBJECT:C1216($0;$1;$2;$request;$status;$template;$o;$transporter;$result;$response;$session)
-
+C_LONGINT:C283($minutes)
 stringError:=""
 $request:=$1
 $response:=$2

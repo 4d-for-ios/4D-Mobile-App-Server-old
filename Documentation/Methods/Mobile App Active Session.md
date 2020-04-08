@@ -8,14 +8,15 @@ the base that allows using the 4d mobile app server component to confirm the sen
 
 # Activate sessions ##
 
-Call the ` Mobile App Active Session ` method in the  ` On Web Connection ` database  method with the Session ID parameter retrieved from the URL.
+Call the ` On web connection ` method in the  ` On Web Connection ` database  method with the Session ID parameter retrieved from the URL.
 
 ```swift
 C_TEXT($1)
+
 Case of 
-    : ($1="/4D4IOS@")
-        Mobile App Active Session ($1)
-End case
+	: (On web connection($1))
+    //add log if you want
+End case 
 ```
 
 
@@ -26,23 +27,41 @@ The settings.json file must contain the following parameters:
 ```javascript
 {
     "smtp" : {
-        "login":"sender4dsmtp@gmail.com",
-        "pwd":"*****",
-        "from":"sender4dsmtp@gmail.com",
-        "host":"smtp.gmail.com",
-        "port":465
+	"login":"sender4dsmtp@gmail.com",
+    	"pwd":"******",
+    	"from":"sender4dsmtp@gmail.com",
+    	"host":"smtp.gmail.com",
+    	"port":465
     },
     "template":{    
-        "emailToSend": "ConfirmMailTemplate.html",
-        "emailConfirmActivation":"ActiveSessionTemplate.html"
+		"emailToSend": "ConfirmMailTemplate.html",
+    	"emailConfirmActivation":"ActiveSessionTemplate.html"
     },
-    "emailSubject":"Application Name: Sign in confirmation",
-    "activation": {
-        "url":"http://192.168.1.2/4D4IOS"
-    },
-    "timeout":"00:05:00"
+	"emailSubject":"Application Name: Sign in confirmation",
+	"activation": {
+		"protocol":"http",
+		"url":"192.168.1.5",
+		"prefix":"4D4IOS",
+		"otherParameters":""
+	},
+	"timeout":300000,
+	"message":{
+		"successConfirmationMailMessage":"Verify your email address",
+		"waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
+		"successActiveSessionsMessage":"You are successfully authenticated",
+		"expireActiveSessionsMessage":"This email confirmation link has expired!"
+	}
 }
 ```
+*activation.protocol*: **http or https**
+*activation.url*: **127.0.0.1** // server address
+*activation.prefix*: **4D4IOS** // used to catch the value of the token connection
+*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings
+
+*message.successConfirmationMailMessage*: message displayed in the mobile application if the email is sent successfully
+*message.waitSendMailConfirmationMessage*: message displayed in the mobile application if the user tries to login without activating his account from his email address and without respecting the expiration value of a connection
+*message.successActiveSessionsMessage*: message displayed in the activation web page if the session is activated
+*message.expireActiveSessionsMessage*: message displayed in the activation web page if the session has expired
 
 The HTML template will be sent to the user as a body after activating the session from the confirmation email.
 
@@ -57,3 +76,4 @@ The HTML template will be sent to the user as a body after activating the sessio
     </body>
 </html>
 ```
+*___MESSAGE___* : will be changed by the status of your request
