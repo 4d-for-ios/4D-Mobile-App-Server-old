@@ -34,6 +34,10 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  // otherParameters: More parameters
 	$value:=parameters.activation.protocol+"://"+parameters.activation.url+"/"+parameters.activation.prefix+"="+$request.session.id+"&"+parameters.activation.otherParameters
 	$htmlContent:=Replace string:C233($htmlContent;"___PATH___";$value)
+	  //convert milliseconde to Minute 
+	$minutes:=(parameters.timeout/60000)
+	  //display the timeout value in the email
+	$htmlContent:=Replace string:C233($htmlContent;"___MINUTES___";String:C10($minutes))
 	$o.mail.htmlBody:=$htmlContent
 	$transporter:=SMTP New transporter:C1608($o.smtp)
 	$Txt_methodOnErrorCall:=Method called on error:C704
