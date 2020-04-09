@@ -18,19 +18,19 @@ Class constructor
 		
 	Else 
 		
-		C_OBJECT:C1216($Obj_authScript_result)
-		  // Get JSON Web Token from authentication script
-		$Obj_authScript_result:=authScript ($1)
+		C_OBJECT:C1216($Obj_auth_result)
+		  // Get JSON Web Token
+		$Obj_auth_result:=auth ($1)
 		
-		If (Not:C34($Obj_authScript_result.success)\
-			 | Not:C34(Length:C16(String:C10($Obj_authScript_result.jwt))>0))  // Script failed (probably because of AuthKey file not found)
+		If (Not:C34($Obj_auth_result.success)\
+			 | Not:C34(Length:C16(String:C10($Obj_auth_result.jwt))>0))
 			
-			ASSERT:C1129(False:C215;"Failed to generate JSON Web Token from authentication script")
+			ASSERT:C1129(False:C215;"Failed to generate JSON Web Token")
 			
 		Else 
 			
 			This:C1470.auth:=$1
-			This:C1470.auth.jwt:=$Obj_authScript_result.jwt
+			This:C1470.auth.jwt:=$Obj_auth_result.jwt
 			This:C1470.lastResult:=New object:C1471
 			
 		End if 

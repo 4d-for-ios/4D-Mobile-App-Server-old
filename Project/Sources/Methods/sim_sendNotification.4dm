@@ -4,7 +4,7 @@
 
 C_OBJECT:C1216($0)  // output success object
 C_OBJECT:C1216($1)  // input object
-C_OBJECT:C1216($Obj_result;$payloadFile)
+C_OBJECT:C1216($Obj_result;$payloadFile;$tmpFolder)
 C_TEXT:C284($cmdSimPush;$cmdSimPush_in;$cmdSimPush_out;$cmdSimPush_err)
 
 LOG EVENT:C667(Into 4D debug message:K38:5;$cmdSimPush)
@@ -17,7 +17,11 @@ If ((Length:C16(String:C10($1.bundleId))>0)\
 	
 	  // write payload file
 	
-	$payloadFile:=File:C1566(File:C1566("/RESOURCES/tmp_payload_"+$1.deviceToken+".json").platformPath;fk platform path:K87:2)  // unsandboxing authentication script file
+	$tmpFolder:=Folder:C1567(Temporary folder:C486;fk platform path:K87:2)
+	
+	  //$payloadFile:=File(File("/RESOURCES/tmp_payload_"+$1.deviceToken+".json").platformPath;fk platform path)  // unsandboxing payload json file
+	
+	$payloadFile:=$tmpFolder.file("tmp_payload_"+$1.deviceToken+".json")
 	$payloadFile.create()
 	
 	If ($payloadFile.exists)
@@ -33,15 +37,13 @@ If ((Length:C16(String:C10($1.bundleId))>0)\
 		If (Length:C16($cmdSimPush_err)>0)
 			
 			LOG EVENT:C667(Into 4D debug message:K38:5;$cmdSimPush_err)
+			$Obj_result.error:=$cmdSimPush_err
 			
 		End if 
 		
 		If (Length:C16($cmdSimPush_out)>0)
 			
-			LOG EVENT:C667(Into 4D debug message:K38:5;$cmdSimPush_out)
-			
-		Else   // Notification sent successfully
-			
+			  // Notification sent successfully
 			$Obj_result.success:=True:C214
 			
 		End if 

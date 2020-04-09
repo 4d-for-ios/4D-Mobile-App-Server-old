@@ -55,9 +55,9 @@ C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncom
 
 $bundleId:="com.sample.xxx"
 
-$authKeyOk:=File:C1566("/RESOURCES/scripts/AuthKey_4W2QJ2R2WS.p8")
+$authKeyOk:=File:C1566("/RESOURCES/auth/AuthKey_4W2QJ2R2WS.p8")
 ASSERT:C1129($authKeyOk.exists;"AuthKey file is required to run tests")
-$authKeyDoesNotExist:=File:C1566("/RESOURCES/scripts/AuthKey_XXXXX.p8")
+$authKeyDoesNotExist:=File:C1566("/RESOURCES/auth/AuthKey_XXXXX.p8")
 
 $authKeyId:="4W2QJ2R2WS"
 $teamId:="UTT7VDX8W5"

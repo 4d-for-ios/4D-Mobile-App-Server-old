@@ -97,9 +97,19 @@ If (Not:C34($isMissingRecipients))
 				
 				$status:=sim_sendNotification ($notificationInput)
 				
+				If (Not:C34($status.success))
+					
+					If (Length:C16($status.error)>0)
+						
+						$Obj_result.errors.push($status.error)
+						
+					End if 
+					
+				End if 
+				
 			Else 
 				
-				$Obj_result.warnings.push("XCode version must be at least 11.4 to send push notifications to simulators")
+				$Obj_result.warnings.push("In order to send push notifications to simulators, you need macOS and XCode version must be at least 11.4")
 				
 			End if 
 			

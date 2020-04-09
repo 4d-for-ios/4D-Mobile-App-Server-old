@@ -52,7 +52,7 @@
 	"push": {
 		"methods": [
 			"apple_sendNotification",
-			"authScript",
+			"auth",
 			"buildNotification",
 			"buildRecipients",
 			"checkXCodeVersionForPushNotif",

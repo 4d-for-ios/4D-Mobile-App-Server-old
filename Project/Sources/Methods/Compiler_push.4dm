@@ -7,8 +7,8 @@ C_OBJECT:C1216(Mobile App Push Notification ;$3)
 C_OBJECT:C1216(apple_sendNotification ;$0)
 C_OBJECT:C1216(apple_sendNotification ;$1)
 
-C_OBJECT:C1216(authScript ;$0)
-C_OBJECT:C1216(authScript ;$1)
+C_OBJECT:C1216(auth ;$0)
+C_OBJECT:C1216(auth ;$1)
 
 C_OBJECT:C1216(buildNotification ;$0)
 C_OBJECT:C1216(buildNotification ;$1)

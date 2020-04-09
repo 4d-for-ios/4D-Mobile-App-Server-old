@@ -12,7 +12,7 @@ $Obj_result:=New object:C1471("success";False:C215)
   // Parameters already verified in calling method
 
 
-  // AUTHENTICATION FROM SCRIPT
+  // GENERATE JSON WEB TOKEN
   //________________________________________
 
 $authScript:=File:C1566(File:C1566("/RESOURCES/scripts/authScriptArgs.sh").platformPath;fk platform path:K87:2)  // unsandboxing authentication script file

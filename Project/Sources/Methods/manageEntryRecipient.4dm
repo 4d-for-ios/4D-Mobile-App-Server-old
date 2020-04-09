@@ -11,6 +11,8 @@ Case of
 		
 		If (Value type:C1509($1.simulatorIds)=Is collection:K8:32)
 			
+			  // If user has provided a simulatorIds collection, we put it in deviceTokens collection
+			
 			If (Not:C34(Value type:C1509($1.deviceTokens)=Is collection:K8:32))
 				
 				$1.deviceTokens:=New collection:C1472
