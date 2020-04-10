@@ -1,11 +1,7 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
 C_OBJECT:C1216($0)  // output success object
 C_OBJECT:C1216($1)  // input auth object
-C_OBJECT:C1216($Obj_result;$authScript;$authKey)
-C_TEXT:C284($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
-C_TEXT:C284($authScriptPathFinalWithArgs)
-
-LOG EVENT:C667(Into 4D debug message:K38:5;$cmdAuth)
+C_OBJECT:C1216($Obj_result;$jwt)
 
 $Obj_result:=New object:C1471("success";False:C215)
 
@@ -15,34 +11,28 @@ $Obj_result:=New object:C1471("success";False:C215)
   // GENERATE JSON WEB TOKEN
   //________________________________________
 
-$authScript:=File:C1566(File:C1566("/RESOURCES/scripts/authScriptArgs.sh").platformPath;fk platform path:K87:2)  // unsandboxing authentication script file
+C_OBJECT:C1216($settings;$key;$header;$payload;$status)
+C_TEXT:C284($signature;$message)
 
-$authKey:=File:C1566($1.authKey.platformPath;fk platform path:K87:2)  // unsandboxing authentication key file
+$settings:=New object:C1471
+$settings.type:="PEM"
+$settings.pem:=$1.authKey.getText()
 
-If ($authScript.exists)
-	
-	$authScriptPathFinalWithArgs:=Char:C90(Quote:K15:44)+$authScript.path+Char:C90(Quote:K15:44)+" "+\
-		Char:C90(Quote:K15:44)+$authKey.path+Char:C90(Quote:K15:44)+" "+\
-		$1.authKeyId+" "+\
-		$1.teamId
-	
-	$cmdAuth:="/bin/sh "+$authScriptPathFinalWithArgs
-	
-	LAUNCH EXTERNAL PROCESS:C811($cmdAuth;$cmdAuth_in;$cmdAuth_out;$cmdAuth_err)
-	
-	If (Length:C16($cmdAuth_err)=0)  // If script execution failed, $cmdAuth_err contains the error
-		
-		$Obj_result.jwt:=$cmdAuth_out  // Contains the JSON Web Token required for authorization header
-		$Obj_result.success:=True:C214
-		
-	Else 
-		
-		LOG EVENT:C667(Into 4D debug message:K38:5;$cmdAuth_err)
-		
-	End if 
-	
-	  // Else : Missing authScript file
-	
-End if 
+$key:=MobileAppServer .jwt.new($settings)
+
+$header:=New object:C1471("alg";"ES256";"kid";$1.authKeyId)
+  //$payload:=New object("iss";$1.teamId;"iat";Current date)
+C_LONGINT:C283($iat)
+$iat:=((Current date:C33-Add to date:C393(!00-00-00!;1970;1;1))*86400)+(Current time:C178+0)-10000
+  //$payload:=New object("iss";$1.teamId;"iat";1586527100)
+$payload:=New object:C1471("iss";$1.teamId;"iat";$iat)
+$signature:=$key.sign($header;$payload;New object:C1471("hash";"HASH256";"algorithm";"ES256"))
+
+$status:=$key.verify($signature;New object:C1471("hash";"HASH256"))
+ASSERT:C1129($status.success)
+
+$Obj_result.success:=$status.success
+$Obj_result.jwt:=$signature
+
 
 $0:=$Obj_result

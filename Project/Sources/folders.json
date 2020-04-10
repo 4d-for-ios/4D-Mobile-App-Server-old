@@ -65,6 +65,7 @@
 			"sim_sendNotification"
 		],
 		"classes": [
+			"jwt",
 			"PushNotification"
 		]
 	},

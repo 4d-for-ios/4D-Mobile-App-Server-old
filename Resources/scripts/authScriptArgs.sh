@@ -7,15 +7,19 @@ usage="Usage: $0 authKey authKeyId teamId\n\n
 		\t- authKeyId : XXX on authKey file named AuthKey_XXX.p8\n
 		\t- teamId : teamId of the account\n"
 
-if [ $# -ne 3 ]; then
-	echo $usage > /dev/stderr
-	exit 1
-fi
+# if [ $# -ne 3 ]; then
+# 	echo $usage > /dev/stderr
+# 	exit 1
+# fi
 
-authKey=$1
-authKeyId=$2
-teamId=$3
+# authKey=$1
+# authKeyId=$2
+# teamId=$3
 
+
+authKey="../auth/AuthKey_4W2QJ2R2WS.p8"
+authKeyId="4W2QJ2R2WS"
+teamId="UTT7VDX8W5"
 
 base64() {
    openssl base64 -e -A | tr -- '+/' '-_' | tr -d =
