@@ -27,8 +27,8 @@ The settings.json file must contain the following parameters:
 ```json
 {
     "smtp" : {
-        "login":"sender4dsmtp@gmail.com",
-    	"pwd":"******",
+        "user":"sender4dsmtp@gmail.com",
+    	"password":"******",
     	"from":"sender4dsmtp@gmail.com",
     	"host":"smtp.gmail.com",
     	"port":465
