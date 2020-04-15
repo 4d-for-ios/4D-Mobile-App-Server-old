@@ -15,8 +15,8 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$o.smtp.host:=parameters.smtp.host
 	$o.smtp.acceptUnsecureConnection:=False:C215
 	$o.smtp.port:=Choose:C955($o.smtp.acceptUnsecureConnection;465;587)
-	$o.smtp.user:=parameters.smtp.login
-	$o.smtp.password:=parameters.smtp.pwd
+	$o.smtp.user:=parameters.smtp.user
+	$o.smtp.password:=parameters.smtp.password
 	$o.smtp.keepAlive:=True:C214
 	$o.smtp.connectionTimeOut:=30
 	$o.smtp.sendTimeOut:=100
@@ -34,7 +34,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  // session.id: ID de la session
 	  // otherParameters: More parameters
 	$value:=parameters.activation.scheme+"://"+parameters.activation.hostname+":"+parameters.activation.port+"/"+parameters.activation.path+"?token="+$request.session.id+"&"+parameters.activation.otherParameters
-	$htmlContent:=Replace string:C233($htmlContent;"___PATH___";$value)
+	$htmlContent:=Replace string:C233($htmlContent;"___URL___";$value)
 	  //convert milliseconde to Minute 
 	$minutes:=(parameters.timeout/60000)
 	  //display the timeout value in the email

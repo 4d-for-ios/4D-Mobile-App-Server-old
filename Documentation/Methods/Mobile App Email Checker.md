@@ -1,6 +1,6 @@
 # Authentication with email confirmation
 
-the base that allows using the 4d mobile app server component to confirm the sending of emails before opening the session to the user.
+the base that allows using the 4D mobile app server component to confirm the sending of emails before opening the session to the user.
 
 ##  Contents ##
 - [Disable sessions](#DisableSessions)
@@ -8,7 +8,7 @@ the base that allows using the 4d mobile app server component to confirm the sen
 
 ## Disable sessions ##
 
-Call ` Mobile App Email Checker `  method in the ` On Mobile App Authentification ` database  method with the information provided by the mobile application.
+Call `Mobile App Email Checker`  method in the `On Mobile App Authentification` database  method with the information provided by the mobile application.
 
 ```swift
 C_OBJECT($0)
@@ -20,7 +20,7 @@ $0:= Mobile App Email Checker ($1)
 
 The settings.json file must contain the following parameters:
 
-```javascript
+```json
 {
     "smtp" : {
         "login":"sender4dsmtp@gmail.com",

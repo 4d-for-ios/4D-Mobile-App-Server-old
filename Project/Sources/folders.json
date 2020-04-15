@@ -1,4 +1,4 @@
-﻿{
+{
 	"action": {
 		"methods": [
 			"Compiler_action",
@@ -18,7 +18,8 @@
 	"auth": {
 		"methods": [
 			"Compiler_auth",
-			"Mobile App Session Object"
+            "Mobile App Authentication",
+            "Mobile App Session Object"
 		],
 		"classes": [
 			"Authentication"

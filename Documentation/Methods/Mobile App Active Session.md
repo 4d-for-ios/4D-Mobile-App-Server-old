@@ -1,6 +1,6 @@
 # Authentication with email confirmation
 
-the base that allows using the 4d mobile app server component to confirm the sending of emails before opening the session to the user.
+the base that allows using the 4D mobile app server component to confirm the sending of emails before opening the session to the user.
 
 ##  Contents ##
 - [Activate sessions](#ActivateSessions)
@@ -8,7 +8,7 @@ the base that allows using the 4d mobile app server component to confirm the sen
 
 ## Activate sessions ##
 
-Call the ` Mobile App Active Session ` method in the  ` On Web Connection ` database  method with the Session ID parameter retrieved from the URL.
+Call the `Mobile App Active Session` method in the  `On Web Connection` database  method with the Session ID parameter retrieved from the URL.
 
 ```swift
 C_TEXT($1)
@@ -24,7 +24,7 @@ End case
 
 The settings.json file must contain the following parameters:
 
-```javascript
+```json
 {
     "smtp" : {
         "login":"sender4dsmtp@gmail.com",
