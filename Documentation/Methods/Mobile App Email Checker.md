@@ -5,24 +5,25 @@ the base that allows using the 4d mobile app server component to confirm the sen
 ##  Contents ##
 - [Disable sessions](#DisableSessions)
 - [Resources](#Resources)
-# Disable sessions ##
 
-Call ` Mobile App Confirm Email `  method in the ` On Mobile App Authentification ` database  method with two parameters, 1st the information provided by the mobile application and 2nd the information returned to the mobile application
+## Disable sessions ##
+
+Call ` Mobile App Email Checker `  method in the ` On Mobile App Authentification ` database  method with the information provided by the mobile application.
 
 ```swift
 C_OBJECT($0)
 C_OBJECT($1)
-$0:=Mobile App Confirm Email ($1)
+$0:= Mobile App Email Checker ($1)
 ```
 
-# Resources ##
+## Resources ##
 
 The settings.json file must contain the following parameters:
 
 ```javascript
 {
     "smtp" : {
-	"login":"sender4dsmtp@gmail.com",
+        "login":"sender4dsmtp@gmail.com",
     	"pwd":"4d011ismail",
     	"from":"sender4dsmtp@gmail.com",
     	"host":"smtp.gmail.com",
@@ -34,10 +35,11 @@ The settings.json file must contain the following parameters:
     },
 	"emailSubject":"Application Name: Sign in confirmation",
 	"activation": {
-		"protocol":"http",
-		"url":"192.168.1.2",
-		"prefix":"4D4IOS",
-		"otherParameters":""
+        "scheme":"http",
+        "hostname":"192.168.1.5",
+        "port": "80",
+        "path":"4D4IOS",
+        "otherParameters":""
 	},
 	"timeout":300000,
 	"message":{
@@ -49,10 +51,11 @@ The settings.json file must contain the following parameters:
 }
 
 ```
-*activation.protocol*: **http or https** \
-*activation.url*: **127.0.0.1** // server address \
-*activation.prefix*: **4D4IOS** // used to catch the value of the token connection \
-*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings
+*activation.scheme*: **http or https** \
+*activation.hostname*: **192.168.1.5** // server address \
+*activation.port*: **80** // server port \
+*activation.path*: **4D4IOS** // used to catch the value of the token connection \
+*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings 
 
 *message.successConfirmationMailMessage*: message displayed in the mobile application if the email is sent successfully \
 *message.waitSendMailConfirmationMessage*: message displayed in the mobile application if the user tries to login without activating his account from his email address and without respecting the expiration value of a connection \

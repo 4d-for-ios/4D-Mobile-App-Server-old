@@ -18,9 +18,6 @@
 	"auth": {
 		"methods": [
 			"Compiler_auth",
-			"Mobile App Active Session",
-			"Mobile App Authentication",
-			"Mobile App Confirm Email",
 			"Mobile App Session Object"
 		],
 		"classes": [
@@ -40,7 +37,8 @@
 			"Confirm mail",
 			"GET ERROR INFO",
 			"Get settings",
-			"On web connection",
+			"Mobile App Active Session",
+			"Mobile App Email Checker",
 			"SEND EMAIL",
 			"SESSION INIT"
 		]

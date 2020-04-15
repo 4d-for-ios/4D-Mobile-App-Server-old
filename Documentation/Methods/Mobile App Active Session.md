@@ -6,28 +6,28 @@ the base that allows using the 4d mobile app server component to confirm the sen
 - [Activate sessions](#ActivateSessions)
 - [Resources](#Resources)
 
-# Activate sessions ##
+## Activate sessions ##
 
-Call the ` On web connection ` method in the  ` On Web Connection ` database  method with the Session ID parameter retrieved from the URL.
+Call the ` Mobile App Active Session ` method in the  ` On Web Connection ` database  method with the Session ID parameter retrieved from the URL.
 
 ```swift
 C_TEXT($1)
 
 Case of 
-	: (On web connection($1))
+: (Mobile App Active Session($1).success)
     //add log if you want
 End case 
 ```
 
 
-# Resources ##
+## Resources ##
 
 The settings.json file must contain the following parameters:
 
 ```javascript
 {
     "smtp" : {
-	"login":"sender4dsmtp@gmail.com",
+        "login":"sender4dsmtp@gmail.com",
     	"pwd":"******",
     	"from":"sender4dsmtp@gmail.com",
     	"host":"smtp.gmail.com",
@@ -39,9 +39,10 @@ The settings.json file must contain the following parameters:
     },
 	"emailSubject":"Application Name: Sign in confirmation",
 	"activation": {
-		"protocol":"http",
-		"url":"192.168.1.5",
-		"prefix":"4D4IOS",
+		"scheme":"http",
+		"hostname":"192.168.1.5",
+        "port": "80",
+		"path":"4D4IOS",
 		"otherParameters":""
 	},
 	"timeout":300000,
@@ -53,9 +54,10 @@ The settings.json file must contain the following parameters:
 	}
 }
 ```
-*activation.protocol*: **http or https** \
-*activation.url*: **127.0.0.1** // server address \
-*activation.prefix*: **4D4IOS** // used to catch the value of the token connection \
+*activation.scheme*: **http or https** \
+*activation.hostname*: **192.168.1.5** // server address \
+*activation.port*: **80** // server port \
+*activation.path*: **4D4IOS** // used to catch the value of the token connection \
 *activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings 
 
 *message.successConfirmationMailMessage*: message displayed in the mobile application if the email is sent successfully \

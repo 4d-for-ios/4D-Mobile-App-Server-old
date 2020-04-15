@@ -32,7 +32,7 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  // prefix: 4D4IOS
 	  // session.id: ID de la session
 	  // otherParameters: More parameters
-	$value:=parameters.activation.protocol+"://"+parameters.activation.url+"/"+parameters.activation.prefix+"="+$request.session.id+"&"+parameters.activation.otherParameters
+	$value:=parameters.activation.scheme+"://"+parameters.activation.hostname+":"+parameters.activation.port+"/"+parameters.activation.path+"?token="+$request.session.id+"&"+parameters.activation.otherParameters
 	$htmlContent:=Replace string:C233($htmlContent;"___PATH___";$value)
 	  //convert milliseconde to Minute 
 	$minutes:=(parameters.timeout/60000)
@@ -47,15 +47,14 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  //check if the email is sent
 	If ($status.success)
 		  //get user session
-		$session:=Storage:C1525.sessions.query("id = :1";$request.session.id).pop()
+		$session:=Storage:C1525.sessions[$request.session.id]
 		Use (Storage:C1525.sessions)
 			If ($session#Null:C1517)
 				  //update the timestamp if we send a new email after the expiration of the 1st connection
 				$session.time:=Milliseconds:C459
 			Else 
 				  //add new session
-				Storage:C1525.sessions.push(New shared object:C1526(\
-					"id";$request.session.id;\
+				OB SET:C1220(Storage:C1525.sessions;$request.session.id;New shared object:C1526(\
 					"team";$request.team.id;\
 					"application";$request.application.id;\
 					"time";Milliseconds:C459))

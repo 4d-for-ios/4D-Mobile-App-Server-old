@@ -10,7 +10,7 @@ $response.verify:=True:C214
 SESSION INIT 
 
   //get user session
-$session:=Storage:C1525.sessions.query("id = :1";$request.session.id).pop()
+$session:=Storage:C1525.sessions[$request.session.id]
   //check if the session exists
 If ($session#Null:C1517)
 	  //compare the current timestamp with that when creating the session
