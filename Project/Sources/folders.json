@@ -34,7 +34,6 @@
 		"methods": [
 			"Activate sessions",
 			"Compiler_mail",
-			"Confirm mail",
 			"GET ERROR INFO",
 			"Get settings",
 			"Mobile App Active Session",

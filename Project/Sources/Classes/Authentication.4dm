@@ -29,4 +29,4 @@ Function getSessionObject
 	
 Function confirmEmail
 	C_OBJECT:C1216($0)
-	$0:=Mobile App Confirm Email (This:C1470.request)
+	$0:=Mobile App Email Checker (This:C1470.request)

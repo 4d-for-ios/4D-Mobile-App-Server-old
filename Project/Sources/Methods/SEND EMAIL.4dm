@@ -27,9 +27,10 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	$o.mail.subject:=parameters.emailSubject  //get "emailSubject" value from settings file
 	$htmlContent:=$template.getText()
 	  //create server address for session activation
-	  //protocol: http or https
-	  // url: 172.0.0.1
-	  // prefix: 4D4IOS
+	  //scheme: http or https
+	  // hostname: 172.0.0.1
+	  // port: 80
+	  // path: 4D4IOS
 	  // session.id: ID de la session
 	  // otherParameters: More parameters
 	$value:=parameters.activation.scheme+"://"+parameters.activation.hostname+":"+parameters.activation.port+"/"+parameters.activation.path+"?token="+$request.session.id+"&"+parameters.activation.otherParameters
