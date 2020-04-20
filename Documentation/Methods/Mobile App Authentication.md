@@ -1,15 +1,15 @@
-<!-- $auth:=MobileAppServer.Authentication.new($1) // $1 Informations provided by `On Mobile App Authentication` -->
-# Authentication
+<!-- $auth:=Mobile App Authentication($1) // $1 Informations provided by  `On Mobile App Authentication` -->
+# Mobile App Authentication
 
-Utility class to get and manipulate session. To use with `On Mobile App Authentication` database method.
+Utility class to get manipulate session when inside `On Mobile App Authentication` database method.
 
 ## Usage
 
 in `On Mobile App Authentication` wrap the first input parameters
 
 ```4d
-$auth:=MobileAppServer.Authentication.new($1) // $1 Informations provided by mobile application
-````
+$auth:=Mobile App Authentication($1) // $1 Informations provided by mobile application
+```
 
 Then you can have some information about mobile applications and session.
 
