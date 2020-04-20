@@ -16,7 +16,7 @@ $notification.imageUrl:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
   // RECIPIENTS
   //________________________________________
 
-C_COLLECTION:C1488($deviceTokens;$mails;$simulatorIds)
+C_COLLECTION:C1488($deviceTokens;$mails;$simulators)
 C_OBJECT:C1216($recipientsOk;$recipientsWithNoMail;$recipientsWithNoDeviceToken;$recipientsEmpty)
 
 $deviceTokens:=New collection:C1472(\
@@ -30,19 +30,19 @@ $mails:=New collection:C1472(\
 "123@gmail.com")
 
   // Not unit tested because it depends on XCode version installed on the running machine
-$simulatorIds:=New collection:C1472(\
+$simulators:=New collection:C1472(\
 "8354843-F30C-4F63-A295-BE352517A287";\
 "9B5A7F83-F30C-4F63-A295-BE352517A287")
 
 $recipientsOk:=New object:C1471
-$recipientsOk.recipientMails:=$mails
+$recipientsOk.mails:=$mails
 $recipientsOk.deviceTokens:=$deviceTokens
 
 $recipientsWithNoMail:=New object:C1471
 $recipientsWithNoMail.deviceTokens:=$deviceTokens
 
 $recipientsWithNoDeviceToken:=New object:C1471
-$recipientsWithNoDeviceToken.recipientMails:=$mails
+$recipientsWithNoDeviceToken.mails:=$mails
 
 $recipientsEmpty:=New object:C1471
 
@@ -55,9 +55,9 @@ C_OBJECT:C1216($authOk;$authWithWrongBundleId;$authWithWrongAuthKey;$authOkIncom
 
 $bundleId:="com.sample.xxx"
 
-$authKeyOk:=File:C1566("/RESOURCES/auth/AuthKey_4W2QJ2R2WS.p8")
+$authKeyOk:=File:C1566("/RESOURCES/AuthKey_4W2QJ2R2WS.p8")
 ASSERT:C1129($authKeyOk.exists;"AuthKey file is required to run tests")
-$authKeyDoesNotExist:=File:C1566("/RESOURCES/auth/AuthKey_XXXXX.p8")
+$authKeyDoesNotExist:=File:C1566("/RESOURCES/AuthKey_XXXXX.p8")
 
 $authKeyId:="4W2QJ2R2WS"
 $teamId:="UTT7VDX8W5"

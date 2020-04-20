@@ -6,8 +6,24 @@ Class constructor
 		  //$0:=Null
 	End if 
 	
-	If (Not:C34($1.authKey.exists))
+	  // If authKey file is given as path
+	If (Value type:C1509($1.authKey)=Is text:K8:3)
+		$1.authKey:=File:C1566($1.authKey)
+	End if 
+	
+	  // If authKey is not a file
+	If (Not:C34(Bool:C1537($1.authKey.isFile)))
+		ASSERT:C1129(False:C215;"Unknown authentication key type : "+String:C10(Value type:C1509($1.authKey)))
+	End if 
+	
+	  // If authKey file does not exist
+	If (Not:C34(Bool:C1537($1.authKey.exists)))
 		ASSERT:C1129(False:C215;"Could not find authentication key file")
+	End if 
+	
+	  // Check if authKey file is an alias, and get original
+	If ($1.authKey.isAlias)
+		$1.authKey:=$1.authKey.original
 	End if 
 	
 	If ((Length:C16(String:C10($1.bundleId))=0)\
@@ -20,7 +36,7 @@ Class constructor
 		
 		C_OBJECT:C1216($Obj_auth_result)
 		  // Get JSON Web Token
-		$Obj_auth_result:=auth ($1)
+		$Obj_auth_result:=authJWT ($1)
 		
 		If (Not:C34($Obj_auth_result.success)\
 			 | Not:C34(Length:C16(String:C10($Obj_auth_result.jwt))>0))

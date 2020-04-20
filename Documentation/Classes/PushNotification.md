@@ -13,20 +13,20 @@ To use the `send()`  and `sendAll()` functions from `PushNotification` class, yo
 ---
 
 In order to use the component to send push notification, it is required to have an authentication file `AuthKey_XXXX.p8` from Apple.
-This file has to be placed in component's `Resources/script` folder.
+This file should be placed in user database for convenience.
 It is important to note what are `$authKey`, `$authKeyId` and `$teamId` refering to.
 
 <a href="../Generate_p8.md">Check how to generate .p8 key file</a>
 
 ```4d
-$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8")  // AuthKey file
+$authKey:=File("/path_to_p8_file/AuthKey_XXXYYY.p8")  // AuthKey file
 $authKeyId=AuthKey_XXXYYY  // is the second part of the AuthKey filename
 $teamId=TEAM123456  // is the team related to the AuthKey file
 ```
 
 ```4d
 $bundleId:="com.sample.myappname"
-$authKey:=File("/RESOURCES/scripts/AuthKey_XXXYYY.p8")
+$authKey:=File("/path_to_p8_file/AuthKey_XXXYYY.p8")
 $authKeyId:="AuthKey_XXXYYY"
 $teamId:="TEAM123456"
 
@@ -99,13 +99,14 @@ $deviceToken:="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 $response:=$pushNotification.send($notification;$deviceToken)
 ```
 
-- ##### A single simulator Id
+- ##### A single simulator UDID
 
-Testing your push notifications on a simulator can be very helpful. However, in order to use this feature, you will need to have a XCode version of 11.4 or newer.
+Testing your push notifications on a simulator can be very helpful. **However, in order to use this feature, you will need to have a XCode version of 11.4 or newer.**
+You can simply give the value `booted` to target the launched simulator, or you can run the follow command to list booted devices and get their UDID : `xcrun simctl list devices | grep Booted`
 
 ```4d
-$simulatorId:="ABCD-DEFG-HIJK-LMNO"
-$response:=$pushNotification.send($notification;$simulatorId)
+$simulator:="ABCD-DEFG-HIJK-LMNO"
+$response:=$pushNotification.send($notification;$simulator)
 ```
 
 - ##### A mail address collection
@@ -124,13 +125,13 @@ $response:=$pushNotification.send($notification;$deviceTokens)
 
 - ##### An object
 
-This object should contain 3 collections : a mail address collection, a device token collection, and a simulatorId collection.
+This object should contain 3 collections : a mail address collection, a device token collection, and a simulator collection.
 
 ```4d
 $recipients:=New object
 $recipients.mails:=New collection("abc@4dmail.com";"def@4dmail.com";"ghi@4dmail.com")
 $recipients.deviceTokens:=New collection("xxxxxxxxxxxx";"yyyyyyyyyyyy";"zzzzzzzzzzzz")
-$recipients.simulatorIds:=New collection("ABCDEFGHI";"9GER74FS8S";"PY1J4IT984")
+$recipients.simulators:=New collection("ABCDEFGHI";"9GER74FS8S";"PY1J4IT984")
 $response:=$pushNotification.send($notification;$recipients)
 ```
 

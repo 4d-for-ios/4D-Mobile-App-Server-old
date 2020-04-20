@@ -9,9 +9,9 @@ C_VARIANT:C1683($1)  // Input recipient(s)
 Case of 
 	: (Value type:C1509($1)=Is object:K8:27)
 		
-		If (Value type:C1509($1.simulatorIds)=Is collection:K8:32)
+		If (Value type:C1509($1.simulators)=Is collection:K8:32)
 			
-			  // If user has provided a simulatorIds collection, we put it in deviceTokens collection
+			  // If user has provided a simulators collection, we put it in deviceTokens collection
 			
 			If (Not:C34(Value type:C1509($1.deviceTokens)=Is collection:K8:32))
 				
@@ -19,7 +19,7 @@ Case of
 				
 			End if 
 			
-			$1.deviceTokens:=$1.deviceTokens.concat($1.simulatorIds)
+			$1.deviceTokens:=$1.deviceTokens.concat($1.simulators)
 			
 		End if 
 		
@@ -28,9 +28,9 @@ Case of
 	: (Value type:C1509($1)=Is collection:K8:32)
 		
 		$0:=New object:C1471
-		$0.recipientMails:=New collection:C1472
+		$0.mails:=New collection:C1472
 		$0.deviceTokens:=New collection:C1472
-		$0.simulatorIds:=New collection:C1472
+		$0.simulators:=New collection:C1472
 		
 		C_VARIANT:C1683($item)
 		
@@ -40,7 +40,7 @@ Case of
 				
 				If (isEmail ($item))
 					
-					$0.recipientMails.push($item)
+					$0.mails.push($item)
 					
 				Else 
 					
@@ -48,7 +48,7 @@ Case of
 					
 				End if 
 				
-				  // Else : $1 is not a collection of mails, nor a collection of deviceTokens, nor a collection of simulatorIds
+				  // Else : $1 is not a collection of mails, nor a collection of deviceTokens, nor a collection of simulators UDID
 				
 			End if 
 			
@@ -60,7 +60,7 @@ Case of
 		
 		If (isEmail ($1))
 			
-			$0.recipientMails:=New collection:C1472($1)
+			$0.mails:=New collection:C1472($1)
 			
 		Else 
 			

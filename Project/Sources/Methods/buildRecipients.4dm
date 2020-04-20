@@ -2,7 +2,7 @@
 C_OBJECT:C1216($0)  // output recipients collection and warnings for failures
 C_OBJECT:C1216($1)  // input object containing recipients collections
 C_TEXT:C284($2)  // input app ID <teamId>.<bundleId>
-C_COLLECTION:C1488($recipientMails;$deviceTokens;$mailAndDeviceTokenCollection)
+C_COLLECTION:C1488($mails;$deviceTokens;$mailAndDeviceTokenCollection)
 C_OBJECT:C1216($Obj_result)
 
 $Obj_result:=New object:C1471("success";False:C215)
@@ -12,7 +12,7 @@ $Obj_result:=New object:C1471("success";False:C215)
   //________________________________________
 
 $deviceTokens:=$1.deviceTokens
-$recipientMails:=$1.recipientMails
+$mails:=$1.mails
 
 
 $Obj_result.recipients:=New collection:C1472
@@ -27,7 +27,7 @@ If ($deviceTokens.length>0)
 		  // For each deviceToken we build an object with mail address information to match session result collection
 		
 		$Obj_result.recipients.push(New object:C1471(\
-			"email";"Unknown mail address";\
+			"email";"No mail address specified, raw deviceToken was given";\
 			"deviceToken";$dt))
 		
 	End for each 
@@ -40,12 +40,12 @@ End if
   // GET SESSIONS INFO
   //________________________________________
 
-If ($recipientMails.length>0)
+If ($mails.length>0)
 	
 	C_TEXT:C284($mail)
 	C_OBJECT:C1216($Obj_session)
 	
-	For each ($mail;$recipientMails)
+	For each ($mail;$mails)
 		
 		$Obj_session:=MOBILE APP Get session info ($2;$mail)
 		
@@ -71,7 +71,7 @@ If ($recipientMails.length>0)
 		
 	End for each 
 	
-	  // Else : no recipientMails given in entry
+	  // Else : no mail given in entry
 	
 End if 
 

@@ -4,7 +4,7 @@ C_OBJECT:C1216($1)  // Notification content
 C_OBJECT:C1216($2)  // Recipients collections
 C_OBJECT:C1216($3)  // Authentication object
 
-C_COLLECTION:C1488($recipientMails;$deviceTokens)
+C_COLLECTION:C1488($mails;$deviceTokens)
 C_OBJECT:C1216($Obj_result;$Obj_notification;$Obj_auth;$status;$Obj_recipients_result)
 
 
@@ -25,18 +25,18 @@ If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
 	$Obj_notification:=$1
 	
 	$deviceTokens:=$2.deviceTokens
-	$recipientMails:=$2.recipientMails
+	$mails:=$2.mails
 	
 	$Obj_auth:=$3
 	
 	
 	C_BOOLEAN:C305($isMissingRecipients)
 	
-	If (Not:C34($recipientMails.length>0) & (Not:C34($deviceTokens.length>0)))  // Both recipientMails and deviceTokens collections are empty
+	If (Not:C34($mails.length>0) & (Not:C34($deviceTokens.length>0)))  // Both mails and deviceTokens collections are empty
 		
 		$isMissingRecipients:=True:C214
 		
-		$Obj_result.errors.push("Both recipients and deviceTokens collections are empty")
+		$Obj_result.errors.push("Both mails and deviceTokens collections are empty")
 		
 	End if 
 	
