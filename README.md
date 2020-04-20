@@ -25,6 +25,10 @@ Without classes some functionnalities are still available.
 - [Mobile App Action](Documentation/Methods/Mobile App Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
 - [Mobile App Authentication](Documentation/Methods/Mobile App Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
+- [Mobile App Action](Documentation/Methods/Mobile App Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
+- [Mobile App Authentication](Documentation/Methods/Mobile App Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
+- [Mobile App Email Checker](Documentation/Methods/Mobile App Email Checker.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
+- [Mobile App Active Session](Documentation/Methods/Mobile App Active Session.md) provide utility methods for [`On Web Connection`](https://doc.4d.com/4Dv18/4D/18/On-Web-Connection-database-method.301-4505013.en.html) coding.
 ## Installing
 
 Add this component to your "Components" database folder and you are ready.

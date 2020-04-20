@@ -1,4 +1,4 @@
-﻿{
+{
 	"action": {
 		"methods": [
 			"Compiler_action",
@@ -23,6 +23,18 @@
 		],
 		"classes": [
 			"Authentication"
+		]
+	},
+	"mail": {
+		"methods": [
+			"Activate sessions",
+			"Compiler_mail",
+			"GET ERROR INFO",
+			"Get settings",
+			"Mobile App Active Session",
+			"Mobile App Email Checker",
+			"SEND EMAIL",
+			"SESSION INIT"
 		]
 	},
 	"devTool": {
