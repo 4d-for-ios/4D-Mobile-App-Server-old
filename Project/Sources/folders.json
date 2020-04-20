@@ -18,17 +18,11 @@
 	"auth": {
 		"methods": [
 			"Compiler_auth",
-            "Mobile App Authentication",
-            "Mobile App Session Object"
+			"Mobile App Authentication",
+			"Mobile App Session Object"
 		],
 		"classes": [
 			"Authentication"
-		]
-	},
-	"ds": {
-		"methods": [
-			"Compiler_ds",
-			"QueryByPrimaryKey"
 		]
 	},
 	"mail": {
@@ -43,6 +37,63 @@
 			"SESSION INIT"
 		]
 	},
+	"devTool": {
+		"methods": [
+			"COMPILER_dev",
+			"dev IndexName",
+			"dev UpdateStructure"
+		],
+		"classes": [
+			"Dev"
+		]
+	},
+	"ds": {
+		"methods": [
+			"Compiler_ds",
+			"QueryByPrimaryKey"
+		]
+	},
+	"err": {
+		"methods": [
+			"COMPILER_err",
+			"err",
+			"errors_CAPTURE",
+			"noError"
+		]
+	},
+	"push": {
+		"groups": [
+			"server"
+		],
+		"methods": [
+			"apple_sendNotification",
+			"authScript",
+			"buildNotification",
+			"buildRecipients",
+			"Compiler_push",
+			"isEmail",
+			"manageEntryRecipient",
+			"Mobile App Push Notification",
+			"reviewIssues"
+		],
+		"classes": [
+			"PushNotification"
+		]
+	},
+	"server": {
+		"methods": [
+			"deviceToken",
+			"postSession"
+		]
+	},
+	"session": {
+		"methods": [
+			"Compiler_session",
+			"MA Get session from JSON",
+			"MOBILE APP Get session info",
+			"MOBILE APP Get sessions info"
+		]
+	},
 	"test": {
 		"tables": [
 			"Table_1",
@@ -50,7 +101,10 @@
 		],
 		"methods": [
 			"test_action",
-			"test_authentication"
+			"test_authentication",
+			"test_dev",
+			"test_isEmail",
+			"test_push_notification"
 		]
 	},
 	"trash": {}
