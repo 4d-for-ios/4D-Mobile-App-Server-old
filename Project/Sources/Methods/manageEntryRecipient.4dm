@@ -30,7 +30,6 @@ Case of
 		$0:=New object:C1471
 		$0.mails:=New collection:C1472
 		$0.deviceTokens:=New collection:C1472
-		$0.simulators:=New collection:C1472
 		
 		C_VARIANT:C1683($item)
 		
