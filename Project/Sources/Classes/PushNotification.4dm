@@ -3,7 +3,6 @@ Class constructor
 	
 	If ($1=Null:C1517)
 		ASSERT:C1129(False:C215;"Failed to "+Current method name:C684)
-		  //$0:=Null
 	End if 
 	
 	  // If authKey file is given as path
