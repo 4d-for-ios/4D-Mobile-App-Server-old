@@ -11,7 +11,7 @@ in `On Mobile App Authentication` wrap the first input parameters
 $auth:=MobileAppServer.Authentication.new($1) // $1 Informations provided by mobile application
 ````
 
-Then you can have some information about mobile applications and session.
+Then you can have some information about mobile applications and session or even have a special authentication like sending email
 
 ### Get application id
 
@@ -41,3 +41,11 @@ Setting the status to "pending" ie. not validated yet.
 $currentSessionObject.status:="pending"
 $currentSessionObject.save() // save to File on disk
 ```
+
+### Checking authentication using a confirmation email
+
+```4d
+$0:=$auth.confirmEmail()
+```
+
+You must configure first your SMTP server to send emails - more detail available [here](../Methods/Mobile%20App%20Email%20Checker.md)
