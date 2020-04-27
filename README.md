@@ -10,7 +10,7 @@ Utility methods to speed up the 4D Mobile App backend coding.
 
 ## Usage
 
-### Classes (>18R3)
+### Classesss (>18R3)
 
 Wrap input from `On Mobile App...` database methods into this classes to get utility functions.
 
