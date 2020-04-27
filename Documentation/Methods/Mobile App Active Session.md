@@ -27,26 +27,26 @@ The settings.json file must contain the following parameters:
 ```json
 {
     "smtp" : {
-        "user":"sender4dsmtp@gmail.com",
+        "user":"myMail@gmail.com",
     	"password":"******",
-    	"from":"sender4dsmtp@gmail.com",
-    	"host":"smtp.gmail.com",
+    	"from":"myMail@gmail.com",
+    	"host":"smtp.example.com",
     	"port":465
     },
     "template":{    
-		"emailToSend": "ConfirmMailTemplate.html",
+	"emailToSend": "ConfirmMailTemplate.html",
     	"emailConfirmActivation":"ActiveSessionTemplate.html"
     },
-	"emailSubject":"Application Name: Sign in confirmation",
-	"activation": {
+    "emailSubject":"Application Name: Sign in confirmation",
+    "activation": {
 		"scheme":"http",
-		"hostname":"192.168.1.5",
-        "port": "80",
+		"hostname":"serverURL",
+		"port": "80",
 		"path":"4D4IOS",
 		"otherParameters":""
-	},
-	"timeout":300000,
-	"message":{
+		},
+     "timeout":300000,
+     "message":{
 		"successConfirmationMailMessage":"Verify your email address",
 		"waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
 		"successActiveSessionsMessage":"You are successfully authenticated",
@@ -55,7 +55,7 @@ The settings.json file must contain the following parameters:
 }
 ```
 *activation.scheme*: **http or https** \
-*activation.hostname*: **192.168.1.5** // server address \
+*activation.hostname*: **serverURL** // server address \
 *activation.port*: **80** // server port \
 *activation.path*: **4D4IOS** // used to catch the value of the token connection \
 *activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings 
