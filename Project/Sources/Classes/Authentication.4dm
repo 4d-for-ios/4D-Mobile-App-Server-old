@@ -11,7 +11,7 @@ Class constructor
 	$class:=OB Class:C1730(This:C1470)
 	Use ($class)
 		If ($class.folder=Null:C1517)
-			$class.folder:=Folder:C1567(fk mobileApps folder:K87:18)
+			$class.folder:=Folder:C1567(fk mobileApps folder:K87:18;*)
 		End if 
 	End use 
 	
