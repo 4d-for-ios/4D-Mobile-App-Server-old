@@ -20,7 +20,7 @@ It is important to note what are `$authKey`, `$authKeyId` and `$teamId` refering
 
 ```4d
 $authKey:=File("/path_to_p8_file/AuthKey_XXXYYY.p8")  // AuthKey file
-$authKeyId=AuthKey_XXXYYY  // is the second part of the AuthKey filename
+$authKeyId=XXXYYY  // is the second part of the AuthKey filename
 $teamId=TEAM123456  // is the team related to the AuthKey file
 ```
 
