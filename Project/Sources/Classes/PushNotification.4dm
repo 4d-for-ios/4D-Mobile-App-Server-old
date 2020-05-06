@@ -48,6 +48,12 @@ Class constructor
 			This:C1470.auth.jwt:=$Obj_auth_result.jwt
 			This:C1470.lastResult:=New object:C1471
 			
+			If ($1.isDevelopment#Null:C1517)
+				This:C1470.auth.isDevelopment:=$1.isDevelopment
+			Else 
+				This:C1470.auth.isDevelopment:=False:C215
+			End if 
+			
 		End if 
 		
 	End if 
@@ -105,9 +111,12 @@ Function sendAll
 	This:C1470.lastResult.warnings:=New collection:C1472
 	This:C1470.lastResult.errors:=New collection:C1472
 	
-	C_OBJECT:C1216($Obj_deviceTokens)
+	C_OBJECT:C1216($Obj_session;$Obj_deviceTokens)
 	
-	$Obj_deviceTokens:=MOBILE APP Get all deviceTokens (This:C1470.auth.teamId;This:C1470.auth.bundleId)
+	$Obj_session:=MobileAppServer .Session.new(This:C1470.auth.teamId;This:C1470.auth.bundleId)
+	
+	$Obj_deviceTokens:=$Obj_session.getAllDeviceTokens()
+	  //$Obj_deviceTokens:=MOBILE APP Get all deviceTokens (This.auth.teamId;This.auth.bundleId)
 	
 	If ($Obj_deviceTokens.success)
 		

@@ -35,6 +35,7 @@ $auth.bundleId:=$bundleId
 $auth.authKey:=$authKey
 $auth.authKeyId:=$authKeyId
 $auth.teamId:=$teamId
+$auth.isDevelopment:=False  // Optional value, defines whether you are in production or development mode. Default is False
 ```
 
 
@@ -125,7 +126,7 @@ $response:=$pushNotification.send($notification;$deviceTokens)
 
 - ##### An object
 
-This object should contain 3 collections : a mail address collection, a device token collection, and a simulator collection.
+This object can contain up to 3 collections : a mail address collection, a device token collection, and a simulator collection.
 
 ```4d
 $recipients:=New object
@@ -134,6 +135,10 @@ $recipients.deviceTokens:=New collection("xxxxxxxxxxxx";"yyyyyyyyyyyy";"zzzzzzzz
 $recipients.simulators:=New collection("ABCDEFGHI";"9GER74FS8S";"PY1J4IT984")
 $response:=$pushNotification.send($notification;$recipients)
 ```
+
+- ##### Extra
+
+You can use the <a href="./Session.md">`Session` class</a> to retrieve information in session files, such as deviceTokens, mail addresses or more session information.
 
 ### Exploring results
 

@@ -56,11 +56,7 @@ If (Not:C34($isMissingRecipients))
 	  // Build (mails + deviceTokens) collection
 	  //________________________________________
 	
-	C_TEXT:C284($appId)
-	
-	$appId:=$Obj_auth.teamId+"."+$Obj_auth.bundleId  // In sessions file, apps are identified with <teamId>.<bundleId> 
-	
-	$Obj_recipients_result:=buildRecipients ($2;$appId)
+	$Obj_recipients_result:=buildRecipients ($2;$Obj_auth.teamId;$Obj_auth.bundleId)
 	
 	$Obj_result.warnings:=$Obj_recipients_result.warnings
 	
@@ -85,7 +81,7 @@ If (Not:C34($isMissingRecipients))
 		$notificationInput.bundleId:=$Obj_auth.bundleId
 		$notificationInput.payload:=$payload
 		$notificationInput.deviceToken:=$mailAndDeviceToken.deviceToken
-		$notificationInput.isDevelopment:=True:C214
+		$notificationInput.isDevelopment:=$Obj_auth.isDevelopment
 		
 		If (Length:C16($mailAndDeviceToken.deviceToken)=64)
 			

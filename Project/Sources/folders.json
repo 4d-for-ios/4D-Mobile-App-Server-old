@@ -72,9 +72,14 @@
 	"session": {
 		"methods": [
 			"Compiler_session",
+			"MA Get all mailAddresses",
+			"MOBILE APP Get all bundleIds",
 			"MOBILE APP Get all deviceTokens",
 			"MOBILE APP Get session info",
 			"MOBILE APP Get sessions info"
+		],
+		"classes": [
+			"Session"
 		]
 	},
 	"test": {

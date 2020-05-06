@@ -1,9 +1,19 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
 C_OBJECT:C1216($0)  // output recipients collection and warnings for failures
 C_OBJECT:C1216($1)  // input object containing recipients collections
-C_TEXT:C284($2)  // input app ID <teamId>.<bundleId>
+C_TEXT:C284($2)  // teamId
+C_TEXT:C284($3)  // bundleId
 C_COLLECTION:C1488($mails;$deviceTokens;$mailAndDeviceTokenCollection)
-C_OBJECT:C1216($Obj_result)
+C_OBJECT:C1216($Obj_result;$session)
+
+If (Asserted:C1132(Count parameters:C259>=3;"Missing parameter"))
+	
+	ASSERT:C1129(Value type:C1509($2)=Is text:K8:3;"Second parameter is TeamId, a text is expected")
+	ASSERT:C1129(Value type:C1509($3)=Is text:K8:3;"Third parameter is BundleId, a text is expected")
+	
+Else 
+	ABORT:C156
+End if 
 
 $Obj_result:=New object:C1471("success";False:C215)
 
@@ -37,7 +47,7 @@ If ($deviceTokens.length>0)
 End if 
 
 
-  // GET SESSIONS INFO
+  // GET SESSION INFO
   //________________________________________
 
 If ($mails.length>0)
@@ -47,17 +57,30 @@ If ($mails.length>0)
 	
 	For each ($mail;$mails)
 		
-		$Obj_session:=MOBILE APP Get session info ($2;$mail)
+		$Obj_session:=MobileAppServer .Session.new($2;$3)
+		
+		$Obj_session:=$Obj_session.getSessionInfoFromMail($mail)
 		
 		If ($Obj_session.success)
 			
-			If (Length:C16(String:C10($Obj_session.session.device.token))>0)
+			C_BOOLEAN:C305($atLeastOneFound)
+			$atLeastOneFound:=False:C215
+			
+			For each ($session;$Obj_session.sessions)
 				
-				$Obj_result.recipients.push(New object:C1471(\
-					"email";$Obj_session.session.email;\
-					"deviceToken";$Obj_session.session.device.token))
+				If (Length:C16(String:C10($session.device.token))>0)
+					
+					$Obj_result.recipients.push(New object:C1471(\
+						"email";$mail;\
+						"deviceToken";$session.device.token))
+					
+					$atLeastOneFound:=True:C214
+					
+				End if 
 				
-			Else   // No deviceToken found for current session
+			End for each 
+			
+			If (Not:C34($atLeastOneFound))
 				
 				$Obj_result.warnings.push("We couldn't find related deviceTokens to the following mail address : "+$mail)
 				
@@ -74,6 +97,5 @@ If ($mails.length>0)
 	  // Else : no mail given in entry
 	
 End if 
-
 
 $0:=$Obj_result
