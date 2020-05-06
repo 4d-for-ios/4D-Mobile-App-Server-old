@@ -22,7 +22,7 @@ If (Asserted:C1132($Lon_parameters>=2;"Missing parameter"))
 	
 	$appId:=$1+"."+$2
 	
-	$Dir_mobileApps:=Folder:C1567(fk mobileApps folder:K87:18)
+	$Dir_mobileApps:=Folder:C1567(fk mobileApps folder:K87:18;*)
 	
 	$Obj_result:=New object:C1471
 	$Obj_result.success:=False:C215
@@ -73,7 +73,7 @@ If ($Dir_mobileApps.exists)
 		
 	End if 
 	
-	  // Else : couldn't find MobileApps folder
+	  // Else : couldn't find MobileApps folder in host database
 	
 End if 
 
