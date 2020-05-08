@@ -55,13 +55,13 @@ If ($template.exists)
 	If ($0.template.emailToSend=Null:C1517)
 		$file:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file("ConfirmMailTemplate.html")
 		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body>\n        Hello,\n        <br><br>\n        To start using the App, you must first confirm your subscription by clicking on the following link: \n        <a href=\"{{ URL }}\">Click Here.</a>\"<br>\n        The link"+" will expire in {{ EXPIRATIONMINUTES }} minutes.\n        <br><br>\n        Sincerely,\n    </body>\n</html>")
+		$file.setText("<html>\n    <header>\n    </header>\n    <body>\n        Hello,\n        <br><br>\n        To start using the App, you must first confirm your subscription by clicking on the following link: \n        <a href=\"{{url}}\">Click Here.</a>\"<br>\n        The link"+" will expire in {{expirationminutes}} minutes.\n        <br><br>\n        Sincerely,\n    </body>\n</html>")
 		$0.template.emailToSend:="ConfirmMailTemplate.html"
 	End if 
 	If ($0.template.emailConfirmActivation=Null:C1517)
 		$file:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file("ActiveSessionTemplate.html")
 		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body style=\"margin: 0px;padding: 0px;font: message-box\">\n        <div style = \"background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;\">\n            <h2 style=\"color: #fff;   font-size: 1.3em;\">{{ MES"+"SAGE }}</h2>\n        </div>\n    </body>\n</html>")
+		$file.setText("<html>\n    <header>\n    </header>\n    <body style=\"margin: 0px;padding: 0px;font: message-box\">\n        <div style = \"background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;\">\n            <h2 style=\"color: #fff;   font-size: 1.3em;\">{{message}}</h2>\n        </div>\n    </body>\n</html>")
 		$0.template.emailConfirmActivation:="ActiveSessionTemplate.html"
 	End if 
 	

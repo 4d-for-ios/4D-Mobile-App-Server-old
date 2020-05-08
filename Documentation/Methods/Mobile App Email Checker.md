@@ -72,8 +72,8 @@ The HTML template that will be sent to the user as a body in the confirmation em
         Hello,
         <br><br>
         To start using the App, you must first confirm your subscription by clicking on the following link:
-        <a href="{{ URL }}">Click Here.</a>"<br>
-        The link will expire in {{ EXPIRATIONMINUTES }} minutes.
+        <a href="{{url}}">Click Here.</a>"<br>
+        The link will expire in {{expirationminutes}} minutes.
         <br><br>
         Sincerely,
     </body>
@@ -81,4 +81,4 @@ The HTML template that will be sent to the user as a body in the confirmation em
 ```
 
 {{ URL }} : will be modified by the set of activation values \
-{{ EXPIRATIONMINUTES }} : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file
+{{expirationminutes}} : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file

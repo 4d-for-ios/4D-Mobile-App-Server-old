@@ -55,7 +55,7 @@ Else
 End if 
   //write the value of $bodyMessage in the web page
 $htmlContent:=$template.getText()
-$htmlContent:=Replace string:C233($htmlContent;"{{ MESSAGE }}";$bodyMessage)
+$htmlContent:=Replace string:C233($htmlContent;"{{message}}";$bodyMessage)
 WEB SEND TEXT:C677($htmlContent)
 
   //return the information in to the database method

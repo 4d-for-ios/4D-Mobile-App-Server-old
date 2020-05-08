@@ -34,11 +34,11 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  // session.id: ID de la session
 	  // otherParameters: More parameters
 	$value:=parameters.activation.scheme+"://"+parameters.activation.hostname+":"+parameters.activation.port+"/"+parameters.activation.path+"?token="+$request.session.id+"&"+parameters.activation.otherParameters
-	$htmlContent:=Replace string:C233($htmlContent;"{{ URL }}";$value)
+	$htmlContent:=Replace string:C233($htmlContent;"{{url}}";$value)
 	  //convert milliseconde to Minute 
 	$minutes:=(parameters.timeout/60000)
 	  //display the timeout value in the email
-	$htmlContent:=Replace string:C233($htmlContent;"{{ EXPIRATIONMINUTES }}";String:C10($minutes))
+	$htmlContent:=Replace string:C233($htmlContent;"{{expirationminutes}}";String:C10($minutes))
 	$o.mail.htmlBody:=$htmlContent
 	$transporter:=SMTP New transporter:C1608($o.smtp)
 	$Txt_methodOnErrorCall:=Method called on error:C704

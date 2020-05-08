@@ -73,9 +73,9 @@ The HTML template will be sent to the user as a body after activating the sessio
     </header>
     <body style="margin: 0px;padding: 0px;font: message-box">
         <div style = "background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;">
-            <h2 style="color: #fff;   font-size: 1.3em;">{{ MESSAGE }}</h2>
+            <h2 style="color: #fff;   font-size: 1.3em;">{{message}}</h2>
         </div>
     </body>
 </html>
 ```
-*{{ MESSAGE }}* : will be changed by the status of your request
+*{{message}}* : will be changed by the status of your request
