@@ -30,15 +30,15 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  //scheme: http or https
 	  // hostname: 172.0.0.1
 	  // port: 80
-	  // path: 4D4IOS
+	  // path: activation
 	  // session.id: ID de la session
 	  // otherParameters: More parameters
 	$value:=parameters.activation.scheme+"://"+parameters.activation.hostname+":"+parameters.activation.port+"/"+parameters.activation.path+"?token="+$request.session.id+"&"+parameters.activation.otherParameters
-	$htmlContent:=Replace string:C233($htmlContent;"___URL___";$value)
+	$htmlContent:=Replace string:C233($htmlContent;"{{ URL }}";$value)
 	  //convert milliseconde to Minute 
 	$minutes:=(parameters.timeout/60000)
 	  //display the timeout value in the email
-	$htmlContent:=Replace string:C233($htmlContent;"___MINUTES___";String:C10($minutes))
+	$htmlContent:=Replace string:C233($htmlContent;"{{ EXPIRATIONMINUTES }}";String:C10($minutes))
 	$o.mail.htmlBody:=$htmlContent
 	$transporter:=SMTP New transporter:C1608($o.smtp)
 	$Txt_methodOnErrorCall:=Method called on error:C704
@@ -48,17 +48,17 @@ If (Asserted:C1132($template.exists;"Missing file "+$template.platformPath))
 	  //check if the email is sent
 	If ($status.success)
 		  //get user session
-		$session:=Storage:C1525.sessions[$request.session.id]
-		Use (Storage:C1525.sessions)
+		$session:=Storage:C1525.pendingSessions[$request.session.id]
+		Use (Storage:C1525.pendingSessions)
 			If ($session#Null:C1517)
 				  //update the timestamp if we send a new email after the expiration of the 1st connection
 				$session.time:=Milliseconds:C459
 			Else 
 				  //add new session
-				OB SET:C1220(Storage:C1525.sessions;$request.session.id;New shared object:C1526(\
+				Storage:C1525.pendingSessions[$request.session.id]:=New shared object:C1526(\
 					"team";$request.team.id;\
 					"application";$request.application.id;\
-					"time";Milliseconds:C459))
+					"time";Milliseconds:C459)
 			End if 
 		End use 
 	End if 
