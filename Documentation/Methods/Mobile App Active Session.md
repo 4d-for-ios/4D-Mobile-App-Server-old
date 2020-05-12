@@ -26,21 +26,21 @@ The settings.json file must contain the following parameters:
 
 ```json
 {
-    "smtp" : {
-        "user":"mail@example.com",
-      	"password":"******",
-      	"from":"mail@example.com",
-      	"host":"smtp.example.com",
-        "port":465
+	"smtp" : {
+		"user":"mail@example.com",
+		"password":"******",
+		"from":"mail@example.com",
+		"host":"smtp.example.com",
+		"port":465
         },
-    "template":{    
-		    "emailToSend": "ConfirmMailTemplate.html",
-      	"emailConfirmActivation":"ActiveSessionTemplate.html"
-        },
-  	"emailSubject":"Application Name: Sign in confirmation",
-  	"activation": {
-    		"scheme":"http",
-    		"hostname":"192.168.1.2",
+	"template":{    
+		"emailToSend": "ConfirmMailTemplate.html",
+		"emailConfirmActivation":"ActiveSessionTemplate.html"
+	},
+	"emailSubject":"Application Name: Sign in confirmation",
+	"activation": {
+		"scheme":"http",
+		"hostname":"192.168.1.2",
         "port": "80",
     		"path":"activation",
     		"otherParameters":""
