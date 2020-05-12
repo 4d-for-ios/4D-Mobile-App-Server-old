@@ -1,8 +1,9 @@
 //%attributes = {"invisible":true}
 C_OBJECT:C1216($0)
-C_OBJECT:C1216($template;$info;$file)
+C_OBJECT:C1216($template;$info;$file;$settingFolder)
 C_TEXT:C284($Txt_methodOnErrorCall)
-$template:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file("settings.json")
+$settingFolder:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server")
+$template:=$settingfolder.file("settings.json")
 If ($template.exists)
 	$Txt_methodOnErrorCall:=Method called on error:C704
 	ON ERR CALL:C155("GET ERROR INFO")
@@ -53,19 +54,35 @@ If ($template.exists)
 		$0.template:=New object:C1471
 	End if 
 	If ($0.template.emailToSend=Null:C1517)
-		$file:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file("ConfirmMailTemplate.html")
-		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body>\n        Hello,\n        <br><br>\n        To start using the App, you must first confirm your subscription by clicking on the following link: \n        <a href=\"{{url}}\">Click Here.</a>\"<br>\n        The link"+" will expire in {{expirationminutes}} minutes.\n        <br><br>\n        Sincerely,\n    </body>\n</html>")
 		$0.template.emailToSend:="ConfirmMailTemplate.html"
 	End if 
-	If ($0.template.emailConfirmActivation=Null:C1517)
-		$file:=Folder:C1567(fk resources folder:K87:11;*).folder("4D Mobile App Server").file("ActiveSessionTemplate.html")
+	$file:=$settingFolder.file($0.template.emailToSend)
+	If (Not:C34($file.exists))
 		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body style=\"margin: 0px;padding: 0px;font: message-box\">\n        <div style = \"background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;\">\n            <h2 style=\"color: #fff;   font-size: 1.3em;\">{{message}}</h2>\n        </div>\n    </body>\n</html>")
+		$file.setText("<html>\n    <header>\n    </header>\n    <body>\n        Hello,\n        <br><br>\n        To start using the App, you must first confirm your subscription by clicking on the following link: \n        <a href=\"{{url}}\">Click Here.</a>\"<br>\n        The link"+" will expire in {{expirationminutes}} minutes.\n        <br><br>\n        Sincerely,\n    </body>\n</html>")
+	End if 
+	If ($0.template.emailConfirmActivation=Null:C1517)
 		$0.template.emailConfirmActivation:="ActiveSessionTemplate.html"
 	End if 
+	$file:=$settingFolder.file($0.template.emailConfirmActivation)
+	If (Not:C34($file.exists))
+		$file.create()
+		$file.setText("<html>\n    <header>\n    </header>\n    <body style=\"margin: 0px;padding: 0px;font: message-box\">\n        <div style = \"background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;\">\n            <h2 style=\"color: #fff;   font-size: 1.3em;\">{{mess"+"age}}</h2>\n        </div>\n    </body>\n</html>")
+	End if 
 	
-	$0.fileExist:=True:C214
+	$0.success:=True:C214
+	
 Else 
-	$0:=New object:C1471("fileExist";False:C215;"statusText";"Missing configuration files "+$template.platformPath)
+	
+	$0:=New object:C1471("success";False:C215;"statusText";"Missing configuration files "+$template.platformPath)
+	
+	If (Not:C34($settingFolder.exists))
+		$settingFolder.create()
+	End if 
+	
+	$file:=$settingFolder.file("settings.sample.json")
+	If (Not:C34($file.exists))
+		Folder:C1567(fk resources folder:K87:11).file("settings.sample.json").copyTo($settingFolder)
+	End if 
+	
 End if 
