@@ -49,6 +49,18 @@
 			"noError"
 		]
 	},
+	"mail": {
+		"methods": [
+			"Activate Sessions",
+			"Compiler_mail",
+			"GET ERROR INFO",
+			"Get settings",
+			"Mobile App Active Session",
+			"Mobile App Email Checker",
+			"SEND EMAIL",
+			"SESSION INIT"
+		]
+	},
 	"push": {
 		"methods": [
 			"apple_sendNotification",
