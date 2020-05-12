@@ -12,7 +12,7 @@ $appID:=$auth.getAppID()
 ASSERT:C1129($appID#Null:C1517;"no app id")
 
 $input.session:=New object:C1471("id";"547302015c7366daf048dfa58048d2ae37ae2bc8")
-Folder:C1567(fk mobileApps folder:K87:18).folder($appID).create()
+Folder:C1567(fk mobileApps folder:K87:18;*).folder($appID).create()
 
 $file:=$auth.getSessionFile()
 ASSERT:C1129($file#Null:C1517)
