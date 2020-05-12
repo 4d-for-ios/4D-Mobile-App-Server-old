@@ -19,8 +19,6 @@ If ((Length:C16(String:C10($1.bundleId))>0)\
 	
 	$tmpFolder:=Folder:C1567(Temporary folder:C486;fk platform path:K87:2)
 	
-	  //$payloadFile:=File(File("/RESOURCES/tmp_payload_"+$1.deviceToken+".json").platformPath;fk platform path)  // unsandboxing payload json file
-	
 	$payloadFile:=$tmpFolder.file("tmp_payload_"+$1.deviceToken+".json")
 	$payloadFile.create()
 	
