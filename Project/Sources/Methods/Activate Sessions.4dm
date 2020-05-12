@@ -19,7 +19,7 @@ If ($template.exists)
 		End if 
 	End for 
 	  //get user session
-	$session:=Storage:C1525.sessions[$token]
+	$session:=Storage:C1525.pendingSessions[$token]
 	  //check if the session exists
 	If ($session#Null:C1517)
 		  //compare the current timestamp with that when creating the session
@@ -32,9 +32,9 @@ If ($template.exists)
 				  //update status value
 				$Json_File.status:="accepted"
 				$Path_File_Session.setText(JSON Stringify:C1217($Json_File))
-				Use (Storage:C1525.sessions)
+				Use (Storage:C1525.pendingSessions)
 					  //delete session
-					OB REMOVE:C1226(Storage:C1525.sessions;$token)
+					OB REMOVE:C1226(Storage:C1525.pendingSessions;$token)
 				End use 
 /*
 The MOBILE APP REFRESH SESSIONS command checks all mobile application session files located in the MobileApps folder of the server, 
@@ -55,7 +55,7 @@ Else
 End if 
   //write the value of $bodyMessage in the web page
 $htmlContent:=$template.getText()
-$htmlContent:=Replace string:C233($htmlContent;"___MESSAGE___";$bodyMessage)
+$htmlContent:=Replace string:C233($htmlContent;"{{message}}";$bodyMessage)
 WEB SEND TEXT:C677($htmlContent)
 
   //return the information in to the database method

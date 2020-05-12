@@ -15,6 +15,7 @@ C_OBJECT($0)
 C_OBJECT($1)
 $0:= Mobile App Email Checker ($1)
 ```
+in case of an error, the `Mobile App Email Checker` method returns a list of errors
 
 ## Resources ##
 
@@ -22,40 +23,39 @@ The settings.json file must contain the following parameters:
 
 ```json
 {
-    "smtp" : {
-        "user":"myEmail@gmail.com",
-    	"password":"****",
-    	"from":"myEmail@gmail.com",
-    	"host":"smtp.example.com",
-    	"port":465
-    },
-    "template":{    
-	"emailToSend": "ConfirmMailTemplate.html",
-    	"emailConfirmActivation":"ActiveSessionTemplate.html"
-    },
+	"smtp" : {
+		"user":"mail@example.com",
+		"password":"******",
+		"from":"mail@example.com",
+		"host":"smtp.example.com",
+		"port":465
+        },
+	"template":{    
+		"emailToSend": "ConfirmMailTemplate.html",
+		"emailConfirmActivation":"ActiveSessionTemplate.html"
+	},
 	"emailSubject":"Application Name: Sign in confirmation",
 	"activation": {
-        "scheme":"http",
-        "hostname":"serverURL",
+		"scheme":"http",
+		"hostname":"192.168.1.2",
         "port": "80",
-        "path":"4D4IOS",
-        "otherParameters":""
-	},
-	"timeout":300000,
-	"message":{
-		"successConfirmationMailMessage":"Verify your email address",
-		"waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
-		"successActiveSessionsMessage":"You are successfully authenticated",
-		"expireActiveSessionsMessage":"This email confirmation link has expired!"
-	}
+    		"path":"activation",
+    		"otherParameters":""
+  	   },
+  	"timeout":300000,
+  	"message":{
+    		"successConfirmationMailMessage":"Verify your email address",
+    		"waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
+    		"successActiveSessionsMessage":"You are successfully authenticated",
+    		"expireActiveSessionsMessage":"This email confirmation link has expired!"
+	     }
 }
-
 ```
 *activation.scheme*: **http or https** \
-*activation.hostname*: **serverURL** // server address \
+*activation.hostname*: **192.168.1.2** // server address \
 *activation.port*: **80** // server port \
-*activation.path*: **4D4IOS** // used to catch the value of the token connection \
-*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings 
+*activation.path*: **activation** // used to catch the value of the token connection \
+*activation.otherParameters*: **param1=Value1&param2=value2** // custom user settings
 
 *message.successConfirmationMailMessage*: message displayed in the mobile application if the email is sent successfully \
 *message.waitSendMailConfirmationMessage*: message displayed in the mobile application if the user tries to login without activating his account from his email address and without respecting the expiration value of a connection \
@@ -71,14 +71,14 @@ The HTML template that will be sent to the user as a body in the confirmation em
     <body>
         Hello,
         <br><br>
-        To start using the App, you must first confirm your subscription by clicking on the following link: 
-        <a href="___PATH___">Click Here.</a>"<br>
-        The link will expire in ___MINUTES___ minutes.
+        To start using the App, you must first confirm your subscription by clicking on the following link:
+        <a href="{{url}}">Click Here.</a>"<br>
+        The link will expire in {{expirationminutes}} minutes.
         <br><br>
         Sincerely,
     </body>
 </html>
 ```
 
-___PATH___ : will be modified by the set of activation values \
-___MINUTES___ : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file
+{{ URL }} : will be modified by the set of activation values \
+{{expirationminutes}} : **300000 -> 5min**; will be modified by the "timeout" value which exists in the Settings.json file
