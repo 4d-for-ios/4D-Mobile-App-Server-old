@@ -77,13 +77,6 @@ Function getAllMailAddresses
 	$0:=MA Get all mailAddresses (This:C1470.sessionDir)
 	
 	  //-------------------------------------------------------------------------
-Function getAllBundleIds
-	
-	C_OBJECT:C1216($0)
-	
-	$0:=MOBILE APP Get all bundleIds (This:C1470.teamId)
-	
-	  //-------------------------------------------------------------------------
 Function getSessionInfoFromMail
 	
 	C_OBJECT:C1216($0)
