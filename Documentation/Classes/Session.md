@@ -42,17 +42,6 @@ If ($response.success)
 End if
 ```
 
-- #### `getAllBundleIds()`
-
-This function will retrieve all the bundle Ids found in session files.
-
-```4d
-$response:=$sessions.getAllMailAddresses()
-If ($response.success)
-	$mailAddresses:=$response.mailAddresses
-End if
-```
-
 - #### `getSessionInfoFromMail()`
 
 This function will retrieve a session whose mail address is given in parameter.
