@@ -65,7 +65,7 @@ The settings.json file must contain the following parameters:
 *message.successActiveSessionsMessage*: message displayed in the activation web page if the session is activated \
 *message.expireActiveSessionsMessage*: message displayed in the activation web page if the session has expired
 
-The HTML template will be sent to the user as a body after activating the session from the confirmation email. \
+The HTML template will be sent to the user as a body after activating the session from the confirmation email.
 
 Note: if the settings file does not exist in the Resources folder of your 4D base, a settings.sample.json file will be created, there you will find the mandatory configuration that you must fill out
 
