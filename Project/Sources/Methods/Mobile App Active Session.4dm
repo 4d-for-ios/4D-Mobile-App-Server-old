@@ -3,7 +3,7 @@ C_OBJECT:C1216($0)
 C_TEXT:C284($1)
 SESSION INIT 
   //check if the parameter file exists
-If (parameters.fileExist)
+If (parameters.success)
 	If (Position:C15(parameters.activation.path;$1)=2)
 		$0:=Activate Sessions ($1)
 	End if 
