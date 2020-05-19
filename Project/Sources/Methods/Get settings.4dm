@@ -58,16 +58,14 @@ If ($template.exists)
 	End if 
 	$file:=$settingFolder.file($0.template.emailToSend)
 	If (Not:C34($file.exists))
-		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body>\n        Hello,\n        <br><br>\n        To start using the App, you must first confirm your subscription by clicking on the following link: \n        <a href=\"{{url}}\">Click Here.</a>\"<br>\n        The link"+" will expire in {{expirationminutes}} minutes.\n        <br><br>\n        Sincerely,\n    </body>\n</html>")
+		Folder:C1567(fk resources folder:K87:11).folder("Mail Authentication Verification").file("ConfirmMailTemplate.html").copyTo($settingFolder)
 	End if 
 	If ($0.template.emailConfirmActivation=Null:C1517)
 		$0.template.emailConfirmActivation:="ActiveSessionTemplate.html"
 	End if 
 	$file:=$settingFolder.file($0.template.emailConfirmActivation)
 	If (Not:C34($file.exists))
-		$file.create()
-		$file.setText("<html>\n    <header>\n    </header>\n    <body style=\"margin: 0px;padding: 0px;font: message-box\">\n        <div style = \"background-color: #003265;padding: 15px 10px 20px 20px;margin: 0px;\">\n            <h2 style=\"color: #fff;   font-size: 1.3em;\">{{mess"+"age}}</h2>\n        </div>\n    </body>\n</html>")
+		Folder:C1567(fk resources folder:K87:11).folder("Mail Authentication Verification").file("ActiveSessionTemplate.html").copyTo($settingFolder)
 	End if 
 	
 	$0.success:=True:C214
@@ -82,7 +80,7 @@ Else
 	
 	$file:=$settingFolder.file("settings.sample.json")
 	If (Not:C34($file.exists))
-		Folder:C1567(fk resources folder:K87:11).file("settings.sample.json").copyTo($settingFolder)
+		Folder:C1567(fk resources folder:K87:11).folder("Mail Authentication Verification").file("settings.sample.json").copyTo($settingFolder)
 	End if 
 	
 End if 
