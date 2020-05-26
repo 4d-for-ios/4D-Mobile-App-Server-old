@@ -9,7 +9,7 @@ $response:=New object:C1471
 SESSION INIT 
 
   //check if the parameter file exists
-If (parameters.fileExist)
+If (parameters.success)
 	  //get user session
 	$session:=Storage:C1525.pendingSessions[$request.session.id]
 	  //check if the session exists

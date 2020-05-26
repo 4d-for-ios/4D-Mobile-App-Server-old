@@ -23,32 +23,32 @@ The settings.json file must contain the following parameters:
 
 ```json
 {
-	"smtp" : {
-		"user":"mail@example.com",
-		"password":"******",
-		"from":"mail@example.com",
-		"host":"smtp.example.com",
-		"port":465
-        },
-	"template":{    
-		"emailToSend": "ConfirmMailTemplate.html",
-		"emailConfirmActivation":"ActiveSessionTemplate.html"
-	},
-	"emailSubject":"Application Name: Sign in confirmation",
-	"activation": {
-		"scheme":"http",
-		"hostname":"192.168.1.2",
+    "smtp" : {
+        "user":"mail@example.com",
+        "password":"******",
+        "from":"mail@example.com",
+        "host":"smtp.example.com",
+        "port":465
+    },
+    "template":{    
+        "emailToSend": "ConfirmMailTemplate.html",
+        "emailConfirmActivation":"ActiveSessionTemplate.html"
+    },
+    "emailSubject":"Application Name: Sign in confirmation",
+    "activation": {
+        "scheme":"http",
+        "hostname":"192.168.1.2",
         "port": "80",
-    		"path":"activation",
-    		"otherParameters":""
-  	   },
-  	"timeout":300000,
-  	"message":{
-    		"successConfirmationMailMessage":"Verify your email address",
-    		"waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
-    		"successActiveSessionsMessage":"You are successfully authenticated",
-    		"expireActiveSessionsMessage":"This email confirmation link has expired!"
-	     }
+        "path":"activation",
+        "otherParameters":""
+    },
+    "timeout":300000,
+    "message":{
+        "successConfirmationMailMessage":"Verify your email address",
+        "waitSendMailConfirmationMessage":"The mail is already sent thank you to wait before sending again",
+        "successActiveSessionsMessage":"You are successfully authenticated",
+        "expireActiveSessionsMessage":"This email confirmation link has expired!"
+    }
 }
 ```
 *activation.scheme*: **http or https** \
@@ -62,8 +62,9 @@ The settings.json file must contain the following parameters:
 *message.successActiveSessionsMessage*: message displayed in the activation web page if the session is activated \
 *message.expireActiveSessionsMessage*: message displayed in the activation web page if the session has expired
 
-The HTML template that will be sent to the user as a body in the confirmation email
+Note: if the settings file does not exist in the Resources folder of your 4D base, a settings.sample.json file will be created, there you will find the mandatory configuration that you must fill out.
 
+The HTML template that will be sent to the user as a body in the confirmation email.
 ```html
 <html>
     <header>

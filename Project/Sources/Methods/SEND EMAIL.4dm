@@ -74,4 +74,4 @@ Else
 End if 
 
 $response.emailInfo:=$result
-$response.status:=$result.status
+$response.success:=$result.status
