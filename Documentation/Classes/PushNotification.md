@@ -75,7 +75,6 @@ $response:=$pushNotification.sendAll($notification)
 $notification:=New object
 $notification.title:="This is title"
 $notification.body:="Here is the content of this notification"
-$notification.image:="https://media.giphy.com/media/eWW9O2a4IdpWU/giphy.gif"
 ```
 
 ### Recipients
