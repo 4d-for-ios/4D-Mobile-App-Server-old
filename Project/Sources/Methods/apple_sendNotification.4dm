@@ -15,12 +15,11 @@ $Obj_result:=New object:C1471("success";False:C215)
 
 If (Not:C34(Bool:C1537($1.isDevelopment)))
 	
-	$endpoint:="api.push.apple.com"
+	$endpoint:="https://api.push.apple.com"
 	
 Else 
 	
 	$endpoint:="https://api.sandbox.push.apple.com"
-	  //$endpoint:="https://api.development.push.apple.com"
 	
 End if 
 
@@ -60,7 +59,7 @@ If ((Length:C16(String:C10($1.jwt))>0)\
 		
 	End if 
 	
-	  // Else : missing parameter in input object
+	  // Else : Missing parameter in input object
 	
 End if 
 

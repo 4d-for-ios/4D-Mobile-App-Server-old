@@ -1,4 +1,4 @@
-﻿{
+{
 	"action": {
 		"methods": [
 			"Compiler_action",
@@ -62,36 +62,36 @@
 		]
 	},
 	"push": {
-		"groups": [
-			"server"
-		],
 		"methods": [
 			"apple_sendNotification",
-			"authScript",
+			"authJWT",
 			"buildNotification",
 			"buildRecipients",
+			"checkXCodeVersionForPushNotif",
 			"Compiler_push",
+			"getXCodeVersion",
 			"isEmail",
 			"manageEntryRecipient",
 			"Mobile App Push Notification",
-			"reviewIssues"
+			"reviewIssues",
+			"sim_sendNotification"
 		],
 		"classes": [
+			"jwt",
 			"PushNotification"
-		]
-	},
-	"server": {
-		"methods": [
-			"deviceToken",
-			"postSession"
 		]
 	},
 	"session": {
 		"methods": [
 			"Compiler_session",
-			"MA Get session from JSON",
+			"MA Get all mailAddresses",
+			"MOBILE APP Get all bundleIds",
+			"MOBILE APP Get all deviceTokens",
 			"MOBILE APP Get session info",
 			"MOBILE APP Get sessions info"
+		],
+		"classes": [
+			"Session"
 		]
 	},
 	"test": {
@@ -104,6 +104,7 @@
 			"test_authentication",
 			"test_dev",
 			"test_isEmail",
+			"test_manageEntryRecipient",
 			"test_push_notification"
 		]
 	},

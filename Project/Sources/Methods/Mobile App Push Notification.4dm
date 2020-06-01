@@ -4,7 +4,7 @@ C_OBJECT:C1216($1)  // Notification content
 C_OBJECT:C1216($2)  // Recipients collections
 C_OBJECT:C1216($3)  // Authentication object
 
-C_COLLECTION:C1488($recipientMails;$deviceTokens)
+C_COLLECTION:C1488($mails;$deviceTokens)
 C_OBJECT:C1216($Obj_result;$Obj_notification;$Obj_auth;$status;$Obj_recipients_result)
 
 
@@ -25,18 +25,18 @@ If (Asserted:C1132($Lon_parameters>=3;"Missing parameter"))
 	$Obj_notification:=$1
 	
 	$deviceTokens:=$2.deviceTokens
-	$recipientMails:=$2.recipientMails
+	$mails:=$2.mails
 	
 	$Obj_auth:=$3
 	
 	
 	C_BOOLEAN:C305($isMissingRecipients)
 	
-	If (Not:C34($recipientMails.length>0) & (Not:C34($deviceTokens.length>0)))  // Both recipientMails and deviceTokens collections are empty
+	If (Not:C34($mails.length>0) & (Not:C34($deviceTokens.length>0)))  // Both mails and deviceTokens collections are empty
 		
 		$isMissingRecipients:=True:C214
 		
-		$Obj_result.errors.push("Both recipients and deviceTokens collections are empty")
+		$Obj_result.errors.push("Both mails and deviceTokens collections are empty")
 		
 	End if 
 	
@@ -56,11 +56,7 @@ If (Not:C34($isMissingRecipients))
 	  // Build (mails + deviceTokens) collection
 	  //________________________________________
 	
-	C_TEXT:C284($appId)
-	
-	$appId:=$Obj_auth.teamId+"."+$Obj_auth.bundleId  // In sessions file, apps are identified with <teamId>.<bundleId> 
-	
-	$Obj_recipients_result:=buildRecipients ($2;$appId)
+	$Obj_recipients_result:=buildRecipients ($2;$Obj_auth.teamId;$Obj_auth.bundleId)
 	
 	$Obj_result.warnings:=$Obj_recipients_result.warnings
 	
@@ -85,9 +81,36 @@ If (Not:C34($isMissingRecipients))
 		$notificationInput.bundleId:=$Obj_auth.bundleId
 		$notificationInput.payload:=$payload
 		$notificationInput.deviceToken:=$mailAndDeviceToken.deviceToken
-		$notificationInput.isDevelopment:=True:C214
+		$notificationInput.isDevelopment:=$Obj_auth.isDevelopment
 		
-		$status:=apple_sendNotification ($notificationInput)
+		If (Length:C16($mailAndDeviceToken.deviceToken)=64)
+			
+			$status:=apple_sendNotification ($notificationInput)
+			
+		Else 
+			
+			If (checkXCodeVersionForPushNotif )
+				
+				$status:=sim_sendNotification ($notificationInput)
+				
+				If (Not:C34($status.success))
+					
+					If (Length:C16($status.error)>0)
+						
+						$Obj_result.errors.push($status.error)
+						
+					End if 
+					
+				End if 
+				
+			Else 
+				
+				$Obj_result.warnings.push("In order to send push notifications to simulators, you need macOS and XCode version must be at least 11.4")
+				
+			End if 
+			
+		End if 
+		
 		
 		If ($status.success)  // Notification sent successfully
 			
