@@ -17,10 +17,6 @@ Wrap input from `On Mobile App...` database methods into these classes to get ut
 - [MobileAppServer.Action](Documentation/Classes/Action.md) provide utility methods for [`On Mobile App Action`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Action-database-method.301-4505017.en.html) coding.
 - [MobileAppServer.Authentication](Documentation/Classes/Authentication.md) provide utility methods for [`On Mobile App Authentication`](https://doc.4d.com/4Dv18/4D/18/On-Mobile-App-Authentication-database-method.301-4505016.en.html) coding.
 
-Other utility classes to use with mobile devices features.
-
-- [MobileAppServer.PushNotification](Documentation/Classes/PushNotification.md) provide utility methods to send push notifications to iOS devices.
-
 #### Without classes (Previous 4D Version)
 
 Without classes some functionnalities are still available.
@@ -33,7 +29,7 @@ Without classes some functionnalities are still available.
 - [MobileAppServer.PushNotification](Documentation/Classes/PushNotification.md) provide utility methods to send push notifications to mobile devices.
 - [Authentication with email confirmation](Documentation/AuthenticationWithEmailConfirmation.md) describe the process to check user identity by sending emails.
 
-## Installing
+## Installing if not already integrated in your 4d server
 
 Add this component to your "Components" database folder and you are ready.
 
@@ -79,10 +75,6 @@ open "Components/4D Mobile App Server/Project/4D Mobile App Server.4DProject"
 ```
 
 Compile it to `Components/` folder. A `4D Mobile App Server.4dbase` will be created with inside a `4D Mobile App Server.4dz`
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags](https://github.com/4d-for-ios/4D-Mobile-App-Server/tags) on this repository.
 
 ## License
 
