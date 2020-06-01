@@ -1,11 +1,10 @@
 //%attributes = {"invisible":true,"preemptive":"capable"}
 C_OBJECT:C1216($0)  // Returned object
 C_OBJECT:C1216($1)  // Session folder
-C_TEXT:C284($2)  // input mail address
 
 C_LONGINT:C283($session_indx)
 C_OBJECT:C1216($Obj_result;$sessionFolder;$sessionFile;$session)
-C_TEXT:C284($mail;$sessionFilePath)
+C_TEXT:C284($sessionFilePath)
 
 ARRAY TEXT:C222($sessionFilesList;0)
 
@@ -15,11 +14,9 @@ ARRAY TEXT:C222($sessionFilesList;0)
 
 If (Asserted:C1132(Count parameters:C259>=1;"Missing parameter"))
 	
-	$mail:=$2
-	
 	$Obj_result:=New object:C1471
 	$Obj_result.success:=False:C215
-	$Obj_result.sessions:=New collection:C1472
+	$Obj_result.mailAddresses:=New collection:C1472
 	
 Else 
 	ABORT:C156
@@ -38,9 +35,9 @@ If (Bool:C1537($1.isFolder) & Bool:C1537($1.exists))
 		
 		$session:=JSON Parse:C1218($sessionFile.getText())
 		
-		If ($mail=String:C10($session.email))
+		If (Length:C16(String:C10($session.email))>0)
 			
-			$Obj_result.sessions.push($session)
+			$Obj_result.mailAddresses.push($session.email)
 			
 		End if 
 		
@@ -50,9 +47,10 @@ If (Bool:C1537($1.isFolder) & Bool:C1537($1.exists))
 	
 End if 
 
-If ($Obj_result.sessions.count()>0)
+If ($Obj_result.mailAddresses.count()>0)
 	
 	$Obj_result.success:=True:C214
+	$Obj_result.mailAddresses:=$Obj_result.mailAddresses.distinct()
 	
 End if 
 

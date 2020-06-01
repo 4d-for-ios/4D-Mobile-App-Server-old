@@ -1,10 +1,10 @@
 //%attributes = {}
-C_COLLECTION:C1488($validEmailList;$invalidEmailList)
+C_COLLECTION:C1488($input_Col)
 C_TEXT:C284($email)
 
   // List of Valid Email Addresses
 
-$validEmailList:=New collection:C1472(\
+$input_Col:=New collection:C1472(\
 "EMAIL@example.com";\
 "email@example.com";\
 "firstname.lastname@example.com";\
@@ -19,7 +19,7 @@ $validEmailList:=New collection:C1472(\
 "firstname-lastname@example.com")
 
 
-For each ($email;$validEmailList)
+For each ($email;$input_Col)
 	
 	ASSERT:C1129(isEmail ($email);"Invalid mail address : "+$email)
 	
@@ -28,7 +28,7 @@ End for each
 
   // List of Invalid Email Addresses
 
-$invalidEmailList:=New collection:C1472(\
+$input_Col:=New collection:C1472(\
 "";\
 "plainaddress";\
 "\n#@%^%#$@#$@#.com";\
@@ -55,7 +55,7 @@ $invalidEmailList:=New collection:C1472(\
 "firstname+lastname@example.com")
 
 
-For each ($email;$invalidEmailList)
+For each ($email;$input_Col)
 	
 	ASSERT:C1129(Not:C34(isEmail ($email));"Valid mail address : "+$email)
 	
