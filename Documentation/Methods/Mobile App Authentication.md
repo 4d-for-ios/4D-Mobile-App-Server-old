@@ -41,3 +41,11 @@ Setting the status to "pending" ie. not validated yet.
 $currentSessionObject.status:="pending"
 $currentSessionObject.save() // save to File on disk
 ```
+
+### Checking authentication using a confirmation email
+
+```4d
+$0:=$auth.confirmEmail()
+```
+
+You must configure first your SMTP server to send emails - more detail available [here](Mobile%20App%20Email%20Checker.md)
